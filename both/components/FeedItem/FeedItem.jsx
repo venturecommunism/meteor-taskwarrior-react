@@ -18,16 +18,16 @@ this.FeedItem = React.createClass({
           {this.props.description}
         </div>
 
-        <div className='feed-item-uuid'>
-          {this.props.uuid}
+        <div className='feed-item-entry'>
+          {this.props.entry}
         </div>
 
         <div className='feed-item-status'>
           {this.props.status}
         </div>
 
-        <div className='feed-item-entry'>
-          {this.props.entry}
+        <div className='feed-item-uuid'>
+          {this.props.uuid}
         </div>
 
         <FeedItemFooter {...this.props} />
