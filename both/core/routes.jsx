@@ -8,7 +8,8 @@
 // react-router (via browserfy) would prob. be better unless you just need
 // an even more simple router!
 
-FlowLayout.setRoot('body');
+//If everything breaks might want to add the following line back in but for now it seems to work and Mantra doesn't use it
+//FlowLayout.setRoot('body');
 
 FlowRouter.route('/',      { name: 'Home',  action: renderView });
 FlowRouter.route('/about', { name: 'About', action: renderView });
