@@ -11,22 +11,57 @@
 //If everything breaks might want to add the following line back in but for now it seems to work and Mantra doesn't use it
 //FlowLayout.setRoot('body');
 
-FlowRouter.route('/',      { name: 'Home',  action: renderView });
-FlowRouter.route('/about', { name: 'About', action: renderView });
-FlowRouter.route('/feed',  { name: 'Feed',  action: renderView });
+import React from 'react';
+import {mount} from 'react-mounter';
 
+import MainLayout from './core/components/main_layout.jsx';
+import Header from './modules/header/containers/Header';
+import Feed from './core/containers/Feed';
+import Footer from './modules/footer/containers/Footer';
 
-// helper to layout the parent page view and log debug data
-function renderView() {
-  renderMainLayoutWith(this.name);
-  console.log("[FlowRouter] params", this.name, FlowRouter._current.params);
-}
+export default function (injectDeps, {FlowRouter}) {
+  const MainLayoutCtx = injectDeps(MainLayout)
 
-function renderMainLayoutWith(view) {
-  FlowLayout.render('mainLayout', {
-    top: "Header",
-    main: view,
-    bottom: "Footer"
+  FlowRouter.route('/newhome', {
+    name: 'Home',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<Home />)
+      });
+    }
   });
-}
 
+  FlowRouter.route('/about', {
+    name: 'About',
+    action() {         
+      mount(MainLayoutCtx, {
+        content: () => (<About />)
+      });
+    } 
+  });
+
+  FlowRouter.route('/feed', {
+    name: 'Feed',
+    action() {         
+      mount(MainLayoutCtx, {
+        content: () => (<Feed />)
+      });
+    }
+  });
+
+/*
+  // helper to layout the parent page view and log debug data
+  function renderView() {
+    renderMainLayoutWith(this.name);
+    console.log("[FlowRouter] params", this.name, FlowRouter._current.params);
+  }
+
+  function renderMainLayoutWith(view) {
+    ReactLayout.render('mainLayout', {
+      top: "Header",
+      main: view,
+      bottom: "Footer"
+    });
+  }
+*/
+}
