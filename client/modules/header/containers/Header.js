@@ -16,8 +16,9 @@ export default composeAll(
 )(PostList);
 */
 
+import React from 'react'
 import Header from '../components/Header.jsx'
-import {composeWithTracker} from 'react-komposer'
+import {composeWithTracker} from 'mantra-core'
 
 // the following code originally comes from a componentDidMount
 export const composer = ({context}, onData) => {

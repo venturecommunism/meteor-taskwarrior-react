@@ -9,6 +9,7 @@
 // also, becauses i'm lazy, I made a file generator to create the below for you!
 // https://github.com/AdamBrodzinski/meteor-generate/tree/react
 
+import {Posts} from '/lib/collections'
 
 var schema = {
   _id: String,
@@ -24,7 +25,7 @@ var schema = {
   commentcount: Number
 };
 
-Posts = new Mongo.Collection('posts');
+//Posts = new Mongo.Collection('posts');
 
 // optionally run hook to log, audit, or denormalize mongo data
 Posts.after.insert(function (userId, doc) {

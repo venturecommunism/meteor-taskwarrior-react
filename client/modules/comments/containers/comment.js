@@ -9,6 +9,7 @@
 // also, becauses i'm lazy, I made a file generator to create the below for you!
 // https://github.com/AdamBrodzinski/meteor-generate/tree/react
 
+import {Comments} from '/lib/collections'
 
 const schema = {
   created: Date,
