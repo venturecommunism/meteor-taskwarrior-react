@@ -12,15 +12,56 @@
 import FeedList from '../components/FeedList.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
-export const feedcomposer = ({context}, onData) => {
- const {Meteor, Collections} = context();
-  if (Meteor.subscribe('feed').ready()) {
+export const feedpostcomposer = ({context}, onData) => {
+
+  const fields = {
+          _id: true,
+          desc: true,
+          likeCount: true,
+          commentCount: true,
+          userName: true,
+          createdAt: true,
+          ownerId: true,
+  }
+  let recordCount = 5
+//  const recordCount = this.state.recordCount;
+  Meteor.subscribe("feed", fields, recordCount);
+
+  postItems: FeedDomain.getAllFeedPosts()
+
+  const {Meteor, Collections} = context()
+
+  if (getMeteorData.feedReady()) {
+    sweetAlert("ready")
+    const posts = Collections.Posts.find().fetch();
+    onData(null, {posts});
+  }
+};
+
+export const feedcommentcomposer = ({context}, onData) => {
+
+  const fields = {
+          _id: true,
+          createdAt: true,
+          username: true,
+          desc: true,
+          postId: true,
+  }
+  const postIds = this.data.postIds;
+  Meteor.subscribe("feed", fields, postIds);
+
+  const {Meteor, Collections} = context()
+
+  if (getMeteorData.feedReady()) {
+    sweetAlert("ready")
+    postIds: FeedDomain.getPostCommentIds()
     const posts = Collections.Posts.find().fetch();
     onData(null, {posts});
   }
 };
 
 export default composeAll(
-  composeWithTracker(feedcomposer),
+  composeWithTracker(feedpostcomposer),
+  composeWithTracker(feedcommentcomposer),
   useDeps()
 )(FeedList)
