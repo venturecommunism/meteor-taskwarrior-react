@@ -10,7 +10,8 @@
 /*global FeedList, ReactMeteorData, FeedDomain */
 
 //import CommentContainer from './CommentContainer.jsx'
-import {Posts} from '/lib/collections'
+import {Posts, Comments} from '/lib/collections'
+import {Meteor} from 'meteor/meteor';
 import FeedList from '../components/FeedList.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
@@ -27,13 +28,7 @@ export const composerfn1 = ({context}, onData) => {
   }
   let recordCount = 5
 //  const recordCount = this.state.recordCount;
-  Meteor.subscribe("feed", fields, recordCount);
-
-  postItems: FeedDomain.getAllFeedPosts()
-
-  const {Meteor, Collections} = context()
-
-  if (getMeteorData.feedReady()) {
+  if (Meteor.subscribe("feed", fields, recordCount).ready()) {
     sweetAlert("ready")
     const posts = Collections.Posts.find().fetch();
     onData(null, {posts});
@@ -49,16 +44,11 @@ export const composerfn2 = ({context}, onData) => {
           desc: true,
           postId: true,
   }
-  const postIds = this.props.postIds
-  Meteor.subscribe("feed", fields, postIds);
-
-  const {Meteor, Collections} = context()
-
-  if (getMeteorData.feedReady()) {
+  if (Meteor.subscribe("feed", fields, postIds).ready()) {
     sweetAlert("ready")
     postIds: FeedDomain.getPostCommentIds()
-    const posts = Collections.Posts.find().fetch();
-    onData(null, {posts});
+    const comments = Collections.Comments.find().fetch();
+    onData(null, {comments});
   }
 };
 
