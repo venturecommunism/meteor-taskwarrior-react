@@ -1,6 +1,8 @@
 import posts from './posts';
+import feed_actions from './feed_actions'
 
 export default {
-  posts
+  posts,
+  feed_actions
 };
 

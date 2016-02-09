@@ -9,78 +9,18 @@
 
 /*global FeedList, ReactMeteorData, FeedDomain */
 
-import React from 'react'
+import FeedList from '../components/FeedList.jsx'
+import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
-this.FeedContainer = React.createClass({
-  mixins: [ReactMeteorData],
-
-  getInitialState() {
-    return {
-      recordCount: {
-        posts: 5
-        //postComments: 5 XXX no comment limit
-      },
-
-      // TODO have this component grab children's needed fields
-      // from their statics object
-      fieldsNeeded: {
-        posts: {
-          _id: true,
-          description: true,
-          status: true,
-          likecount: true,
-          commentcount: true,
-          username: true,
-          created: true,
-          entry: true,
-          owner: true,
-          uuid: true,
-        },
-        postComments: {
-          _id: true,
-          created: true,
-          username: true,
-          description: true,
-          post: true,
-        }
-      }
-    };
-  },
-
-  // subscribe to a reactive stream of data from
-  // publication at:  server/publications/posts.js
-  startMeteorSubscriptions() {
-    var fields = this.state.fieldsNeeded;
-    var postIds = this.data.postIds;
-    var recordCount = this.state.recordCount;
-    return Meteor.subscribe("feed", fields, recordCount, postIds);
-  },
-
-  // re-renders view if any reactive data source changes. `sub` is reactive
-  // and will change when any new data is availible from subscription.
-  getMeteorData: function() {
-    var sub = this.startMeteorSubscriptions();
-
-    return {
-      feedReady: sub.ready(),
-      postItems: FeedDomain.getAllFeedPosts(),
-      postIds: FeedDomain.getPostCommentIds()
-    };
-  },
-
-  // pass this down to children so they can increase the limit when needed
-  incrementLimit() {
-    var limits = _.extend({}, this.state.recordCount);
-    limits.posts = limits.posts + 5;
-
-    this.setState({recordCount: limits});
-    return this.state;
-  },
-
-  render() {
-    return <FeedList
-      incrementLimit={this.incrementLimit}
-      postItems={this.data.postItems}
-    />;
+export const feedcomposer = ({context}, onData) => {
+ const {Meteor, Collections} = context();
+  if (Meteor.subscribe('feed').ready()) {
+    const posts = Collections.Posts.find().fetch();
+    onData(null, {posts});
   }
-});
+};
+
+export default composeAll(
+  composeWithTracker(feedcomposer),
+  useDeps()
+)(FeedList)

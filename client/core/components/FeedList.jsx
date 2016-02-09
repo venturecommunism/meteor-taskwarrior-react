@@ -1,15 +1,13 @@
 /*global FeedItem */
 
 import React from 'react'
+import FeedDomain from '../configs/method_stubs/feed_domain.jsx'
+import FeedItem from './FeedItem.jsx'
 
-class FeedList extends React.Component {
-  // TODO break out more button into comp
-  render() {
-    console.log("[FeedList] Rendering");
-    return (
+const FeedList = ({props}) => (
       <div>
         {
-          this.props.postItems.map(doc => {
+          props.postItems.map(doc => {
             var comments = FeedDomain.getCommentsFromPostId(doc._id);
 
             return <FeedItem key={doc._id}
@@ -20,15 +18,13 @@ class FeedList extends React.Component {
           })
         }
         <button className='more-btn'
-            onClick={this.props.incrementLimit}>
+            onClick={props.incrementLimit}>
           Load More
         </button>
       </div>
     );
-  }
-}
 FeedList.propTypes = {
   comments: React.PropTypes.array,
 };
 
-this.FeedList = FeedList;
+export default FeedList

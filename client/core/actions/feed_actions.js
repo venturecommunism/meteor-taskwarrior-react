@@ -1,6 +1,6 @@
 /*global FeedActions:true, FeedDomain */
 
-FeedActions = {
+export default {
   incrementPostLimit(amount) {
     FeedDomain.handleIncrementPostLimit(amount);
   },
