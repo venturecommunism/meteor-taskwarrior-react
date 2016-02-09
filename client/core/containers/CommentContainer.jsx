@@ -9,7 +9,7 @@
 
 /*global FeedList, ReactMeteorData, FeedDomain */
 
-import CommentContainer from './CommentContainer.jsx'
+import FeedContainer from './FeedContainer.jsx'
 import FeedList from '../components/FeedList.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
@@ -17,23 +17,19 @@ export const composer = ({context}, onData) => {
 
   const fields = {
           _id: true,
-          desc: true,
-          likeCount: true,
-          commentCount: true,
-          userName: true,
           createdAt: true,
-          ownerId: true,
+          username: true,
+          desc: true,
+          postId: true,
   }
-  let recordCount = 5
-//  const recordCount = this.state.recordCount;
-  Meteor.subscribe("feed", fields, recordCount);
-
-  postItems: FeedDomain.getAllFeedPosts()
+  const postIds = this.data.postIds;
+  Meteor.subscribe("feed", fields, postIds);
 
   const {Meteor, Collections} = context()
 
   if (getMeteorData.feedReady()) {
     sweetAlert("ready")
+    postIds: FeedDomain.getPostCommentIds()
     const posts = Collections.Posts.find().fetch();
     onData(null, {posts});
   }
@@ -41,5 +37,5 @@ export const composer = ({context}, onData) => {
 
 export default composeAll(
   composeWithTracker(composer),
-  useDeps,
-)(CommentContainer)
+  useDeps
+)(FeedList)
