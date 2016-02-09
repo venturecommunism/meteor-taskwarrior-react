@@ -4,7 +4,7 @@ import initContext from './configs/context';
 // modules
 import coreModule from './modules/posts';
 //import coreModule from './core';
-import commentsModule from './modules/comments';
+import commentsModule from './modules/comment_list';
 
 // init context
 const context = initContext();
