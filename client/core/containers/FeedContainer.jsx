@@ -9,11 +9,12 @@
 
 /*global FeedList, ReactMeteorData, FeedDomain */
 
-import CommentContainer from './CommentContainer.jsx'
+//import CommentContainer from './CommentContainer.jsx'
+import {Posts} from '/lib/collections'
 import FeedList from '../components/FeedList.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
-export const composer = ({context}, onData) => {
+export const composerfn1 = ({context}, onData) => {
 
   const fields = {
           _id: true,
@@ -39,7 +40,35 @@ export const composer = ({context}, onData) => {
   }
 };
 
+export const composerfn2 = ({context}, onData) => {
+
+  const fields = {
+          _id: true,
+          createdAt: true,
+          username: true,
+          desc: true,
+          postId: true,
+  }
+  const postIds = this.props.postIds
+  Meteor.subscribe("feed", fields, postIds);
+
+  const {Meteor, Collections} = context()
+
+  if (getMeteorData.feedReady()) {
+    sweetAlert("ready")
+    postIds: FeedDomain.getPostCommentIds()
+    const posts = Collections.Posts.find().fetch();
+    onData(null, {posts});
+  }
+};
+
+export const depsMapper = (context, actions) => ({
+  postIds: Posts.find({}, {fields: {_id: 1}}).map(doc => doc._id),
+  context: () => context
+});
+
 export default composeAll(
-  composeWithTracker(composer),
-  useDeps,
-)(CommentContainer)
+  composeWithTracker(composerfn1),
+  composeWithTracker(composerfn2),
+  useDeps(depsMapper),
+)(FeedList)
