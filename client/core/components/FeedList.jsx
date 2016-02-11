@@ -1,13 +1,17 @@
-/*global FeedItem */
+/* global FeedItem */
 
+import {Posts, Comments} from '/lib/collections'
+import Meteor from 'meteor/meteor'
 import React from 'react'
 import FeedDomain from '../actions/feed_domain.jsx'
 import FeedItem from './FeedItem.jsx'
 
-const FeedList = ({props}) => (
+const FeedList = () => (
       <div>
         {
-          props.postItems.map(doc => {
+sweetAlert("getAllFeedPosts", FeedDomain.getAllFeedPosts().map(doc => doc))
+/*
+          FeedDomain.getAllFeedPosts.map(doc => {
             var comments = FeedDomain.getCommentsFromPostId(doc._id);
 
             return <FeedItem key={doc._id}
@@ -16,9 +20,10 @@ const FeedList = ({props}) => (
               destroyPost={ doc.destroy }
             />;
           })
+*/
         }
         <button className='more-btn'
-            onClick={props.incrementLimit}>
+            onClick={FeedDomain.incrementLimit}>
           Load More
         </button>
       </div>

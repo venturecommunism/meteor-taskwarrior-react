@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-this.FeedItem = React.createClass({
+const FeedItem = React.createClass({
   propTypes: {
     description: React.PropTypes.string.isRequired,
     comments: React.PropTypes.array.isRequired,
@@ -39,3 +39,5 @@ this.FeedItem = React.createClass({
     );
   }
 });
+
+export default FeedItem
