@@ -1,7 +1,7 @@
 /*global FeedItem */
 
 import React from 'react'
-import FeedDomain from '../configs/method_stubs/feed_domain.jsx'
+import FeedDomain from '../actions/feed_domain.jsx'
 import FeedItem from './FeedItem.jsx'
 
 const FeedList = ({props}) => (
