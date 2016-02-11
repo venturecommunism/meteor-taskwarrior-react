@@ -1,6 +1,9 @@
-/*global FeedDomain:true, Comments, Posts, FlowRouter */
+/* global FeedDomain:true, Comments, Posts, FlowRouter */
 
-FeedDomain = {
+import {Posts, Comments} from '/lib/collections'
+import {Meteor} from 'meteor/meteor';
+
+const FeedDomain = {
   // these are pulling from the Minimongo cache, only the subscription can
   // fetch data from the server
 
@@ -39,3 +42,5 @@ FeedDomain = {
     return FlowRouter.getQueryParam('step');
   }
 };
+
+export default FeedDomain
