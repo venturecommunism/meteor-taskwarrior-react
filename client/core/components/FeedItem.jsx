@@ -1,6 +1,7 @@
 /* global FeedItemHeader, FeedItemFooter, FeedComments */
 
 import React from 'react'
+import FeedList from './FeedList.jsx'
 
 const FeedItem = ({props}) => (
   <div className='feed-item'>
