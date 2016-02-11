@@ -1,43 +1,39 @@
-/*global FeedItemHeader, FeedItemFooter, FeedComments */
+/* global FeedItemHeader, FeedItemFooter, FeedComments */
 
 import React from 'react'
 
-const FeedItem = React.createClass({
-  propTypes: {
-    description: React.PropTypes.string.isRequired,
-    comments: React.PropTypes.array.isRequired,
-    uuid: React.PropTypes.string.isRequired,
-    status: React.PropTypes.string.isRequired,
-    entry: React.PropTypes.string.isRequired,
-  },
+const FeedItem = ({props}) => (
+  <div className='feed-item'>
+    <FeedItemHeader {...props} />
 
-  render() {
-    return (
-      <div className='feed-item'>
-        <FeedItemHeader {...this.props} />
+    <div className='feed-item-description'>
+      {props.description}
+    </div>
 
-        <div className='feed-item-description'>
-          {this.props.description}
-        </div>
+    <div className='feed-item-entry'>
+      {props.entry}
+    </div>
 
-        <div className='feed-item-entry'>
-          {this.props.entry}
-        </div>
+    <div className='feed-item-status'>
+      {props.status}
+    </div>
 
-        <div className='feed-item-status'>
-          {this.props.status}
-        </div>
+    <div className='feed-item-uuid'>
+      {props.uuid}
+    </div>
 
-        <div className='feed-item-uuid'>
-          {this.props.uuid}
-        </div>
+    <FeedItemFooter {...props} />
 
-        <FeedItemFooter {...this.props} />
-
-        <FeedComments {...this.props} />
-      </div>
-    );
-  }
-});
+    <FeedComments {...props} />
+  </div>
+);
+FeedList.propTypes = {
+  description: React.PropTypes.string.isRequired,
+  comments: React.PropTypes.array.isRequired,
+  uuid: React.PropTypes.string.isRequired,
+  status: React.PropTypes.string.isRequired,
+  entry: React.PropTypes.string.isRequired,
+};
 
 export default FeedItem
+
