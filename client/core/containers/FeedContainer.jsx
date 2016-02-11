@@ -10,14 +10,15 @@
 /* global FeedList, ReactMeteorData, FeedDomain */
 
 //import CommentContainer from './CommentContainer.jsx'
-//import {Posts, Comments} from '/lib/collections'
+import {Posts, Comments} from '/lib/collections'
 //import {Meteor} from 'meteor/meteor';
 import FeedList from '../components/FeedList.jsx'
+import FeedDomain from '../actions/feed_domain.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
 export const composerfn1 = ({context}, onData) => {
   const {Meteor, Collections, Tracker} = context();
-
+sweetAlert("title", "test")
   const fields = {
     posts: {
       _id: true,
@@ -37,17 +38,19 @@ export const composerfn1 = ({context}, onData) => {
     }
   }
   let recordCount = {posts: 5}
-//  sweetAlert("fields.posts", Object.keys(fields.posts))
+  sweetAlert("fields.posts", Object.keys(fields.posts))
 //  const recordCount = this.state.recordCount;
-  try {
-    Meteor.subscribe("feed", fields, recordCount, null).ready()
-  }
-  catch (err) {
-    sweetAlert("subscribe error: " + err + ", fields: " + Object.keys(fields.posts))
-  }
-  const posts = Collections.Posts.find().fetch();
-  sweetAlert("success")
+sweetAlert("FeedDomain", Object.keys(FeedDomain))
+  const feedposts = FeedDomain.getAllFeedPosts()
+sweetAlert("feedposts", feedposts)
+  const postIds = FeedDomain.getPostCommentIds()
+  sweetAlert("postIds", postIds)
+  if (Meteor.subscribe("feed", fields, recordCount, postIds).ready()) {
+//  sweetAlert("subscribe error: " + err + ", fields: " + Object.keys(fields.posts))
+  const posts = Posts.find().fetch();
+  sweetAlert("success", Object.keys(posts[1]))
   onData(null, {posts});
+  }
 };
 
 export const composerfn2 = ({context}, onData) => {
