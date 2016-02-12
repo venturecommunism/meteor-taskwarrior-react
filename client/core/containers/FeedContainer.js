@@ -12,7 +12,7 @@
 //import CommentContainer from './CommentContainer.jsx'
 import {Posts, Comments} from '/lib/collections'
 //import {Meteor} from 'meteor/meteor';
-import FeedList from '../components/FeedList.jsx'
+import Feed from '../components/Feed.jsx'
 import FeedDomain from '../actions/feed_domain.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
@@ -83,4 +83,4 @@ export default composeAll(
 //  composeWithTracker(composerfn2),
 //  useDeps(depsMapper),
 useDeps()
-)(FeedList)
+)(Feed)

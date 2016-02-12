@@ -1,22 +1,21 @@
 import ParamsExample from '../../modules/params/ParamsExample.jsx'
 import CreatePost from './CreatePost.jsx'
 import TrendingPosts from '../../modules/trendingposts/TrendingPosts.jsx'
+import React from 'react'
+import FeedList from './FeedList.jsx'
 
-const Layout = ({content = () => null }) => (
-  <div class="feed">
-    <div class="container">
+const Layout = ({posts}) => (
+  <div className="feed">
+    <div className="container">
 
-      <div class="col-25">
-        <ParamsExample />
+      <div className="col-25">
       </div>
 
-      <div class="col-50">
-        <CreatePost />
-        {content()}
+      <div className="col-50">
+        <FeedList posts={posts} />
       </div>
 
-      <div class="col-25">
-        <TrendingPosts />
+      <div className="col-25">
       </div>
 
     </div>
