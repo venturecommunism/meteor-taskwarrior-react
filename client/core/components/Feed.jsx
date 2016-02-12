@@ -12,6 +12,7 @@ const Layout = ({posts}) => (
       </div>
 
       <div className="col-50">
+        <CreatePost />
         <FeedList posts={posts} />
       </div>
 

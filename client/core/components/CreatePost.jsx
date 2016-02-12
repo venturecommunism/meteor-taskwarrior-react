@@ -1,43 +1,18 @@
 /*global PostActions */
 
+//import FeedDomain from '../actions/feed_domain.jsx'
 import React from 'react'
 
-class CreatePost extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const CreatePost = ({posts}) => (
+  <div className='create-post'>
+    <textarea
+      placeholder="What's on your mind?" />
 
-  handleChange() {
-    this.setState({
-      description: this.refs.text.getDOMNode().value
-    });
-  }
+    <button>
+      Submit Post
+    </button>
+  </div>
+);
 
-  handleClick() {
-    PostActions.createPost({ description: this.state.description, uuid: guid(), entry: formattedNow(), status: "pending" });
-    this.resetForm();
-  }
 
-  resetForm() {
-    this.setState({});
-    $('textarea').val('');
-  }
-
-  render() {
-    return (
-      <div className='create-post'>
-        <textarea
-          ref='text'
-          placeholder="Let us know what you think!"
-          onChange={ this.handleChange.bind(this) } />
-
-        <button onClick={ this.handleClick.bind(this) }>
-          Submit Post
-        </button>
-      </div>
-    );
-  }
-}
-
-this.CreatePost = CreatePost;
+export default CreatePost
