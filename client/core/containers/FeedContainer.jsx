@@ -53,6 +53,7 @@ sweetAlert("feedposts", feedposts)
   }
 };
 
+/*
 export const composerfn2 = ({context}, onData) => {
   const {Meteor, Collections} = context();
   const fields = {
@@ -74,10 +75,12 @@ export const depsMapper = ({Posts}, context, actions) => ({
   postIds: Collections.posts.find({}, {fields: {_id: 1}}).map(doc => doc._id),
   context: () => context
 });
+*/
+
 
 export default composeAll(
   composeWithTracker(composerfn1),
 //  composeWithTracker(composerfn2),
 //  useDeps(depsMapper),
-useDeps(),
+useDeps()
 )(FeedList)
