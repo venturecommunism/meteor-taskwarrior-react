@@ -9,7 +9,7 @@
 
 /*global FeedList, ReactMeteorData, FeedDomain */
 
-import FeedContainer from './FeedContainer.jsx'
+import FeedContainer from './FeedContainer'
 import FeedList from '../components/FeedList.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
