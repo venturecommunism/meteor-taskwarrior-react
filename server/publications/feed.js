@@ -38,6 +38,7 @@ export default function () {
     check(fields, {
       posts: {
         _id: Boolean,  // id required for security
+        title: optional(Boolean),
         description: optional(Boolean),
         likecount: optional(Boolean),
         commentcount: optional(Boolean),
