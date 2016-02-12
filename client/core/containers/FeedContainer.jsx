@@ -22,7 +22,7 @@ sweetAlert("title", "test")
   const fields = {
     posts: {
       _id: true,
-      description: true,
+      title: true,
       likecount: true,
       commentcount: true,
       username: true,
@@ -47,7 +47,7 @@ sweetAlert("feedposts", feedposts)
   sweetAlert("postIds", postIds)
   if (Meteor.subscribe("feed", fields, recordCount, postIds).ready()) {
 //  sweetAlert("subscribe error: " + err + ", fields: " + Object.keys(fields.posts))
-  const posts = Posts.find().fetch();
+  const posts = Collections.Posts.find().fetch();
   sweetAlert("success", Object.keys(posts[1]))
   onData(null, {posts});
   }
