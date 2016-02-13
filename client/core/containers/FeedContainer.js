@@ -37,7 +37,7 @@ sweetAlert("title", "test")
       post: true,
     }
   }
-  let recordCount = {posts: 5}
+  let recordCount = {posts: 20}
   sweetAlert("fields.posts", Object.keys(fields.posts))
 //  const recordCount = this.state.recordCount;
 sweetAlert("FeedDomain", Object.keys(FeedDomain))

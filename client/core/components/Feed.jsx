@@ -1,5 +1,5 @@
 import ParamsExample from '../../modules/params/ParamsExample.jsx'
-import CreatePost from './CreatePost.jsx'
+import CreatePostContainer from '../containers/CreatePostContainer'
 import TrendingPosts from '../../modules/trendingposts/TrendingPosts.jsx'
 import React from 'react'
 import FeedList from './FeedList.jsx'
@@ -12,7 +12,7 @@ const Layout = ({posts}) => (
       </div>
 
       <div className="col-50">
-        <CreatePost />
+        <CreatePostContainer />
         <FeedList posts={posts} />
       </div>
 
