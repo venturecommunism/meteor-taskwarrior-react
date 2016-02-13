@@ -7,9 +7,9 @@ export default function ({Meteor, Collections}) {
       check(title, String);
       check(content, String);
 
-      const createdAt = new Date();
+      const created = new Date();
       const post = {
-        _id, title, content, createdAt,
+        _id, title, content, created,
         saving: true
       };
 
