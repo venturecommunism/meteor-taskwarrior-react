@@ -4,17 +4,16 @@ import {check} from 'meteor/check';
 
 export default function () {
   Meteor.methods({
-    'posts.create'(_id, title, content) {
+    'posts.create'(_id, description) {
       check(_id, String);
-      check(title, String);
-      check(content, String);
+      check(description, String);
 
       // Show the latency compensations
       Meteor._sleepForMs(500);
 
       // XXX: Do some user authorization
       const createdAt = new Date();
-      const post = {_id, title, content, createdAt};
+      const post = {_id, description, createdAt};
       Posts.insert(post);
     }
   });

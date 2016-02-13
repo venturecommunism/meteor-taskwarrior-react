@@ -10,8 +10,7 @@ class CreatePost extends React.Component {
         <h2>Add New Post</h2>
         {error ? <p style={{color: 'red'}}>{error}</p> : null}
 
-        <input ref="titleRef" type="Text" placeholder="Enter your post title." /> <br/>
-        <textarea ref="contentRef" placeholder="Enter your post content." /> <br/>
+        <textarea ref="descriptionRef" placeholder="Enter your post content." /> <br/>
         <button onClick={this.createPost.bind(this)}>Add New</button>
       </div>
     );
@@ -19,9 +18,9 @@ class CreatePost extends React.Component {
 
   createPost() {
     const {create} = this.props;
-    const {titleRef, contentRef} = this.refs;
+    const {descriptionRef} = this.refs;
 
-    create(titleRef.value, contentRef.value);
+    create(descriptionRef.value);
   }
 }
 

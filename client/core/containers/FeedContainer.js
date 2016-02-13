@@ -22,7 +22,7 @@ sweetAlert("title", "test")
   const fields = {
     posts: {
       _id: true,
-      title: true,
+      description: true,
       likecount: true,
       commentcount: true,
       username: true,
