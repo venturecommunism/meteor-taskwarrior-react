@@ -24,7 +24,7 @@ export const composer = ({context}, onData) => {
       post: true,
     }
   }
-  let recordCount = {posts: 5}
+  let recordCount = {posts: 10}
   sweetAlert("fields.posts", Object.keys(fields.posts))
   sweetAlert("FeedDomain", Object.keys(FeedDomain))
   const feedposts = FeedDomain.getAllFeedPosts()
