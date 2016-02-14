@@ -3,32 +3,26 @@
 import React from 'react'
 import FeedList from './FeedList.jsx'
 
-const FeedItem = ({props}) => (
+const FeedItem = ({post}) => (
   <div className='feed-item'>
-    <FeedItemHeader {...props} />
-
     <div className='feed-item-description'>
-      {props.description}
+      {post.description}
     </div>
 
     <div className='feed-item-entry'>
-      {props.entry}
+      {post.entry}
     </div>
 
     <div className='feed-item-status'>
-      {props.status}
+      {post.status}
     </div>
 
     <div className='feed-item-uuid'>
-      {props.uuid}
+      {post.uuid}
     </div>
-
-    <FeedItemFooter {...props} />
-
-    <FeedComments {...props} />
   </div>
 );
-FeedList.propTypes = {
+FeedItem.propTypes = {
   description: React.PropTypes.string.isRequired,
   comments: React.PropTypes.array.isRequired,
   uuid: React.PropTypes.string.isRequired,

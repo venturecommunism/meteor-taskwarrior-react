@@ -2,7 +2,7 @@
 
 import React from 'react'
 import FeedDomain from '../actions/feed_domain.jsx'
-//import FeedItem from './FeedItem.jsx'
+import FeedItem from './FeedItem.jsx'
 
 const FeedList = ({posts}) => (
 
@@ -11,11 +11,7 @@ const FeedList = ({posts}) => (
     <ul>
       {posts.map(post => (
         <li key={post._id}>
-          {post.description}
-          {post.comments}
-          {post.uuid}
-          {post.status}
-          {post.entry}
+          <FeedItem post={post} />
         </li>
       ))}
     </ul>
