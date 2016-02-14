@@ -3,6 +3,30 @@
 
 import React from 'react'
 
+const FeedItemHeader = ({post}) => (
+  <div className="feed-item__header">
+    <div className="avatar" />
+
+    <div className='name-date'>
+      <div className="name">{post.username}</div>
+{/*      <div className="date">{this.formatDate()}</div> */}
+    </div>
+
+{/*
+    { hasDeleteBtn &&
+      <div className="destroy" onClick={ this.handleClick }>
+          Delete Post
+      </div>
+    }
+*/}
+  </div>
+);
+
+export default FeedItemHeader
+
+{/*
+import React from 'react'
+
 this.FeedItemHeader = React.createClass({
   mixins: [TimeFormatMixins],
   propTypes: {
@@ -41,3 +65,4 @@ this.FeedItemHeader = React.createClass({
     );
   }
 });
+*/}

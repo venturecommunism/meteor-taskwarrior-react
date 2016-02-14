@@ -2,9 +2,12 @@
 
 import React from 'react'
 import FeedList from './FeedList.jsx'
+import FeedItemHeader from './FeedItemHeader.jsx'
 
 const FeedItem = ({post}) => (
   <div className='feed-item'>
+    <FeedItemHeader post={post} />
+
     <div className='feed-item-description'>
       {post.description}
     </div>
