@@ -11,7 +11,6 @@ const FeedList = ({posts}) => (
     <ul>
       {posts.map(post => (
         <li key={post._id}>
-          {post.title}
           {post.description}
           {post.comments}
           {post.uuid}

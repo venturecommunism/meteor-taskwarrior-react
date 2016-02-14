@@ -12,8 +12,11 @@ export default function () {
       Meteor._sleepForMs(500);
 
       // XXX: Do some user authorization
+      const uuid = guid()
       const createdAt = new Date();
-      const post = {_id, description, createdAt};
+      const entry = formattedMoment(moment(createdAt))
+      const status = "pending"
+      const post = {_id, description, uuid, createdAt, entry, status};
       Posts.insert(post);
     }
   });
