@@ -23,6 +23,9 @@ sweetAlert("title", "test")
     posts: {
       _id: true,
       description: true,
+      uuid: true,
+      status: true,
+      entry: true,
       likecount: true,
       commentcount: true,
       username: true,
