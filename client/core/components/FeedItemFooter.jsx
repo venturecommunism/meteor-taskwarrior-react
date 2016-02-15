@@ -3,6 +3,30 @@
 
 import React from 'react'
 
+const FeedItemFooter = ({post}) => (
+
+      <div className="feed-item__footer">
+{/*        {!this.state.hasLiked &&
+          <a href="#" onClick={ this.handleLikeClick }>Like</a>
+        }
+*/}
+        <span className='by-people'>
+{/*          Liked by {this.props.likecount} people */}
+        </span>
+
+        <span className='by-people'>
+{/*          {this.props.commentcount} Comments */}
+        </span>
+      </div>
+
+
+)
+
+export default FeedItemFooter
+
+/*
+import React from 'react'
+
 this.FeedItemFooter = React.createClass({
   propTypes: {
     likecount: React.PropTypes.number,
@@ -43,3 +67,5 @@ this.FeedItemFooter = React.createClass({
     );
   }
 });
+
+*/
