@@ -10,7 +10,7 @@ const ParamsExample = () => (
         <h4>Reactive Query Params</h4>
 
         <p>
-          FlowRouter provides a reactive API that will
+          FlowRouter provides a reactive API that 
           allows for automatic render updates when the
           data changes
         </p>
