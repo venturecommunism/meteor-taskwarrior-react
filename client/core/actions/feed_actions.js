@@ -1,5 +1,7 @@
 /*global FeedActions:true, FeedDomain */
 
+import FeedDomain from './feed_domain.jsx'
+
 export default {
   incrementPostLimit(amount) {
     FeedDomain.handleIncrementPostLimit(amount);

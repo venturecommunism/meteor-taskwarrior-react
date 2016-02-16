@@ -9,6 +9,7 @@ const Layout = ({posts}) => (
     <div className="container">
 
       <div className="col-25">
+        <ParamsExample />
       </div>
 
       <div className="col-50">
