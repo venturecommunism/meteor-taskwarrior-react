@@ -9,16 +9,14 @@
 
 /* global FeedList, ReactMeteorData, FeedDomain */
 
-//import CommentContainer from './CommentContainer.jsx'
 import {Posts, Comments} from '/lib/collections'
-//import {Meteor} from 'meteor/meteor';
 import Feed from '../components/Feed.jsx'
 import FeedDomain from '../actions/feed_domain.jsx'
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core'
 
 export const composerfn1 = ({context}, onData) => {
-  const {Meteor, Collections, Tracker} = context();
-sweetAlert("title", "test")
+  const {Meteor, Collections, Tracker} = context()
+
   const fields = {
     posts: {
       _id: true,
@@ -40,50 +38,24 @@ sweetAlert("title", "test")
       post: true,
     }
   }
+
   let recordCount = {posts: 20}
-  sweetAlert("fields.posts", Object.keys(fields.posts))
-//  const recordCount = this.state.recordCount;
-sweetAlert("FeedDomain", Object.keys(FeedDomain))
+
+  // sweetAlert("fields.posts", Object.keys(fields.posts))
+  // sweetAlert("FeedDomain", Object.keys(FeedDomain))
   const feedposts = FeedDomain.getAllFeedPosts()
-sweetAlert("feedposts", feedposts)
+  // sweetAlert("feedposts", feedposts)
   const postIds = FeedDomain.getPostCommentIds()
-  sweetAlert("postIds", postIds)
+  // sweetAlert("postIds", postIds)
   if (Meteor.subscribe("feed", fields, recordCount, postIds).ready()) {
-//  sweetAlert("subscribe error: " + err + ", fields: " + Object.keys(fields.posts))
-  const posts = Collections.Posts.find().fetch();
-  sweetAlert("success", Object.keys(posts[1]))
-  onData(null, {posts});
+    // sweetAlert("subscribe error: " + err + ", fields: " + Object.keys(fields.posts))
+    const posts = Collections.Posts.find().fetch();
+    // sweetAlert("success", Object.keys(posts[1]))
+    onData(null, {posts});
   }
 };
-
-/*
-export const composerfn2 = ({context}, onData) => {
-  const {Meteor, Collections} = context();
-  const fields = {
-          _id: true,
-          createdAt: true,
-          username: true,
-          desc: true,
-          postId: true,
-  }
-  postIds: FeedDomain.getPostCommentIds()
-  if (Meteor.subscribe("feed", fields, postIds).ready()) {
-    sweetAlert("ready")
-    const comments = Collections.Comments.find().fetch();
-    onData(null, {comments});
-  }
-};
-
-export const depsMapper = ({Posts}, context, actions) => ({
-  postIds: Collections.posts.find({}, {fields: {_id: 1}}).map(doc => doc._id),
-  context: () => context
-});
-*/
-
 
 export default composeAll(
   composeWithTracker(composerfn1),
-//  composeWithTracker(composerfn2),
-//  useDeps(depsMapper),
-useDeps()
+  useDeps()
 )(Feed)
