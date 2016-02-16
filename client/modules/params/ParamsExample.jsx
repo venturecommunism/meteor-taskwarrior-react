@@ -5,10 +5,6 @@ import React from 'react'
 import FeedActions from '../../core/actions/feed_actions'
 import FeedDomain from '../../core/actions/feed_domain.jsx'
 
-export function handleClick() {
-  FeedActions.incrementStepParam()
-}
-
 const ParamsExample = () => (
       <div className='params-example'>
         <h4>Reactive Query Params</h4>
