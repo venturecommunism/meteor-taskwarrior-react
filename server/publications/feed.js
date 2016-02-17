@@ -2,7 +2,7 @@ import {Tasks, TaskComments} from '/lib/feed';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
-export default function () {
+// export default function () {
 
   var optional = Match.Optional;
 
@@ -64,4 +64,4 @@ export default function () {
     ];
   });
 
-}
+// }
