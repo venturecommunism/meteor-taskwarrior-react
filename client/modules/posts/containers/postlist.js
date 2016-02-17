@@ -1,7 +1,8 @@
 import PostList from '../components/postlist.jsx'
 //import FeedList from '../../../core/components/FeedList.jsx';
-import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
-import FeedDomain from '../../../core/actions/feed_domain.jsx'
+import {useDeps} from 'react-simple-di'
+import {composeWithTracker, composeAll} from 'react-komposer';
+import FeedDomain from '../../feed/actions/feed_domain.jsx'
 
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();

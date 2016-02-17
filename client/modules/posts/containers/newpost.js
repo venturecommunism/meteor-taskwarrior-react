@@ -1,5 +1,6 @@
 import NewPost from '../components/newpost.jsx';
-import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import {useDeps} from 'react-simple-di'
+import {composeWithTracker, composeAll} from 'react-komposer';
 
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState} = context();

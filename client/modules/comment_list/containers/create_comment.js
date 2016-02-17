@@ -1,6 +1,7 @@
+import {useDeps} from 'react-simple-di'
 import {
-  useDeps, composeWithTracker, composeAll
-} from 'mantra-core';
+  composeWithTracker, composeAll
+} from 'react-komposer';
 import Component from '../components/create_comment.jsx';
 
 export const composer = ({context, clearErrors}, onData) => {

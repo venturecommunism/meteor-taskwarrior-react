@@ -1,6 +1,7 @@
 /*
 import PostList from '../components/postlist.jsx';
-import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import {useDeps} from 'react-simple-di'
+import {composeWithTracker, composeAll} from 'react-komposer';
 
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();
@@ -18,7 +19,7 @@ export default composeAll(
 
 import React from 'react'
 import Header from '../components/Header.jsx'
-import {composeWithTracker} from 'mantra-core'
+import {composeWithTracker} from 'react-komposer'
 
 // the following code originally comes from a componentDidMount
 export const composer = ({context}, onData) => {
