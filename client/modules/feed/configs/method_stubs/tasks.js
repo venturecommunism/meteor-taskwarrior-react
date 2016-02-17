@@ -12,7 +12,7 @@ export default function ({Meteor, Collections}) {
         saving: true
       };
 
-      Collections.Tasks.insert(task);
+      Tasks.insert(task);
     }
   });
 }
