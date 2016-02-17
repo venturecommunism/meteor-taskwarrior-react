@@ -11,10 +11,11 @@ export default {
     // That's how we are doing latency compensation
     Meteor.call('tasks.create', id, description, (err) => {
       if (err) {
+        sweetAlert("Oops...", err.message, "error")
         return LocalState.set('SAVING_ERROR', err.message);
       }
     });
-//    FlowRouter.go(`/task/${id}`);
+    // FlowRouter.go(`/task/${id}`);
   },
 
   clearErrors({LocalState}) {

@@ -2,14 +2,14 @@ import {Tasks, TaskComments} from '/lib/feed';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
-export default function () {
+// export default function () {
   Meteor.methods({
     'tasks.create'(_id, description) {
       check(_id, String);
       check(description, String);
 
       // Show the latency compensations
-      Meteor._sleepForMs(500);
+      // Meteor._sleepForMs(500);
 
       // XXX: Do some user authorization
       const uuid = guid()
@@ -22,13 +22,13 @@ export default function () {
   });
 
   Meteor.methods({
-    'tasks.createComment'(_id, taskId, text) {
+    'tasks.createTaskComment'(_id, taskId, text) {
       check(_id, String);
       check(taskId, String);
       check(text, String);
 
       // Show the latency compensations
-      Meteor._sleepForMs(500);
+      // Meteor._sleepForMs(500);
 
       // XXX: Do some user authorization
       const createdAt = new Date();
@@ -37,4 +37,5 @@ export default function () {
       TaskComments.insert(taskcomment);
     }
   });
-}
+//}
+
