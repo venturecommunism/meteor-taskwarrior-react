@@ -1,16 +1,36 @@
-import {createApp} from 'mantra-core';
-import initContext from './configs/context';
+import {initContext} from './configs/context';
+import routes from './configs/routes.jsx';
+import {createApp} from './libs/mantra';
 
-// modules
-//import coreModule from './modules/posts';
-import coreModule from './core';
-import commentsModule from './modules/comment_list';
+import coreModule from './modules/core';
+import commentsModule from './modules/comments';
 
-// init context
+import _homeModule from './modules/_home';
+import _homeRoutes from './modules/_home/configs/routes.jsx';
+
+import _usersModule from './modules/_users';
+import _usersRoutes from './modules/_users/configs/routes.jsx';
+
+import _colorsModule from './modules/_colors';
+import _colorsRoutes from './modules/_colors/configs/routes.jsx';
+
+import feedModule from './modules/feed'
+import feedRoutes from './modules/feed/configs/routes.jsx'
+
 const context = initContext();
 
-// create app
 const app = createApp(context);
 app.loadModule(coreModule);
 app.loadModule(commentsModule);
-app.init();
+
+app.loadModule(_homeModule);
+app.loadModule(_usersModule);
+app.loadModule(_colorsModule);
+app.loadModule(feedModule)
+
+app.loadRoutes(_homeRoutes);
+app.loadRoutes(_usersRoutes);
+app.loadRoutes(_colorsRoutes);
+app.loadRoutes(feedRoutes)
+
+app.loadRoutes(routes);

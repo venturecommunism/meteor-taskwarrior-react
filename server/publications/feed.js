@@ -1,18 +1,16 @@
-import {Posts, Comments} from '/lib/collections';
+import {Tasks, TaskComments} from '/lib/feed';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
-
-/*global Posts, Comments */
 
 export default function () {
 
   var optional = Match.Optional;
 
-  Meteor.publish('feed', function(fields, limits, postIds) {
-    check(limits, {posts: Number});
-    check(postIds, Match.OneOf(null, [String]));
+  Meteor.publish('feed', function(fields, limits, taskIds) {
+    check(limits, {tasks: Number});
+    check(taskIds, Match.OneOf(null, [String]));
 
-    console.log('Publishing Posts', fields);
+    console.log('Publishing Tasks', fields);
     console.log("Limit:", limits);
 
     // SECURITY NOTE
@@ -36,12 +34,12 @@ export default function () {
     // Match.Optional it will be required. If any key does not match the
     // publication will fail and throw an error
     check(fields, {
-      posts: {
+      tasks: {
         _id: Boolean,  // id required for security
         title: optional(Boolean),
         description: optional(Boolean),
         likecount: optional(Boolean),
-        commentcount: optional(Boolean),
+        taskcommentcount: optional(Boolean),
         username: optional(Boolean),
         created: optional(Boolean),
         owner: optional(Boolean),
@@ -49,20 +47,20 @@ export default function () {
         entry: optional(Boolean),
         uuid: optional(Boolean)
       },
-      postComments: {
+      taskComments: {
         _id: Boolean,  // id required for security
         created: optional(Boolean),
         description: optional(Boolean),
         username: optional(Boolean),
-        post: optional(Boolean)
+        task: optional(Boolean)
       }
     });
 
 
     // returns Mongo Cursors
     return [
-      Posts.find({}, {fields: fields.posts, sort: {created: -1}, limit: limits.posts}),
-      Comments.find({post: {$in: postIds ? postIds : []}}, {fields: fields.postComments})
+      Tasks.find({}, {fields: fields.tasks, sort: {created: -1}, limit: limits.tasks}),
+      TaskComments.find({task: {$in: taskIds ? taskIds : []}}, {fields: fields.taskComments})
     ];
   });
 
