@@ -39,3 +39,31 @@ import {check} from 'meteor/check';
   });
 //}
 
+Meteor.methods({
+  'tasks.update'(data, _id) {
+    check(data, {
+      type: Match.Optional(String),
+      description: Match.Optional(String),
+      uuid: Match.Optional(String)
+    });
+    check(_id, String);
+
+    // console.log ('Tasks.update _id', _id);
+    // console.log ('Tasks.update data', data);
+
+    // XXX: Do some user authorization
+
+    Tasks.update({_id: _id}, {$set: {type: data.type}})
+
+/*
+    let record = Tasks.findOne(_id);
+    console.log(record)
+    const allowedFields = [ 'type','description','uuid' ];
+    allowedFields.forEach(key => record.set(key,data[key]) );
+    record.save(allowedFields);
+*/
+
+    // console.log ('Tasks.update record', record);
+
+  },
+})

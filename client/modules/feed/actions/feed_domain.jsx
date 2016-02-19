@@ -38,7 +38,17 @@ const FeedDomain = {
   getStepParam() {
     // see full API - https://github.com/meteorhacks/flow-router#api
     return FlowRouter.getQueryParam('step');
-  }
+  },
+
+  setProjectOrContext(e) {
+    const _id = e.target.className
+    // sweetAlert("projorcont", "success")
+    const projorcont = e.target.value
+    const data = {type: projorcont} 
+    Meteor.call('tasks.update', data, _id)
+    // {_id: _id}, {$set: {type: projorcont}})
+  },
+
 };
 
 export default FeedDomain
