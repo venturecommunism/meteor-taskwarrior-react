@@ -71,5 +71,9 @@ export default ({collection}) => (
         </li>
       ))}
     </ul>
+
+    <button className='more-btn'> 
+      Load More
+    </button>
   </div>
 );
