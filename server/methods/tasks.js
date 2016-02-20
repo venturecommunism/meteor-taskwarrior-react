@@ -22,24 +22,24 @@ Meteor.methods({
     tasks.insert(data);
   },
 
-  '_tasks.update'(data, _id) {
+  'tasks.update'(data, _id) {
     check(data, {
-      title: String,
-      content: String
+      description: Match.Optional(String),
+      type: Match.Optional(String),
     });
     check(_id, String);
 
-    // console.log ('_tasks.update _id', _id);
-    // console.log ('_tasks.update data', data);
+    // console.log ('tasks.update _id', _id);
+    // console.log ('tasks.update data', data);
 
     // XXX: Do some user authorization
 
-    let record = _tasks.findOne(_id);
-    const allowedFields = [ 'title','content' ];
+    let record = tasks.findOne(_id);
+    const allowedFields = [ 'description','type' ];
     allowedFields.forEach(key => record.set(key,data[key]) );
     record.save(allowedFields);
 
-    // console.log ('_tasks.update record', record);
+    // console.log ('tasks.update record', record);
 
   },
 
