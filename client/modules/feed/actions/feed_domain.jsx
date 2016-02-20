@@ -1,4 +1,4 @@
-import {Tasks, TaskComments} from '/lib/feed'
+import {tasks, TaskComments} from '/lib/collections'
 import {Meteor} from 'meteor/meteor';
 
 const FeedDomain = {
@@ -6,11 +6,11 @@ const FeedDomain = {
   // fetch data from the server
 
   getAllFeedTasks() {
-    return Tasks.find({}, {sort: {created: -1}}).fetch();
+    return tasks.find({}, {sort: {created: -1}}).fetch();
   },
 
   getTaskCommentIds() {
-    return Tasks.find({}, {fields: {_id: 1}}).map(doc => doc._id);
+    return tasks.find({}, {fields: {_id: 1}}).map(doc => doc._id);
   },
 
   getTaskCommentsFromTaskId(docId) {

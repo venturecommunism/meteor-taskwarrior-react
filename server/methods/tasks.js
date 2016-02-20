@@ -1,11 +1,10 @@
-import {_tasks} from '/lib/collections';
+import {tasks} from '/lib/collections';
 // import {_task} from '/lib/task.js';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 // import _ from 'lodash';
 
 Meteor.methods({
-
   '_tasks.add'(data, _id) {
     check(data, {
       title: String,
@@ -20,7 +19,7 @@ Meteor.methods({
     data._id = _id;
     data.createAt = new Date();
     // const object = {_id, data.title, data.content, createdAt};
-    _tasks.insert(data);
+    tasks.insert(data);
   },
 
   '_tasks.update'(data, _id) {

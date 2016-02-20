@@ -7,7 +7,7 @@
 // also, becauses i'm lazy, I made a file generator to create the below for you!
 // https://github.com/AdamBrodzinski/meteor-generate/tree/react
 
-import {Tasks} from '/lib/feed'
+import {tasks} from '/lib/collections'
 
 var schema = {
   _id: String,
@@ -26,7 +26,7 @@ var schema = {
 //Tasks = new Mongo.Collection('tasks');
 
 // optionally run hook to log, audit, or denormalize mongo data
-Tasks.after.insert(function (userId, doc) {
+tasks.after.insert(function (userId, doc) {
   console.log("Inserted Doc", userId, doc);
 });
 

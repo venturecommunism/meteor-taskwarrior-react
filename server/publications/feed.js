@@ -1,4 +1,4 @@
-import {Tasks, TaskComments} from '/lib/feed';
+import {tasks, TaskComments} from '/lib/collections'
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -59,7 +59,7 @@ import {check} from 'meteor/check';
 
     // returns Mongo Cursors
     return [
-      Tasks.find({}, {fields: fields.tasks, sort: {created: -1}, limit: limits.tasks}),
+      tasks.find({}, {fields: fields.tasks, sort: {created: -1}, limit: limits.tasks}),
       TaskComments.find({task: {$in: taskIds ? taskIds : []}}, {fields: fields.taskComments})
     ];
   });

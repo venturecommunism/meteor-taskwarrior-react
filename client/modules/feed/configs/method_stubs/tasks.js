@@ -1,41 +1,54 @@
-import {Tasks, TaskComments} from '/lib/feed';
+import {tasks, TaskComments} from '/lib/collections';
+// import {_task} from '/lib/task.js';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
+// import _ from 'lodash';
 
 export default function () {
   Meteor.methods({
-    'tasks.create'(_id, description) {
+    'tasks.create'(data, _id) {
+      check(data, {
+        description: String,
+//        content: String
+      });
       check(_id, String);
-      check(description, String);
 
-      // Show the latency compensations
-      // Meteor._sleepForMs(500);
+      // console.log('_tasks.add data', data);
 
       // XXX: Do some user authorization
-      const uuid = guid()
-      const createdAt = new Date();
-      const entry = formattedMoment(moment(createdAt))
-      const status = "pending"
-      const task = {_id, description, uuid, createdAt, entry, status};
-      Tasks.insert(task);
-    }
-  });
 
-  Meteor.methods({
-    'tasks.createTaskComment'(_id, taskId, text) {
+      data._id = _id;
+      data.createAt = new Date();
+      // const object = {_id, data.title, data.content, createdAt};
+      tasks.insert(data);
+    },
+
+    '_tasks.update'(data, _id) {
+      check(data, {
+        title: String,
+        content: String
+      });
       check(_id, String);
-      check(taskId, String);
-      check(text, String);
 
-      // Show the latency compensations
-      // Meteor._sleepForMs(500);
+      // console.log ('_tasks.update _id', _id);
+      // console.log ('_tasks.update data', data);
 
       // XXX: Do some user authorization
-      const createdAt = new Date();
-      const author = 'The User';
-      const taskcomment = {_id, taskId, author, text, createdAt};
-      TaskComments.insert(taskcomment);
+
+      let record = _tasks.findOne(_id);
+      const allowedFields = [ 'title','content' ];
+      allowedFields.forEach(key => record.set(key,data[key]) );
+      record.save(allowedFields);
+
+      // console.log ('_tasks.update record', record);
+
+    },
+
+    '_tasks.delete'(_id) {
+      check(_id, String);
+      //  console.log('_tasks.delete _id', _id);
+      let record = _tasks.findOne(_id);
+      record.remove();
     }
   });
 }
-
