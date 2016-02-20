@@ -5,10 +5,10 @@ import {check} from 'meteor/check';
 // import _ from 'lodash';
 
 Meteor.methods({
-  '_tasks.add'(data, _id) {
+  'tasks.create'(data, _id) {
     check(data, {
-      title: String,
-      content: String
+      description: String,
+//      content: String
     });
     check(_id, String);
 
@@ -18,7 +18,7 @@ Meteor.methods({
 
     data._id = _id;
     data.createAt = new Date();
-    // const object = {_id, data.title, data.content, createdAt};
+    // const object = {_id, data.description, createdAt};
     tasks.insert(data);
   },
 
