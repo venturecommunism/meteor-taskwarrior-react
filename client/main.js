@@ -14,6 +14,9 @@ import _usersRoutes from './modules/_users/configs/routes.jsx';
 import _colorsModule from './modules/_colors';
 import _colorsRoutes from './modules/_colors/configs/routes.jsx';
 
+import tasksModule from './modules/tasks'
+import tasksRoutes from './modules/tasks/configs/routes.jsx'
+
 import feedModule from './modules/feed'
 import feedRoutes from './modules/feed/configs/routes.jsx'
 
@@ -26,11 +29,13 @@ app.loadModule(commentsModule);
 app.loadModule(_homeModule);
 app.loadModule(_usersModule);
 app.loadModule(_colorsModule);
+app.loadModule(tasksModule)
 app.loadModule(feedModule)
 
 app.loadRoutes(_homeRoutes);
 app.loadRoutes(_usersRoutes);
 app.loadRoutes(_colorsRoutes);
+app.loadRoutes(tasksRoutes)
 app.loadRoutes(feedRoutes)
 
 app.loadRoutes(routes);
