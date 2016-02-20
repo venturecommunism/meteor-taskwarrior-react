@@ -11,7 +11,6 @@ import TasksView from '../components/single.jsx';
 import TasksAdd from '../components/add.jsx';
 import TasksEdit from '../components/edit.jsx';
 
-
 export default (injectDeps) => {
 
   const LayoutCtx = injectDeps(Layout);
