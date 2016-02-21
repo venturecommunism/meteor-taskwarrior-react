@@ -45,7 +45,8 @@ import {check} from 'meteor/check';
         owner: optional(Boolean),
         status: optional(Boolean),
         entry: optional(Boolean),
-        uuid: optional(Boolean)
+        uuid: optional(Boolean),
+        type: optional(Boolean),
       },
       taskComments: {
         _id: Boolean,  // id required for security

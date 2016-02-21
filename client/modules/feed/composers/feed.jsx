@@ -18,6 +18,7 @@ export const collectionComposer = ({context}, onData) => {
       username: true,
       created: true,
       owner: true,
+      type: true,
     },
     taskComments: {
       _id: true,
@@ -38,8 +39,18 @@ export const collectionComposer = ({context}, onData) => {
   //sweetAlert("taskIds", taskIds)
   //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
 
+  var project = (FeedDomain.getProjectsParam() == 'true') ? 'project' : 0
+  //sweetAlert("projectfilter", projectfilter)
+
+  var query = {}
+  if (project) {
+    query.type = { $in: [project] }
+  }
+
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
-    const collection = Collections.tasks.find().fetch();
+    //sweetAlert("query", query)
+    const collection = Collections.tasks.find(query).fetch();
+    //sweetAlert("collection", collection)
     onData(null, {collection});
   }
 };
