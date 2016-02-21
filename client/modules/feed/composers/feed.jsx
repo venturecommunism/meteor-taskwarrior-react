@@ -50,8 +50,9 @@ export const collectionComposer = ({context}, onData) => {
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
     //sweetAlert("query", query)
     const collection = Collections.tasks.find(query).fetch();
+    const projects = Collections.tasks.find({type: "project"}).fetch()
     //sweetAlert("collection", collection)
-    onData(null, {collection});
+    onData(null, {collection, projects});
   }
 };
 
