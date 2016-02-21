@@ -55,7 +55,7 @@ const FeedDomain = {
 
   setProjectOrContext(e) {
     const _id = e.target.className
-    // sweetAlert("projorcont", "success")
+    //sweetAlert("projorcont", "success")
     const projorcont = e.target.value
     const data = {type: projorcont} 
     Meteor.call('tasks.update', data, _id)

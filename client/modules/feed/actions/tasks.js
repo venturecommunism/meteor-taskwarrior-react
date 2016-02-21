@@ -8,7 +8,7 @@ export default {
 
     const _id = Meteor.uuid();
     const data = {description}
-    sweetAlert("data", data)
+    //sweetAlert("data", data)
     // There is a method stub for this in the config/method_stubs
     // That's how we are doing latency compensation
     Meteor.call('tasks.create', data, _id, (err) => {
