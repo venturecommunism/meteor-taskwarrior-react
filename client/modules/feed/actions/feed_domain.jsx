@@ -37,10 +37,10 @@ const FeedDomain = {
 
   handleFilterByProjects() {
     var currentState = FlowRouter.getQueryParam('projects')
-    if (currentState == 'true') {
-      FlowRouter.setQueryParams({ projects: false })
-    } else {
+    if (!currentState) {
       FlowRouter.setQueryParams({ projects: true })
+    } else {
+      FlowRouter.setQueryParams({ projects: null })
     }
   },
 
