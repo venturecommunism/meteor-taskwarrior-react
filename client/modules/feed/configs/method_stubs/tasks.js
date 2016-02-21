@@ -9,7 +9,11 @@ export default function () {
     'tasks.create'(data, _id) {
       check(data, {
         description: String,
-//        content: String
+        uuid: String,
+        created: Date,
+        entry: String,
+        status: String,
+        username: String,
       });
       check(_id, String);
 
@@ -18,8 +22,7 @@ export default function () {
       // XXX: Do some user authorization
 
       data._id = _id;
-      data.createAt = new Date();
-      // const object = {_id, data.title, data.content, createdAt};
+
       tasks.insert(data);
     },
 

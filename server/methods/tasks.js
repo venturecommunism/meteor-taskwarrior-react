@@ -8,7 +8,11 @@ Meteor.methods({
   'tasks.create'(data, _id) {
     check(data, {
       description: String,
-//      content: String
+      uuid: String,
+      created: Date,
+      entry: String,
+      status: String,
+      username: String,
     });
     check(_id, String);
 
@@ -17,8 +21,7 @@ Meteor.methods({
     // XXX: Do some user authorization
 
     data._id = _id;
-    data.createAt = new Date();
-    // const object = {_id, data.description, createdAt};
+
     tasks.insert(data);
   },
 
@@ -50,3 +53,4 @@ Meteor.methods({
     record.remove();
   }
 });
+

@@ -51,7 +51,8 @@ export const collectionComposer = ({context}, onData) => {
     //sweetAlert("query", query)
     const collection = Collections.tasks.find(query).fetch();
     const projects = Collections.tasks.find({type: "project"}).fetch()
-    //sweetAlert("collection", collection)
+    //sweetAlert('collection', Object.keys(collection[0]))
+    //sweetAlert('projects', Object.keys(projects[0]))
     onData(null, {collection, projects});
   }
 };
