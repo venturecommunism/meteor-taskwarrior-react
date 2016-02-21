@@ -2,7 +2,7 @@ import React from 'react'
 import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain.jsx'
 
-const ParamsExample = () => (
+export default ({projects}) => (
   <div className='params-example'>
 
     <button onClick={ FeedActions.filterByProjects }>
@@ -12,4 +12,3 @@ const ParamsExample = () => (
   </div>
 )
 
-export default ParamsExample
