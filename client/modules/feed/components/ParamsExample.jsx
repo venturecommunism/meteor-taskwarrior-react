@@ -15,6 +15,10 @@ const ParamsExample = () => (
           data changes
         </p>
 
+        <button onClick={ FeedActions.filterByProjects }>
+          Projects
+        </button>
+
         <div className="step-container">
           <b>Step:</b> { FeedDomain.getStepParam() } <br/><br/>
         </div>

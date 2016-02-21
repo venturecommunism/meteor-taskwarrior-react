@@ -35,6 +35,19 @@ const FeedDomain = {
     FlowRouter.setQueryParams({ step: nextStep });
   },
 
+  handleFilterByProjects() {
+    var currentState = FlowRouter.getQueryParam('projects')
+    if (currentState == 'true') {
+      FlowRouter.setQueryParams({ projects: false })
+    } else {
+      FlowRouter.setQueryParams({ projects: true })
+    }
+  },
+
+  getProjectsParam() {
+    return FlowRouter.getQueryParam('projects')
+  },
+
   getStepParam() {
     // see full API - https://github.com/meteorhacks/flow-router#api
     return FlowRouter.getQueryParam('step');

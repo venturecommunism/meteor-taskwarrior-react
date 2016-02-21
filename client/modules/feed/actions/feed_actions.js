@@ -11,5 +11,9 @@ export default {
 
   createTaskComment(data) {
     FeedDomain.handleCreateTaskComment(data);
-  }
+  },
+
+  filterByProjects() {
+    FeedDomain.handleFilterByProjects()
+  },
 };
