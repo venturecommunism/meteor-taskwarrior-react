@@ -14,7 +14,9 @@ export default {
     var date = moment(data.created)
     data.entry = formattedMoment(date)
     data.status = 'pending'
-    data.username = User.username() ? User.username() : 'Anonymous'
+    //sweetAlert("username", Object.keys(Meteor.user().emails[0]))
+    //sweetAlert("username", Meteor.user().emails[0].address)
+    data.username = Meteor.user().emails[0].address ? Meteor.user().emails[0].address : 'Anonymous'
     //sweetAlert("data", data)
 
     // There is a method stub for this in the config/method_stubs
