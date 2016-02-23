@@ -24,22 +24,3 @@ class CreateTask extends React.Component {
 
 export default CreateTask;
 
-/*
-
-//import FeedDomain from '../actions/feed_domain.jsx'
-import React from 'react'
-
-const CreateTask = ({tasks}) => (
-  <div className='create-task'>
-    <textarea
-      placeholder="What's on your mind?" />
-
-    <button>
-      Submit Task
-    </button>
-  </div>
-);
-
-export default CreateTask
-
-*/
