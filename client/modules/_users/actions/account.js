@@ -22,9 +22,9 @@ export default {
     return LocalState.set('LOGIN_ERROR', null);
   },
 
-  register({Meteor, LocalState, FlowRouter}, email, password1, password2) {
+  register({Meteor, LocalState, FlowRouter}, username, email, password1, password2) {
 
-    if (!email || !password1 || !password2) {
+    if (!username || !email || !password1 || !password2) {
       return LocalState.set('REGISTER_ERROR', 'Please fill out all the required fileds!');
     }
 
@@ -32,7 +32,7 @@ export default {
       return LocalState.set('REGISTER_ERROR', 'Passwords do not match!');
     }
 
-    Accounts.createUser({email, password: password1}, (err) => {
+    Accounts.createUser({username, email, password: password1}, (err) => {
       if (err && err.reason) {
         return LocalState.set('REGISTER_ERROR', err.reason);
       }

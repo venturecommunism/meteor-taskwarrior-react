@@ -23,7 +23,7 @@ export default React.createClass({
 
   validSubmit(data) {
     // console.log('validSubmit', data);
-    this.props.submitAction(data.email, data.password1, data.password2);
+    this.props.submitAction(data.username, data.email, data.password1, data.password2);
   },
   // invalidSubmit() {
   invalidSubmit() {
@@ -77,6 +77,22 @@ export default React.createClass({
               <span className="octicon octicon-megaphone" ></span>
               {error}
             </div> : null }
+
+            <Input
+                {...sharedProps}
+                name="username"
+                value=""
+                label="Username"
+                type="text"
+                placeholder="This is a username input."
+
+                autoComplete="off"
+
+                validations="isAlpha"
+                validationError="Please provide a username"
+
+            />
+
 
             <Input
                 {...sharedProps}

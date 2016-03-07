@@ -5,6 +5,7 @@ export default {
     // const _id = Meteor.uuid();
 
     const userObject = {
+      username: data.username,
       email: data.email,
       profile: {
         firstName: data.firstName,
