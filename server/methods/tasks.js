@@ -7,6 +7,7 @@ import {check} from 'meteor/check';
 Meteor.methods({
   'tasks.create'(data, _id) {
     check(data, {
+      workflow: Object,
       description: String,
       uuid: String,
       created: Date,

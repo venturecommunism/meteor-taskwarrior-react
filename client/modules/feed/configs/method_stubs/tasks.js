@@ -8,6 +8,7 @@ export default function () {
   Meteor.methods({
     'tasks.create'(data, _id) {
       check(data, {
+        workflow: Object,
         description: String,
         uuid: String,
         created: Date,
