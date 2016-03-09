@@ -35,17 +35,51 @@ const FeedDomain = {
     FlowRouter.setQueryParams({ step: nextStep });
   },
 
-  handleFilterByProjects() {
-    var currentState = FlowRouter.getQueryParam('projects')
+  handleFilterAllProjects() {
+    var currentState = FlowRouter.getQueryParam('type')
+    if (currentState != 'project') {
+      FlowRouter.setQueryParams({ type: 'project' })
+    } else {
+      FlowRouter.setQueryParams({ type: null })
+    }
+  },
+
+  handleFilterAllContexts() {
+    var currentState = FlowRouter.getQueryParam('type')
+    if (currentState != 'context') {
+      FlowRouter.setQueryParams({ type: 'context' })
+    } else {
+      FlowRouter.setQueryParams({ type: null })
+    }
+  },
+
+  handleFilterByProject(e) {
+    var currentState = FlowRouter.getQueryParam('project')
+    sweetAlert("e.target", e.target.parentElement.parentElement.parentElement.getAttribute("key"))
     if (!currentState) {
-      FlowRouter.setQueryParams({ projects: true })
+      FlowRouter.setQueryParams({ projects: _id })
     } else {
       FlowRouter.setQueryParams({ projects: null })
     }
   },
 
-  getProjectsParam() {
-    return FlowRouter.getQueryParam('projects')
+  handleFilterDefineSomeWork(e) {
+    var currentState = FlowRouter.getQueryParam('mode')
+    if (currentState) {
+      FlowRouter.setQueryParams({ mode: null })
+    }
+  },
+
+  handleFilterDoDefinedWork(e) {
+    var currentState = FlowRouter.getQueryParam('mode')
+    if (!currentState) {
+      FlowRouter.setQueryParams({ mode: 'do' })
+    }
+  },
+
+
+  getTypeParam() {
+    return FlowRouter.getQueryParam('type')
   },
 
   getStepParam() {

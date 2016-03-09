@@ -9,8 +9,8 @@ export default ({projects}) => (
       {projects.map(task => (
         <li key={task._id}>
           <div className='feed-item'>
-            <div className='feed-item-description'>
-              {task.description}
+            <div className='feed-item-description' onClick={ FeedActions.filterByProject }>
+              <span style={{ color: 'red', }}>{task.description}</span>
             </div>
             <div className='feed-item-entry'>
               {task.entry}
@@ -27,9 +27,22 @@ export default ({projects}) => (
     </ul>
 
 
-    <button onClick={ FeedActions.filterByProjects }>
+    <button onClick={ FeedActions.filterAllProjects }>
       Projects
     </button>
+
+    <button onClick={ FeedActions.filterAllContexts }>
+      Contexts
+    </button>
+
+    <button onClick={ FeedActions.filterDefineSomeWork }>
+      Define Some Work
+    </button>
+
+    <button onClick={ FeedActions.filterDoDefinedWork }>
+      Do Defined Work
+    </button>
+
 
   </div>
 )

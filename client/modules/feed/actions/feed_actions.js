@@ -13,7 +13,23 @@ export default {
     FeedDomain.handleCreateTaskComment(data);
   },
 
-  filterByProjects() {
-    FeedDomain.handleFilterByProjects()
+  filterAllProjects() {
+    FeedDomain.handleFilterAllProjects()
+  },
+
+  filterAllContexts() {
+    FeedDomain.handleFilterAllContexts()
+  },
+
+  filterByProject(_id) {
+    FeedDomain.handleFilterByProject(_id)
+  },
+
+  filterDefineSomeWork() {
+    FeedDomain.handleFilterDefineSomeWork()
+  },
+
+  filterDoDefinedWork() {
+    FeedDomain.handleFilterDoDefinedWork()
   },
 };

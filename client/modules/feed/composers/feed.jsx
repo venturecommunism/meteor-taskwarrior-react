@@ -19,6 +19,7 @@ export const collectionComposer = ({context}, onData) => {
       created: true,
       owner: true,
       type: true,
+      workflow: true,
     },
     taskComments: {
       _id: true,
@@ -39,12 +40,17 @@ export const collectionComposer = ({context}, onData) => {
   //sweetAlert("taskIds", taskIds)
   //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
 
-  var project = (FeedDomain.getProjectsParam() == 'true') ? 'project' : 0
+  var type = FeedDomain.getTypeParam()
   //sweetAlert("projectfilter", projectfilter)
 
   var query = {}
-  if (project) {
-    query.type = { $in: [project] }
+  var query = { type: {$nin: ['project', 'context']}}
+  if (type) {
+    query.type = { $in: [type] }
+  }
+  if (FlowRouter.current().queryParams === {}) {
+    query.workflow = {}
+    query.workflow.status = 'inbox'
   }
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
