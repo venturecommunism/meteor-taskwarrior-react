@@ -3,8 +3,9 @@ import {composeWithTracker, composeAll} from 'react-komposer';
 
 import FeedDomain from '../actions/feed_domain.jsx'
 
-export const collectionComposer = ({context}, onData) => {
+export const collectionComposer = ({context, feedquery}, onData) => {
   const {Meteor, Collections} = context();
+  var query = feedquery()
 
   const fields = {
     tasks: {
@@ -32,6 +33,8 @@ export const collectionComposer = ({context}, onData) => {
 
   let recordCount = {tasks: 20}
 
+  //sweetAlert("query", query)	
+
   //sweetAlert("fields.tasks", Object.keys(fields.tasks))
   //sweetAlert("FeedDomain", Object.keys(FeedDomain))
   const feedtasks = FeedDomain.getAllFeedTasks()
@@ -39,19 +42,6 @@ export const collectionComposer = ({context}, onData) => {
   const taskIds = FeedDomain.getTaskCommentIds()
   //sweetAlert("taskIds", taskIds)
   //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
-
-  var type = FeedDomain.getTypeParam()
-  //sweetAlert("projectfilter", projectfilter)
-
-  var query = {}
-  var query = { type: {$nin: ['project', 'context']}}
-  if (type) {
-    query.type = { $in: [type] }
-  }
-  if (FlowRouter.current().queryParams === {}) {
-    query.workflow = {}
-    query.workflow.status = 'inbox'
-  }
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
     //sweetAlert("query", query)
@@ -63,7 +53,12 @@ export const collectionComposer = ({context}, onData) => {
   }
 };
 
+export const depsMapper = (context, actions) => ({
+  feedquery: actions.feed_actions.query,
+  context: () => context,
+})
+
 export default (component) => composeAll(
   composeWithTracker(collectionComposer),
-  useDeps()
+  useDeps(depsMapper)
 )(component);
