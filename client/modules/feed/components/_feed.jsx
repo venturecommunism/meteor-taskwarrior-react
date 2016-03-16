@@ -3,7 +3,7 @@ import React from 'react'
 import FeedItemHeader from './FeedItemHeader.jsx'
 import FeedItemFooter from './FeedItemFooter.jsx'
 
-export default ({collection}) => (
+export default ({collection, projects}) => (
   <div className='feed-wrapper'>
     <h3>Tasks collection</h3>
     <ul>
@@ -25,6 +25,11 @@ export default ({collection}) => (
             </div>
             <FeedItemFooter task={task} />
           </div>
+          <ul>
+            {projects.map(project => (
+              <li>{project.description}</li>
+            ))}
+          </ul>
         </li>
       ))}
     </ul>
