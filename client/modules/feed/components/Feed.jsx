@@ -1,6 +1,5 @@
 import ParamsExample from './ParamsExample.jsx'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
-import TrendingTasks from './TrendingTasks.jsx'
 import React from 'react'
 import FeedList from './FeedList.jsx'
 
