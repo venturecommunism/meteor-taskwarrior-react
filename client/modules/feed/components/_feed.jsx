@@ -2,6 +2,7 @@ import React from 'react'
 
 import FeedItemHeader from './FeedItemHeader.jsx'
 import FeedItemFooter from './FeedItemFooter.jsx'
+import ProjectSelector from './projectselector.jsx'
 
 export default ({collection, projects}) => (
   <div className='feed-wrapper'>
@@ -25,11 +26,7 @@ export default ({collection, projects}) => (
             </div>
             <FeedItemFooter task={task} />
           </div>
-          <ul>
-            {projects.map(project => (
-              <li>{project.description}</li>
-            ))}
-          </ul>
+          <ProjectSelector taskid={task._id} projects={projects} />
         </li>
       ))}
     </ul>
