@@ -6,14 +6,19 @@ export default {
     //sweetAlert("projectfilter", projectfilter)
 
     var query = {}
-    var query = { type: {$nin: ['project', 'context']}}
+    var queryParams = JSON.stringify(FlowRouter.current().queryParams)
+    if (queryParams == "{}") {
+      var query = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
+    } else {
+      var query = { type: {$nin: ['project', 'context']}}
+    }
+
     if (type) {
       query.type = { $in: [type] }
     }
-    if (FlowRouter.current().queryParams === {}) {
-      query.workflow = {}
-      query.workflow.status = 'inbox'
-    }
+//    query.workflow = {}
+//    query.workflow.status = 'project'
+//    sweetAlert("query", JSON.stringify(query))
     return query
   },
 

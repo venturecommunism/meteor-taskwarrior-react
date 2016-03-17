@@ -30,20 +30,23 @@ Meteor.methods({
     check(data, {
       description: Match.Optional(String),
       type: Match.Optional(String),
+      project: Match.Optional(String),
+      context: Match.Optional(String),
+      workflow: Match.Optional(Object),
     });
     check(_id, String);
 
-    // console.log ('tasks.update _id', _id);
-    // console.log ('tasks.update data', data);
+    console.log ('tasks.update _id', _id);
+    console.log ('tasks.update data', data);
 
     // XXX: Do some user authorization
 
     let record = tasks.findOne(_id);
-    const allowedFields = [ 'description','type' ];
+    const allowedFields = [ 'description','type', 'workflow', 'project', 'context' ];
     allowedFields.forEach(key => record.set(key,data[key]) );
     record.save(allowedFields);
 
-    // console.log ('tasks.update record', record);
+    console.log ('tasks.update record', record);
 
   },
 
