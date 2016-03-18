@@ -5,7 +5,10 @@ import FeedDomain from '../actions/feed_domain.jsx'
 
 export const collectionComposer = ({context, feedquery}, onData) => {
   const {Meteor, Collections} = context();
-  var query = feedquery()
+  var query = feedquery().feedquery
+  //sweetAlert("query", query)
+  var projquery = feedquery().projectsquery
+  //sweetAlert("projquery", Object.keys(projquery))
 
   const fields = {
     tasks: {
@@ -21,6 +24,7 @@ export const collectionComposer = ({context, feedquery}, onData) => {
       owner: true,
       type: true,
       workflow: true,
+      project: true,
     },
     taskComments: {
       _id: true,
@@ -44,9 +48,9 @@ export const collectionComposer = ({context, feedquery}, onData) => {
   //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
-    //sweetAlert("query", query)
-    const collection = Collections.tasks.find(query).fetch();
-    const projects = Collections.tasks.find({type: "project"}).fetch()
+    const collection = Collections.tasks.find(query).fetch()
+    //sweetAlert("collection results", collection)
+    const projects = Collections.tasks.find(projquery).fetch()
     //sweetAlert('collection', Object.keys(collection[0]))
     //sweetAlert('projects', Object.keys(projects[0]))
     onData(null, {collection, projects});

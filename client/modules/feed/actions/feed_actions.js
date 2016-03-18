@@ -2,23 +2,36 @@ import FeedDomain from './feed_domain.jsx'
 
 export default {
   query() {
-    var type = FeedDomain.getTypeParam()
-    //sweetAlert("projectfilter", projectfilter)
+    // get the URL contents
+    var queryParams = FlowRouter.current().queryParams
+    //sweetAlert("queryParams", queryParams)
+    //sweetAlert("queryParams.projects", queryParams.projects)
+    //var type = FeedDomain.getTypeParam()
+    var type = queryParams.type
+    var project = queryParams.projects
 
     var query = {}
-    var queryParams = JSON.stringify(FlowRouter.current().queryParams)
-    if (queryParams == "{}") {
-      var query = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
+    query.feedquery = {}
+    query.projectsquery = {}
+
+    if (JSON.stringify(queryParams) == "{}") {
+      query.feedquery = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
+      query.projectsquery = { type : 'project' }
+    } else if (queryParams.projects != (null || '')) {
+      var project = queryParams.projects
+      query.feedquery = { type: {$nin: ['project', 'context']}, project: project }
+      //sweetAlert("project", project)
+      query.projectsquery = { type: 'project'}
     } else {
-      var query = { type: {$nin: ['project', 'context']}}
+      query.feedquery = { type: {$nin: ['project', 'context']}}
+      query.projectsquery = { type: 'project' }
     }
 
     if (type) {
-      query.type = { $in: [type] }
+      query.feedquery.type = { $in: [type] }
     }
-//    query.workflow = {}
-//    query.workflow.status = 'project'
-//    sweetAlert("query", JSON.stringify(query))
+
+    //sweetAlert("query.feedquery.project", query.feedquery.project)
     return query
   },
 
