@@ -10,7 +10,7 @@ export default ({projects}) => (
         <li key={task._id}>
           <div className='feed-item'>
             <div className='feed-item-description' onClick={ FeedActions.filterByProject }>
-              <span style={{ color: 'red', }}>{task.description}</span>
+              <span id={task._id} style={{ color: 'red', }}>{task.description}</span>
             </div>
             <div className='feed-item-entry'>
               {task.entry}

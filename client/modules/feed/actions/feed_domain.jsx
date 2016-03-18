@@ -54,12 +54,13 @@ const FeedDomain = {
   },
 
   handleFilterByProject(e) {
-    var currentState = FlowRouter.getQueryParam('project')
-    sweetAlert("e.target", e.target.parentElement.parentElement.parentElement.getAttribute("key"))
-    if (!currentState) {
-      FlowRouter.setQueryParams({ projects: _id })
-    } else {
+    var currentState = FlowRouter.getQueryParam('projects')
+    //sweetAlert("e.target", e.target.id)
+    var _id = e.target.id
+    if (currentState == _id) {
       FlowRouter.setQueryParams({ projects: null })
+    } else {
+      FlowRouter.setQueryParams({ projects: _id })
     }
   },
 
