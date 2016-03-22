@@ -5,6 +5,24 @@ import FeedDomain from '../actions/feed_domain.jsx'
 export default ({projects}) => (
   <div className='params-example'>
 
+    <button onClick={ FeedActions.filterAllProjects }>
+      Projects
+    </button>
+
+    <button onClick={ FeedActions.filterAllContexts }>
+      Contexts
+    </button>
+
+    <button onClick={ FeedActions.filterDefineSomeWork }>
+      Define Some Work
+    </button>
+
+    <button onClick={ FeedActions.filterDoDefinedWork }>
+      Do Defined Work
+    </button>
+
+    <br /><br />
+
     <ul>
       {projects.map(task => (
         <li key={task._id}>
@@ -25,24 +43,6 @@ export default ({projects}) => (
         </li>
       ))}
     </ul>
-
-
-    <button onClick={ FeedActions.filterAllProjects }>
-      Projects
-    </button>
-
-    <button onClick={ FeedActions.filterAllContexts }>
-      Contexts
-    </button>
-
-    <button onClick={ FeedActions.filterDefineSomeWork }>
-      Define Some Work
-    </button>
-
-    <button onClick={ FeedActions.filterDoDefinedWork }>
-      Do Defined Work
-    </button>
-
 
   </div>
 )
