@@ -15,13 +15,14 @@ export default {
 
     switch (JSON.stringify(queryParams)) {
       case "{}":
+        //sweetAlert("case", "{}")
         query.feedquery = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
-        query.projectsquery = { type : 'project' }
+        query.projectsquery = { type : 'project', super: {$exists: 0} }
         query.filtprojquery = { type : 'project', super: {$exists: 0}}
         break
       default:
         query.feedquery = { type: {$nin: ['project', 'context']}}
-        query.projectsquery = { type: 'project' }
+        query.projectsquery = { type: 'project', super: { $exists: 0} }
         query.filtprojquery = { type: 'project' }
     }
 
@@ -32,7 +33,6 @@ export default {
         var project = queryParams.projects
         query.feedquery = { type: {$nin: ['project', 'context']}, project: project }
         //sweetAlert("project", project)
-        query.projectsquery = { type: 'project'}
         query.filtprojquery = { type: 'project', super: project}
     }
 
@@ -43,6 +43,18 @@ export default {
         var type = queryParams.type
         //sweetAlert("type", type)
         query.feedquery.type = { $in: [type] }
+        query.feedquery.super = { $exists: 0 }
+        query.filtprojquery.super = { $exists: 0 }
+    }
+
+    switch (Boolean(queryParams.projects && queryParams.type)) {
+      case (false):
+        break
+      default:
+        var project = queryParams.projects
+        var type = queryParams.type
+        query.projectsquery = { type: type, super: project }
+        query.filtprojquery = { _id: {$ne: project}}
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
