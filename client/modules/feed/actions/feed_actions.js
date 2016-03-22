@@ -43,8 +43,6 @@ export default {
         var type = queryParams.type
         //sweetAlert("type", type)
         query.feedquery.type = { $in: [type] }
-        query.feedquery.super = { $exists: 0 }
-        query.filtprojquery.super = { $exists: 0 }
     }
 
     switch (Boolean(queryParams.projects && queryParams.type)) {
@@ -53,8 +51,16 @@ export default {
       default:
         var project = queryParams.projects
         var type = queryParams.type
+        query.feedquery = { type: type, super: project }
         query.projectsquery = { type: type, super: project }
-        query.filtprojquery = { _id: {$ne: project}}
+        query.filtprojquery._id = {$ne: project}
+    }
+
+    switch (Boolean(!queryParams.projects && queryParams.type)) {
+      case (false):
+        break
+      default:
+        query.feedquery.super = { $exists: 0 }
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
