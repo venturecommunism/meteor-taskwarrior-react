@@ -26,6 +26,7 @@ export const collectionComposer = ({context, feedquery}, onData) => {
       type: true,
       workflow: true,
       project: true,
+      super: true,
     },
     taskComments: {
       _id: true,

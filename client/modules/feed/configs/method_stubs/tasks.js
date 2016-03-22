@@ -34,6 +34,7 @@ export default function () {
         project: Match.Optional(String),
         context: Match.Optional(String),
         workflow: Match.Optional(Object),
+        super: Match.Optional(String),
 //        content: String
       });
       check(_id, String);

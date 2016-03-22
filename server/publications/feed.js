@@ -49,6 +49,7 @@ import {check} from 'meteor/check';
         type: optional(Boolean),
         workflow: optional(Boolean),
         project: optional(Boolean),
+        super: optional(Boolean),
       },
       taskComments: {
         _id: Boolean,  // id required for security
