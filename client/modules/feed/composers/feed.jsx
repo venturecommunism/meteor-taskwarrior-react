@@ -8,6 +8,7 @@ export const collectionComposer = ({context, feedquery}, onData) => {
   var query = feedquery().feedquery
   //sweetAlert("query", query)
   var projquery = feedquery().projectsquery
+  var filtprojquery = feedquery().filtprojquery
   //sweetAlert("projquery", Object.keys(projquery))
 
   const fields = {
@@ -51,9 +52,10 @@ export const collectionComposer = ({context, feedquery}, onData) => {
     const collection = Collections.tasks.find(query).fetch()
     //sweetAlert("collection results", collection)
     const projects = Collections.tasks.find(projquery).fetch()
+    const filterprojects = Collections.tasks.find(filtprojquery).fetch()
     //sweetAlert('collection', Object.keys(collection[0]))
     //sweetAlert('projects', Object.keys(projects[0]))
-    onData(null, {collection, projects});
+    onData(null, {collection, projects, filterprojects});
   }
 };
 

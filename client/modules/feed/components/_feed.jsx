@@ -4,7 +4,7 @@ import FeedItemHeader from './FeedItemHeader.jsx'
 import FeedItemFooter from './FeedItemFooter.jsx'
 import ProjectSelector from './projectselector.jsx'
 
-export default ({collection, projects}) => (
+export default ({collection, filterprojects}) => (
   <div className='feed-wrapper'>
     <h3>Tasks collection</h3>
     <ul>
@@ -26,7 +26,7 @@ export default ({collection, projects}) => (
             </div>
             <FeedItemFooter task={task} />
           </div>
-          <ProjectSelector taskid={task._id} projects={projects} />
+          <ProjectSelector taskid={task._id} projects={filterprojects} />
         </li>
       ))}
     </ul>
