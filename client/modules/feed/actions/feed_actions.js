@@ -49,6 +49,10 @@ export default {
     return query
   },
 
+  clearFilters() {
+    FlowRouter.go('/feed')
+  },
+
   incrementTaskLimit(amount) {
     FeedDomain.handleIncrementTaskLimit(amount);
   },

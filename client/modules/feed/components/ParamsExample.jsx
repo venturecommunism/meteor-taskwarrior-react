@@ -5,6 +5,10 @@ import FeedDomain from '../actions/feed_domain.jsx'
 export default ({projects}) => (
   <div className='params-example'>
 
+    <button onClick={ FeedActions.clearFilters }>
+      Clear Filters
+    </button>
+
     <button onClick={ FeedActions.filterAllProjects }>
       Projects
     </button>
