@@ -60,7 +60,7 @@ const FeedDomain = {
     if (currentState == _id) {
       FlowRouter.setQueryParams({ projects: null })
     } else {
-      FlowRouter.setQueryParams({ projects: _id })
+      FlowRouter.setQueryParams({ projects: _id, type: 'project' })
     }
   },
 
