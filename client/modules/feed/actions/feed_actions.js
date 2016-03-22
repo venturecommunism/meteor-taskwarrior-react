@@ -7,28 +7,42 @@ export default {
     //sweetAlert("queryParams", queryParams)
     //sweetAlert("queryParams.projects", queryParams.projects)
     //var type = FeedDomain.getTypeParam()
-    var type = queryParams.type
-    var project = queryParams.projects
 
     var query = {}
     query.feedquery = {}
     query.projectsquery = {}
+    query.filtprojquery = {}
 
-    if (JSON.stringify(queryParams) == "{}") {
-      query.feedquery = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
-      query.projectsquery = { type : 'project' }
-    } else if (queryParams.projects != (null || '')) {
-      var project = queryParams.projects
-      query.feedquery = { type: {$nin: ['project', 'context']}, project: project }
-      //sweetAlert("project", project)
-      query.projectsquery = { type: 'project'}
-    } else {
-      query.feedquery = { type: {$nin: ['project', 'context']}}
-      query.projectsquery = { type: 'project' }
+    switch (JSON.stringify(queryParams)) {
+      case "{}":
+        query.feedquery = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
+        query.projectsquery = { type : 'project' }
+        query.filtprojquery = { type : 'project', super: {$exists: 0}}
+        break
+      default:
+        query.feedquery = { type: {$nin: ['project', 'context']}}
+        query.projectsquery = { type: 'project' }
+        query.filtprojquery = { type: 'project' }
     }
 
-    if (type) {
-      query.feedquery.type = { $in: [type] }
+    switch (queryParams.projects) {
+      case (null || ''):
+        break
+      default:
+        var project = queryParams.projects
+        query.feedquery = { type: {$nin: ['project', 'context']}, project: project }
+        //sweetAlert("project", project)
+        query.projectsquery = { type: 'project'}
+        query.filtprojquery = { type: 'project', super: project}
+    }
+
+    switch (queryParams.type) {
+      case (null || ''):
+        break
+      default:
+        var type = queryParams.type
+        //sweetAlert("type", type)
+        query.feedquery.type = { $in: [type] }
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
