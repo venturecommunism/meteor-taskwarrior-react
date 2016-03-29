@@ -1,6 +1,9 @@
 import FeedDomain from './feed_domain.jsx'
 
 export default {
+  test() {
+    sweetAlert("test", "test")
+  },
   query() {
     // get the URL contents
     var queryParams = FlowRouter.current().queryParams
