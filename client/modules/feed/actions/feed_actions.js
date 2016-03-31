@@ -1,7 +1,7 @@
 import FeedDomain from './feed_domain.jsx'
 
 export default {
-  test(c, e) {
+  settle(c, e) {
     const _id = e.target.parentNode.parentNode.parentNode.parentNode.id
     const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
     Meteor.call('tasks.update', data, _id)

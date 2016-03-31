@@ -48,7 +48,7 @@ export const buttonComposer = ({context}, onData) => {
 }
 
 export const depsMapper = (context, actions) => ({
-  buttontest: actions.feed_actions.test,
+  buttonpress: actions.feed_actions.settle,
   context: () => context,
 })
 
