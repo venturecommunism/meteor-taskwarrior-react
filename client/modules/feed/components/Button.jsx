@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default ({buttontest}) => (
-  <div className="universal-button">
+export default ({task, buttontest}) => (
+  <div key={task._id} className="universal-button">
 
     <div onClick={buttontest}>Click</div> <br />
   </div>

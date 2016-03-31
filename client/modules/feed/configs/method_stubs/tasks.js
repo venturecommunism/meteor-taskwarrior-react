@@ -35,6 +35,8 @@ export default function () {
         context: Match.Optional(String),
         workflow: Match.Optional(Object),
         super: Match.Optional(String),
+        "workflow.status": Match.Optional(String),
+        "workflow.workflow": Match.Optional(Array),
 //        content: String
       });
       check(_id, String);
@@ -45,7 +47,7 @@ export default function () {
       // XXX: Do some user authorization
 
       let record = tasks.findOne(_id);
-      const allowedFields = [ 'description','type' ];
+      const allowedFields = [ 'description','type', 'workflow.workflow' ];
       allowedFields.forEach(key => record.set(key,data[key]) );
       record.save(allowedFields);
 
