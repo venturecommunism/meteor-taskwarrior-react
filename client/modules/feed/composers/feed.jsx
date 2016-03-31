@@ -6,7 +6,7 @@ import FeedDomain from '../actions/feed_domain.jsx'
 export const collectionComposer = ({context, feedquery}, onData) => {
   const {Meteor, Collections} = context();
   var query = feedquery().feedquery
-  //sweetAlert("query", query)
+  //sweetAlert("query", JSON.stringify(query))
   var projquery = feedquery().projectsquery
   var filtprojquery = feedquery().filtprojquery
   //sweetAlert("projquery", Object.keys(projquery))
@@ -37,7 +37,7 @@ export const collectionComposer = ({context, feedquery}, onData) => {
     }
   }
 
-  let recordCount = {tasks: 20}
+  let recordCount = {tasks: 10000}
 
   //sweetAlert("query", query)	
 
