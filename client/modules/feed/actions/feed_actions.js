@@ -79,7 +79,7 @@ export default {
       case ('do'):
         break
       default:
-        query.feedquery["workflow.status"] = 'project'
+        query.feedquery["workflow.status"] = {$in: ['project', 'inbox'] }
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
