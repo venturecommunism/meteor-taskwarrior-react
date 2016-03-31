@@ -2,15 +2,7 @@ import FeedDomain from './feed_domain.jsx'
 
 export default {
   test(c, e) {
-    var queryParams = FlowRouter.current().queryParams
-    sweetAlert("test", "test")
-    sweetAlert("projects", queryParams.projects)
-    sweetAlert("type", queryParams.type)
-    sweetAlert("target", Object.keys(e))
-    sweetAlert("e", Object.keys(e))
-    sweetAlert("this project id", e.target.parentNode.parentNode.parentNode.parentNode.id)
     const _id = e.target.parentNode.parentNode.parentNode.parentNode.id
-    sweetAlert("project overall that you're looking at", queryParams.projects)
     const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
     Meteor.call('tasks.update', data, _id)
   },
@@ -74,6 +66,13 @@ export default {
         break
       default:
         query.feedquery.super = { $exists: 0 }
+    }
+
+    switch(queryParams.mode) {
+      case ('do'):
+        break
+      default:
+        query.feedquery["workflow.status"] = 'project'
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
