@@ -50,7 +50,7 @@ export const collectionComposer = ({context, feedquery}, onData) => {
   //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
-    const collection = Collections.tasks.find(query).fetch()
+    const collection = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
     //sweetAlert("collection results", collection)
     const projects = Collections.tasks.find(projquery).fetch()
     const filterprojects = Collections.tasks.find(filtprojquery).fetch()
