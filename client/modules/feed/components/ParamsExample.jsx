@@ -2,18 +2,18 @@ import React from 'react'
 import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain.jsx'
 
-export default ({projects}) => (
+export default ({projects, flags}) => (
   <div className='params-example'>
 
     <button onClick={ FeedActions.clearFilters }>
       Clear Filters
     </button>
 
-    <button onClick={ FeedActions.filterAllProjects }>
+    <button className={ flags.project } onClick={ FeedActions.filterAllProjects }>
       Projects
     </button>
 
-    <button onClick={ FeedActions.filterAllContexts }>
+    <button className={ flags.context } onClick={ FeedActions.filterAllContexts }>
       Contexts
     </button>
 

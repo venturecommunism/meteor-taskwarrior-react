@@ -1,6 +1,13 @@
 import FeedDomain from './feed_domain.jsx'
 
 export default {
+  paramsflags() {
+    var queryParams = FlowRouter.current().queryParams
+    var paramsflags = {}
+    paramsflags.context = (queryParams.type == 'context') ? 'redflag' : null
+    paramsflags.project = (queryParams.type == 'project') ? 'redflag' : null
+    return paramsflags
+  },
   settle(c, e) {
     const _id = e.target.parentNode.parentNode.parentNode.parentNode.id
     const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
