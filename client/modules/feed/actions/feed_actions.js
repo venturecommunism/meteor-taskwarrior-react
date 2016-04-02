@@ -43,7 +43,7 @@ export default {
         break
       default:
         var project = queryParams.projects
-        query.feedquery = { type: {$nin: ['project', 'context']}, project: project }
+        query.feedquery = { project: project }
         //sweetAlert("project", project)
         query.filtprojquery = { type: 'project', super: project}
     }
@@ -63,7 +63,7 @@ export default {
       default:
         var project = queryParams.projects
         var type = queryParams.type
-        query.feedquery = { type: type, super: project }
+        query.feedquery = { $or: [ { super: project }, { project: project} ] } 
         query.projectsquery = { type: type, super: project }
         query.filtprojquery._id = {$ne: project}
     }
@@ -77,6 +77,7 @@ export default {
 
     switch(queryParams.mode) {
       case ('do'):
+        query.feedquery["workflow.status"] = {$nin: ['project', 'inbox'] }
         break
       default:
         query.feedquery["workflow.status"] = {$in: ['project', 'inbox'] }
