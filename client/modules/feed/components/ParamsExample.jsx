@@ -5,8 +5,8 @@ import FeedDomain from '../actions/feed_domain.jsx'
 export default ({projects, flags}) => (
   <div className='params-example'>
 
-    <button onClick={ FeedActions.clearFilters }>
-      Clear Filters
+    <button className={ flags.clearall } onClick={ FeedActions.clearFilters }>
+      Inbox
     </button>
 
     <button className={ flags.project } onClick={ FeedActions.filterAllProjects }>
@@ -17,11 +17,11 @@ export default ({projects, flags}) => (
       Contexts
     </button>
 
-    <button onClick={ FeedActions.filterDefineSomeWork }>
+    <button className={ flags.definesome } onClick={ FeedActions.filterDefineSomeWork }>
       Define Some Work
     </button>
 
-    <button onClick={ FeedActions.filterDoDefinedWork }>
+    <button className={ flags.dodefined } onClick={ FeedActions.filterDoDefinedWork }>
       Do Defined Work
     </button>
 

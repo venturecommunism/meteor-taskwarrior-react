@@ -4,8 +4,11 @@ export default {
   paramsflags() {
     var queryParams = FlowRouter.current().queryParams
     var paramsflags = {}
-    paramsflags.context = (queryParams.type == 'context') ? 'redflag' : null
-    paramsflags.project = (queryParams.type == 'project') ? 'redflag' : null
+    paramsflags.context = (queryParams.type == 'context') ? 'blueflag' : null
+    paramsflags.project = (queryParams.type == 'project') ? 'blueflag' : null
+    paramsflags.definesome = (queryParams.mode == null) ? 'redflag' : null
+    paramsflags.dodefined = (queryParams.mode == 'do') ? 'greenflag' : null
+    paramsflags.clearall = (JSON.stringify(queryParams) == '{}' ) ? 'blueflag' : null
     return paramsflags
   },
   settle(c, e) {

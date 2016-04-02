@@ -1,3 +1,14 @@
+.blueflag {
+  color: yellow;
+  background-color: blue;
+}
+
 .redflag {
-  color: red;
+  color: yellow;
+  background-color: red;
+}
+
+.greenflag {
+  color: yellow;
+  background-color: green;
 }
