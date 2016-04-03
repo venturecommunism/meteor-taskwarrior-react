@@ -2,6 +2,10 @@ import React from 'react'
 import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain.jsx'
 
+import currentProjectOrContextComposer from '../composers/currentprojorcontcomposer.jsx'
+import FeedItem from './feeditem.jsx'
+const FeedItemContainer = currentProjectOrContextComposer(FeedItem)
+
 export default ({projects, flags}) => (
   <div className='params-example'>
 
@@ -24,6 +28,10 @@ export default ({projects, flags}) => (
     <button className={ flags.dodefined } onClick={ FeedActions.filterDoDefinedWork }>
       Do Defined Work
     </button>
+
+    <br /><br />
+
+    <FeedItemContainer />
 
     <br /><br />
 
