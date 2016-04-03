@@ -10,6 +10,9 @@ export const currentprojcontComposer = ({context, feedquery}, onData) => {
   var project = queryParams.projects
   if (project) {
     var query = { _id: project }
+  } else {
+    // TODO: find a better way to return no data instead of using a bad query
+    var query = { crazyquery: {$exists: 1} }
   }
 
   //sweetAlert("query", JSON.stringify(query))

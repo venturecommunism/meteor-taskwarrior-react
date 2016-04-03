@@ -2,13 +2,16 @@ import React from 'react'
 import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain.jsx'
 
+import upOneProjectOrContextComposer from '../composers/upprojorcontcomposer.jsx'
+import Button from './Button.jsx'
+const UpOneLevelButton = upOneProjectOrContextComposer(Button)
+
 import currentProjectOrContextComposer from '../composers/currentprojorcontcomposer.jsx'
 import FeedItem from './feeditem.jsx'
 const FeedItemContainer = currentProjectOrContextComposer(FeedItem)
 
 export default ({projects, flags}) => (
   <div className='params-example'>
-
     <button className={ flags.clearall } onClick={ FeedActions.clearFilters }>
       Inbox
     </button>
@@ -31,9 +34,9 @@ export default ({projects, flags}) => (
 
     <br /><br />
 
-    <FeedItemContainer />
+    <UpOneLevelButton />
 
-    <br /><br />
+    <FeedItemContainer />
 
     <ul>
       {projects.map(task => (

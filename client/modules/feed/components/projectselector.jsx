@@ -12,7 +12,7 @@ export default ({taskid, projects}) => (
     {projects.map(project => (
       <li id={project._id} key={project._id} onClick={ ProjectActions.assignProject } >{project.description}</li>
     ))}
-    <span style={{color:'red'}}><li><ButtonContainer /></li></span>
+    <span style={{color:'red'}}><li><ButtonContainer buttontext="Settle here" /></li></span>
   </ul>
   </div>
 )
