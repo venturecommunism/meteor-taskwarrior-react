@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from './_sidebar.jsx';
 import ParamsExample from './ParamsExample.jsx'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
 
@@ -16,7 +15,6 @@ export default class extends React.Component {
         <div className="row">
           <div className="col-md-3">
             <ParamsExampleContainer />
-            <Sidebar />
           </div>
           <div className="col-md-9">
             <CreateTaskContainer />
