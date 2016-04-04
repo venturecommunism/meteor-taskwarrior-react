@@ -7,7 +7,7 @@ export default ({task}) => (
   <div className='feed-item'>
     <FeedItemHeader task={task} />
     <div className='feed-item-description'>
-      {task.description}
+      <h2>{task.description}</h2>
     </div>
     <div className='feed-item-entry'>
       {task.entry}
