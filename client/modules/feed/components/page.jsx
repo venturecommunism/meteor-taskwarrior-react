@@ -5,8 +5,7 @@ import CreateTask from './createtask.jsx'
 const CreateTaskContainer = createTaskComposer(CreateTask) 
 
 import Container from '../containers/container'
-//import Composer from '../data/composer'
-import Composer from '../data/tempcomposer'
+import Composer from '../data/composer'
 
 import MainQuery from '../state/query'
 import Feed from './feed.jsx'

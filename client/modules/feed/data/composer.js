@@ -1,12 +1,9 @@
 import FeedDomain from '../actions/feed_domain'
 
-export default ({context, feedquery}, onData) => {
+export default ({context, query}, onData) => {
   const {Meteor, Collections} = context();
-  var query = feedquery().feedquery
+
   //sweetAlert("query", JSON.stringify(query))
-  var projquery = feedquery().projectsquery
-  var filtprojquery = feedquery().filtprojquery
-  //sweetAlert("projquery", Object.keys(projquery))
 
   const fields = {
     tasks: {
@@ -49,10 +46,9 @@ export default ({context, feedquery}, onData) => {
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
     const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
     //sweetAlert("data results", data)
-    const projects = Collections.tasks.find(projquery).fetch()
-    const filterprojects = Collections.tasks.find(filtprojquery).fetch()
+    const projects = Collections.tasks.find(query).fetch()
     //sweetAlert('data', Object.keys(data[0]))
     //sweetAlert('projects', Object.keys(projects[0]))
-    onData(null, {data, projects, filterprojects});
+    onData(null, {data, projects});
   }
 }
