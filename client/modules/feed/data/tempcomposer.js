@@ -1,24 +1,9 @@
-import {useDeps} from 'react-simple-di';
-import {composeWithTracker, composeAll} from 'react-komposer';
-
 import FeedDomain from '../actions/feed_domain'
 
-export const currentprojcontComposer = ({context, feedquery}, onData) => {
+export default ({context, query}, onData) => {
   const {Meteor, Collections} = context();
-  var query = feedquery().feedquery
-  var queryParams = FlowRouter.current().queryParams
-  var project = queryParams.projects
-  if (project) {
-    var query = { _id: project }
-  } else {
-    // TODO: find a better way to return no data instead of using a bad query
-    var query = { crazyquery: {$exists: 1} }
-  }
 
   //sweetAlert("query", JSON.stringify(query))
-  var projquery = feedquery().projectsquery
-  var filtprojquery = feedquery().filtprojquery
-  //sweetAlert("projquery", Object.keys(projquery))
 
   const fields = {
     tasks: {
@@ -46,7 +31,7 @@ export const currentprojcontComposer = ({context, feedquery}, onData) => {
     }
   }
 
-  let recordCount = {tasks: 1}
+  let recordCount = {tasks: 10000}
 
   //sweetAlert("query", query)	
 
@@ -60,19 +45,10 @@ export const currentprojcontComposer = ({context, feedquery}, onData) => {
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
     const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
-    //sweetAlert("data results", JSON.stringify(data))
-    const task = data[0] ? data[0] : {}
-    //sweetAlert("task", Object.keys(task))
-    onData(null, {task})
+    //sweetAlert("data results", data)
+    const projects = Collections.tasks.find(query).fetch()
+    //sweetAlert('data', Object.keys(data[0]))
+    //sweetAlert('projects', Object.keys(projects[0]))
+    onData(null, {data, projects});
   }
-};
-
-export const projcontdepsMapper = (context, actions) => ({
-  feedquery: actions.feed_actions.query,
-  context: () => context,
-})
-
-export default (component) => composeAll(
-  composeWithTracker(currentprojcontComposer),
-  useDeps(projcontdepsMapper)
-)(component);
+}

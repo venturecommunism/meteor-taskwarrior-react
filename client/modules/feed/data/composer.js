@@ -47,12 +47,12 @@ export default ({context, feedquery}, onData) => {
   //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
-    const collection = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
-    //sweetAlert("collection results", collection)
+    const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
+    //sweetAlert("data results", data)
     const projects = Collections.tasks.find(projquery).fetch()
     const filterprojects = Collections.tasks.find(filtprojquery).fetch()
-    //sweetAlert('collection', Object.keys(collection[0]))
+    //sweetAlert('data', Object.keys(data[0]))
     //sweetAlert('projects', Object.keys(projects[0]))
-    onData(null, {collection, projects, filterprojects});
+    onData(null, {data, projects, filterprojects});
   }
 }
