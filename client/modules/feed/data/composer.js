@@ -1,8 +1,5 @@
-export default ({context, query, recordcount, taskids}, onData) => {
-  const {Meteor, Collections} = context();
-
-  //sweetAlert("query", JSON.stringify(query))
-  //alert(JSON.stringify(query))
+export default ({context, query, recordcount, taskids, single = false}, onData) => {
+  const {Meteor, Collections} = context()
 
   const fields = {
     tasks: {
@@ -31,7 +28,15 @@ export default ({context, query, recordcount, taskids}, onData) => {
   }
 
   if (Meteor.subscribe('feed', fields, recordcount, taskids).ready()) {
-    const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
-    onData(null, {data});
+    if (single) {
+      //sweetAlert("single", "true")
+      const initialdata = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
+      const data = initialdata[0] ? initialdata[0] : {}
+      onData(null, {data})
+    } else {
+      //sweetAlert("single", "false")
+      const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
+      onData(null, {data})
+    }
   }
 }

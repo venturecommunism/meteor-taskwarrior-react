@@ -9,10 +9,9 @@ import Query from '../state/parentprojectorcontext'
 import Button from './button.jsx'
 const UpOneContainer = Container(Composer, Query, Button)
 
-import SingleComposer from '../data/singlecomposer'
 import SingleTask from '../state/singletask'
 import FeedItem from './feeditem.jsx'
-const CurrentProjOrContContainer = Container(SingleComposer, SingleTask, FeedItem)
+const CurrentProjOrContContainer = Container(Composer, SingleTask, FeedItem)
 
 export default ({data, flags}) => (
   <div className='params-example'>
