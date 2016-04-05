@@ -2,8 +2,8 @@ import React from 'react'
 
 import ProjectActions from '../actions/project_actions'
 
-import dataComposer from '../data/projectselectorbutton.jsx'
-import ButtonComponent from './Button.jsx'
+import dataComposer from '../data/projectselector'
+import ButtonComponent from './button.jsx'
 const ButtonContainer = dataComposer(ButtonComponent)
 
 export default ({taskid, projects}) => (
