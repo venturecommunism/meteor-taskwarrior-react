@@ -4,7 +4,7 @@ import {composeWithTracker, composeAll} from 'react-komposer'
 import FeedDomain from '../actions/feed_domain'
 
 export const depsMapper = (context, actions) => ({
-  task: {},
+  data: {},
   buttonpress: actions.feed_actions.upprojorcont,
   buttontext: "Up one level",
   context: () => context,

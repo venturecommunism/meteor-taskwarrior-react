@@ -42,8 +42,8 @@ export const buttonComposer = ({context}, onData) => {
   var project = queryParams.projects
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
-    const task = Collections.tasks.find({_id: project}).fetch()
-    onData(null, {task});
+    const data = Collections.tasks.find({_id: project}).fetch()
+    onData(null, {data});
   }
 }
 
