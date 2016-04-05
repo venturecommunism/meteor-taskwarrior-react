@@ -2,9 +2,11 @@ import React from 'react'
 import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain'
 
-import upOneProjectOrContextComposer from '../data/parentprojectorcontext'
+import Container from '../containers/container'
+import Composer from '../data/composer'
+import Query from '../state/parentprojectorcontext'
 import Button from './button.jsx'
-const UpOneLevelButton = upOneProjectOrContextComposer(Button)
+const UpOneContainer = Container(Composer, Query, Button)
 
 import currentProjectOrContextComposer from '../data/currentprojectorcontext'
 import FeedItem from './feeditem.jsx'
@@ -34,7 +36,7 @@ export default ({data, flags}) => (
 
     <br /><br />
 
-    <UpOneLevelButton />
+    <UpOneContainer />
 
     <FeedItemContainer />
 
