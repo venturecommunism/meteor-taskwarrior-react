@@ -3,15 +3,14 @@ import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain'
 
 import Container from '../containers/container'
-import Composer from '../data/composer'
 
 import Query from '../state/parentprojectorcontext'
 import Button from './button.jsx'
-const UpOneContainer = Container(Composer, Query, Button)
+const UpOneContainer = Container(Query, Button)
 
 import SingleTask from '../state/singletask'
 import FeedItem from './feeditem.jsx'
-const CurrentProjOrContContainer = Container(Composer, SingleTask, FeedItem)
+const CurrentProjOrContContainer = Container(SingleTask, FeedItem)
 
 export default ({data, flags}) => (
   <div className='params-example'>

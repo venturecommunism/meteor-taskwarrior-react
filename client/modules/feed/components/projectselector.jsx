@@ -3,10 +3,10 @@ import React from 'react'
 import ProjectActions from '../actions/project_actions'
 
 import Container from '../containers/container'
-import Composer from '../data/composer'
+
 import Query from '../state/projectselector'
 import Button from './button.jsx'
-const ButtonContainer = Container(Composer, Query, Button)
+const ButtonContainer = Container(Query, Button)
 
 export default ({taskid, data}) => (
   <div>

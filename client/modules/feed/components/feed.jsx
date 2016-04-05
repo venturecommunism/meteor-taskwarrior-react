@@ -3,10 +3,9 @@ import React from 'react'
 import FeedItem from './feeditem.jsx'
 
 import Container from '../containers/container'
-import Composer from '../data/composer'
 import Query from '../state/filterprojectsquery'
 import ProjectSelector from './projectselector.jsx'
-const ProjectSelectorContainer = Container(Composer, Query, ProjectSelector) 
+const ProjectSelectorContainer = Container(Query, ProjectSelector) 
 
 export default ({data}) => (
   <div className='feed-wrapper'>
