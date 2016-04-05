@@ -1,12 +1,12 @@
 import React from 'react';
-import ParamsExample from './ParamsExample.jsx'
+import SideBar from './sidebar.jsx'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
 
-import paramsComposer from '../composers/paramscomposer.jsx'
-import dataComposer from '../composers/feed.jsx';
+import paramsComposer from '../state/paramscomposer.jsx'
+import dataComposer from '../data/feed.jsx';
 import Component from './_feed.jsx';
 const Container = dataComposer(Component);
-const ParamsExampleContainer = paramsComposer(dataComposer(ParamsExample))
+const SideBarContainer = paramsComposer(dataComposer(SideBar))
 
 export default class extends React.Component {
   render() {
@@ -14,7 +14,7 @@ export default class extends React.Component {
       <div className="bs-docs-section clearfix">
         <div className="row">
           <div className="col-md-3">
-            <ParamsExampleContainer />
+            <SideBarContainer />
           </div>
           <div className="col-md-9">
             <CreateTaskContainer />

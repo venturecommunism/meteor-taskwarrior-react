@@ -2,11 +2,11 @@ import React from 'react'
 import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain.jsx'
 
-import upOneProjectOrContextComposer from '../composers/upprojorcontcomposer.jsx'
+import upOneProjectOrContextComposer from '../data/upprojorcontcomposer.jsx'
 import Button from './Button.jsx'
 const UpOneLevelButton = upOneProjectOrContextComposer(Button)
 
-import currentProjectOrContextComposer from '../composers/currentprojorcontcomposer.jsx'
+import currentProjectOrContextComposer from '../data/currentprojorcontcomposer.jsx'
 import FeedItem from './feeditem.jsx'
 const FeedItemContainer = currentProjectOrContextComposer(FeedItem)
 

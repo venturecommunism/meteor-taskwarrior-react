@@ -2,7 +2,7 @@ import React from 'react'
 
 import ProjectActions from '../actions/project_actions'
 
-import dataComposer from '../composers/projectselectorbutton.jsx'
+import dataComposer from '../data/projectselectorbutton.jsx'
 import ButtonComponent from './Button.jsx'
 const ButtonContainer = dataComposer(ButtonComponent)
 

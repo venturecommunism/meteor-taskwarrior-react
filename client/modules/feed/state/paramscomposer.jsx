@@ -4,7 +4,7 @@ import {composeWithTracker, composeAll} from 'react-komposer'
 import FeedDomain from '../actions/feed_domain.jsx'
 
 export const depsMapper = (context, actions) => ({
-  buttontext: "Settle here",
+  buttontext: "Default button text",
   flags: actions.feed_actions.paramsflags(),
   context: () => context,
 })
