@@ -1,4 +1,4 @@
-import FeedDomain from './feed_domain.jsx'
+import FeedDomain from './feed_domain'
 
 export default {
   upprojorcont() {

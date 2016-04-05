@@ -2,7 +2,7 @@ import PostList from '../components/postlist.jsx'
 //import FeedList from '../../../core/components/FeedList.jsx';
 import {useDeps} from 'react-simple-di'
 import {composeWithTracker, composeAll} from 'react-komposer';
-import FeedDomain from '../../feed/actions/feed_domain.jsx'
+import FeedDomain from '../../feed/actions/feed_domain'
 
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();

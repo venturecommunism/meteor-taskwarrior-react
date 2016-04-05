@@ -1,5 +1,5 @@
 import React from 'react'
-import FeedDomain from '../actions/feed_domain.jsx'
+import FeedDomain from '../actions/feed_domain'
 
 //import ProjOrCont from './projorcont.jsx'
 
