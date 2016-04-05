@@ -1,6 +1,4 @@
-import FeedDomain from '../actions/feed_domain'
-
-export default ({context, query}, onData) => {
+export default ({context, query, recordcount, taskids}, onData) => {
   const {Meteor, Collections} = context();
 
   //sweetAlert("query", JSON.stringify(query))
@@ -31,24 +29,8 @@ export default ({context, query}, onData) => {
     }
   }
 
-  let recordCount = {tasks: 10000}
-
-  //sweetAlert("query", query)	
-
-  //sweetAlert("fields.tasks", Object.keys(fields.tasks))
-  //sweetAlert("FeedDomain", Object.keys(FeedDomain))
-  const feedtasks = FeedDomain.getAllFeedTasks()
-  //sweetAlert("feedtasks", feedtasks)
-  const taskIds = FeedDomain.getTaskCommentIds()
-  //sweetAlert("taskIds", taskIds)
-  //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
-
-  if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
+  if (Meteor.subscribe('feed', fields, recordcount, taskids).ready()) {
     const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
-    //sweetAlert("data results", data)
-    const projects = Collections.tasks.find(query).fetch()
-    //sweetAlert('data', Object.keys(data[0]))
-    //sweetAlert('projects', Object.keys(projects[0]))
-    onData(null, {data, projects});
+    onData(null, {data});
   }
 }

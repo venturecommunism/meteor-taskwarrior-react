@@ -10,7 +10,7 @@ import currentProjectOrContextComposer from '../data/currentprojectorcontext'
 import FeedItem from './feeditem.jsx'
 const FeedItemContainer = currentProjectOrContextComposer(FeedItem)
 
-export default ({projects, flags}) => (
+export default ({data, flags}) => (
   <div className='params-example'>
     <button className={ flags.clearall } onClick={ FeedActions.clearFilters }>
       Inbox
@@ -39,7 +39,7 @@ export default ({projects, flags}) => (
     <FeedItemContainer />
 
     <ul>
-      {projects.map(task => (
+      {data.map(task => (
         <li key={task._id}>
           <div className='feed-item'>
             <div className='feed-item-description' onClick={ FeedActions.filterByProject }>

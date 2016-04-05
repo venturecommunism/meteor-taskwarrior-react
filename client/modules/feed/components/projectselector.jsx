@@ -6,10 +6,10 @@ import dataComposer from '../data/projectselector'
 import ButtonComponent from './button.jsx'
 const ButtonContainer = dataComposer(ButtonComponent)
 
-export default ({taskid, projects}) => (
+export default ({taskid, data}) => (
   <div>
   <ul id={taskid}>
-    {projects.map(project => (
+    {data.map(project => (
       <li id={project._id} key={project._id} onClick={ ProjectActions.assignProject } >{project.description}</li>
     ))}
     <span style={{color:'red'}}><li><ButtonContainer buttontext="Settle here" /></li></span>
