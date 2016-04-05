@@ -9,11 +9,10 @@ import Query from '../state/parentprojectorcontext'
 import Button from './button.jsx'
 const UpOneContainer = Container(Composer, Query, Button)
 
-import currentProjectOrContextComposer from '../data/currentprojectorcontext'
-import POC from '../state/currentprojectorcontext'
+import SingleComposer from '../data/singlecomposer'
+import SingleTask from '../state/singletask'
 import FeedItem from './feeditem.jsx'
-const FeedItemContainer = currentProjectOrContextComposer(FeedItem)
-//const FeedItemContainer = Container(Composer, POC, FeedItem)
+const CurrentProjOrContContainer = Container(SingleComposer, SingleTask, FeedItem)
 
 export default ({data, flags}) => (
   <div className='params-example'>
@@ -41,7 +40,7 @@ export default ({data, flags}) => (
 
     <UpOneContainer />
 
-    <FeedItemContainer />
+    <CurrentProjOrContContainer data={data} />
 
     <ul>
       {data.map(task => (

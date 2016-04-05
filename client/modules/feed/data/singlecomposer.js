@@ -1,9 +1,6 @@
-import {useDeps} from 'react-simple-di';
-import {composeWithTracker, composeAll} from 'react-komposer';
-
 import FeedDomain from '../actions/feed_domain'
 
-export const currentprojcontComposer = ({context, feedquery}, onData) => {
+export default ({context, feedquery}, onData) => {
   const {Meteor, Collections} = context();
   var query = feedquery().feedquery
   var queryParams = FlowRouter.current().queryParams
@@ -65,14 +62,4 @@ export const currentprojcontComposer = ({context, feedquery}, onData) => {
     //sweetAlert("task", Object.keys(task))
     onData(null, {data})
   }
-};
-
-export const projcontdepsMapper = (context, actions) => ({
-  feedquery: actions.feed_actions.query,
-  context: () => context,
-})
-
-export default (component) => composeAll(
-  composeWithTracker(currentprojcontComposer),
-  useDeps(projcontdepsMapper)
-)(component);
+}
