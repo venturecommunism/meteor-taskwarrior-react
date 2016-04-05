@@ -1,31 +1,35 @@
-import React from 'react';
+import React from 'react'
 
-import createTaskComposer from '../state/createtask'
-import CreateTask from './createtask.jsx'
-const CreateTaskContainer = createTaskComposer(CreateTask) 
+import ProjectSelector from './projectselector.jsx'
+import FeedItem from './feeditem.jsx'
 
-import paramsComposer from '../state/params'
-import dataComposer from '../data/feed';
-import Component from './_feed.jsx';
-const Container = dataComposer(Component);
+export default ({collection, filterprojects}) => (
+  <div className='feed-wrapper'>
+    <h3>Tasks collection</h3>
+    <ul>
+      {collection.map(task => (
+        <li key={task._id}>
+          <FeedItem task={task} />
+          <ProjectSelector taskid={task._id} projects={filterprojects} />
+        </li>
+      ))}
+    </ul>
 
-import SideBar from './sidebar.jsx'
-const SideBarContainer = paramsComposer(dataComposer(SideBar))
+    <button className='more-btn'> 
+      Load More
+    </button>
+  </div>
+);
 
-export default class extends React.Component {
-  render() {
-    return (
-      <div className="bs-docs-section clearfix">
-        <div className="row">
-          <div className="col-md-3">
-            <SideBarContainer />
-          </div>
-          <div className="col-md-9">
-            <CreateTaskContainer />
-            <Container />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+/*
+FeedItem.propTypes = {
+  description: React.PropTypes.string.isRequired,
+  taskcomments: React.PropTypes.array.isRequired,
+  uuid: React.PropTypes.string.isRequired,
+  status: React.PropTypes.string.isRequired,
+  entry: React.PropTypes.string.isRequired,
+};
+
+export default FeedItem
+*/
+

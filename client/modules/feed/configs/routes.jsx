@@ -5,7 +5,7 @@ import {mount} from 'react-mounter'
 import {Layout} from '/client/configs/theme.jsx'
 import Links from '../../_home/components/links.jsx'
 
-import Feed from '../components/feed.jsx'
+import FeedPage from '../components/page.jsx'
 
 export default (injectDeps) => {
   const LayoutCtx = injectDeps(Layout)
@@ -14,7 +14,7 @@ export default (injectDeps) => {
     name: 'feed',
     action() {
       mount(LayoutCtx, {
-        content: () => (<Feed />),
+        content: () => (<FeedPage />),
         links: () => (<Links />)
       })
     }
