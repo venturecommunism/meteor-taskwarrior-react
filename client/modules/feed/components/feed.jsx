@@ -2,10 +2,10 @@ import React from 'react'
 
 import FeedItem from './feeditem.jsx'
 
-import ProjectSelector from './projectselector.jsx'
 import Container from '../containers/container'
-import Query from '../state/filterprojectsquery'
 import Composer from '../data/composer'
+import Query from '../state/filterprojectsquery'
+import ProjectSelector from './projectselector.jsx'
 const ProjectSelectorContainer = Container(Composer, Query, ProjectSelector) 
 
 export default ({data}) => (
