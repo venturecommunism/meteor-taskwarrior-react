@@ -3,15 +3,15 @@ import FeedDomain from '../actions/feed_domain'
 
 import ProjCont from './projorcont.jsx'
 
-export default ({task}) => (
+export default ({data}) => (
   <div className="feed-item__header">
     <div className="avatar" />
 
     <div className='name-date'>
-      <div className="name">{task.username}</div>
+      <div className="name">{data.username}</div>
     </div>
 
-    <ProjCont task={task} />
+    <ProjCont data={data} />
 
   </div>
 );

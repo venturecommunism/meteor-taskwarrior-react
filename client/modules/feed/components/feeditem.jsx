@@ -3,21 +3,21 @@ import React from 'react'
 import FeedItemHeader from './feeditemheader.jsx'
 import FeedItemFooter from './feeditemfooter.jsx'
 
-export default ({task}) => (
+export default ({data}) => (
   <div className='feed-item'>
-    <FeedItemHeader task={task} />
+    <FeedItemHeader data={data} />
     <div className='feed-item-description'>
-      <h2>{task.description}</h2>
+      <h2>{data.description}</h2>
     </div>
     <div className='feed-item-entry'>
-      {task.entry}
+      {data.entry}
     </div>
     <div className='feed-item-status'>
-      {task.status}
+      {data.status}
     </div>
     <div className='feed-item-uuid'>
-      {task.uuid}
+      {data.uuid}
     </div>
-    <FeedItemFooter task={task} />
+    <FeedItemFooter data={data} />
   </div>
 )

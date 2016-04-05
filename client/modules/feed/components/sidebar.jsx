@@ -4,13 +4,16 @@ import FeedDomain from '../actions/feed_domain'
 
 import Container from '../containers/container'
 import Composer from '../data/composer'
+
 import Query from '../state/parentprojectorcontext'
 import Button from './button.jsx'
 const UpOneContainer = Container(Composer, Query, Button)
 
 import currentProjectOrContextComposer from '../data/currentprojectorcontext'
+import POC from '../state/currentprojectorcontext'
 import FeedItem from './feeditem.jsx'
 const FeedItemContainer = currentProjectOrContextComposer(FeedItem)
+//const FeedItemContainer = Container(Composer, POC, FeedItem)
 
 export default ({data, flags}) => (
   <div className='params-example'>

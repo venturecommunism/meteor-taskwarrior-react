@@ -59,11 +59,11 @@ export const currentprojcontComposer = ({context, feedquery}, onData) => {
   //sweetAlert("subscription", Object.keys(Meteor.subscribe("feed", fields, recordCount, taskIds)))
 
   if (Meteor.subscribe('feed', fields, recordCount, taskIds).ready()) {
-    const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
+    const initialdata = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
     //sweetAlert("data results", JSON.stringify(data))
-    const task = data[0] ? data[0] : {}
+    const data = initialdata[0] ? initialdata[0] : {}
     //sweetAlert("task", Object.keys(task))
-    onData(null, {task})
+    onData(null, {data})
   }
 };
 

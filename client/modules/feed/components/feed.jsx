@@ -14,7 +14,7 @@ export default ({data}) => (
     <ul>
       {data.map(task => (
         <li key={task._id}>
-          <FeedItem task={task} />
+          <FeedItem data={task} />
           <ProjectSelectorContainer taskid={task._id} />
         </li>
       ))}
