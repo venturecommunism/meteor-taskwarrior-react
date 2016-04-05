@@ -2,6 +2,7 @@ export default ({context, query, recordcount, taskids}, onData) => {
   const {Meteor, Collections} = context();
 
   //sweetAlert("query", JSON.stringify(query))
+  //alert(JSON.stringify(query))
 
   const fields = {
     tasks: {
