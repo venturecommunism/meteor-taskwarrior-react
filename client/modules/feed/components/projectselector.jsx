@@ -2,13 +2,11 @@ import React from 'react'
 
 import ProjectActions from '../actions/project_actions'
 
-import dataComposer from '../data/projectselector'
 import Container from '../containers/container'
 import Composer from '../data/composer'
 import Query from '../state/projectselector'
 import Button from './button.jsx'
-const ButtonContainer = dataComposer(Button)
-//const ButtonContainer = Container(Composer, Query, Button)
+const ButtonContainer = Container(Composer, Query, Button)
 
 export default ({taskid, data}) => (
   <div>
