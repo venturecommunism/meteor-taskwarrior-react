@@ -1,11 +1,15 @@
 import React from 'react';
-import SideBar from './sidebar.jsx'
-import CreateTaskContainer from '../state/createtask'
+
+import createTaskComposer from '../state/createtask'
+import CreateTask from './createtask.jsx'
+const CreateTaskContainer = createTaskComposer(CreateTask) 
 
 import paramsComposer from '../state/params'
 import dataComposer from '../data/feed';
 import Component from './_feed.jsx';
 const Container = dataComposer(Component);
+
+import SideBar from './sidebar.jsx'
 const SideBarContainer = paramsComposer(dataComposer(SideBar))
 
 export default class extends React.Component {

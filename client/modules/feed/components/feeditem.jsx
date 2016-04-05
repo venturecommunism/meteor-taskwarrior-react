@@ -1,7 +1,7 @@
 import React from 'react'
 
-import FeedItemHeader from './FeedItemHeader.jsx'
-import FeedItemFooter from './FeedItemFooter.jsx'
+import FeedItemHeader from './feeditemheader.jsx'
+import FeedItemFooter from './feeditemfooter.jsx'
 
 export default ({task}) => (
   <div className='feed-item'>

@@ -1,4 +1,3 @@
-import CreateTask from '../components/CreateTask.jsx';
 import {useDeps} from 'react-simple-di'
 import {composeWithTracker, composeAll} from 'react-komposer';
 
@@ -17,8 +16,8 @@ export const depsMapper = (context, actions) => ({
   context: () => context
 });
 
-export default composeAll(
+export default (component) => composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(CreateTask);
+)(component)
 
