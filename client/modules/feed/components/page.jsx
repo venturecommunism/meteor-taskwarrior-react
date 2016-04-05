@@ -4,13 +4,16 @@ import createTaskComposer from '../state/createtask'
 import CreateTask from './createtask.jsx'
 const CreateTaskContainer = createTaskComposer(CreateTask) 
 
-import paramsComposer from '../state/params'
-import dataComposer from '../data/feed';
-import Feed from './feed.jsx';
-const FeedContainer = dataComposer(Feed);
+import Container from '../containers/container'
+import Composer from '../data/composer'
 
+import MainQuery from '../state/query'
+import Feed from './feed.jsx'
+const FeedContainer = Container(Composer, MainQuery, Feed)
+
+import ParamsComposer from '../state/params'
 import SideBar from './sidebar.jsx'
-const SideBarContainer = paramsComposer(dataComposer(SideBar))
+const SideBarContainer = ParamsComposer(Container(Composer, MainQuery, SideBar))
 
 export default class extends React.Component {
   render() {
