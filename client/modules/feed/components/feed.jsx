@@ -24,17 +24,4 @@ export default ({data}) => (
       Load More
     </button>
   </div>
-);
-
-/*
-FeedItem.propTypes = {
-  description: React.PropTypes.string.isRequired,
-  taskcomments: React.PropTypes.array.isRequired,
-  uuid: React.PropTypes.string.isRequired,
-  status: React.PropTypes.string.isRequired,
-  entry: React.PropTypes.string.isRequired,
-};
-
-export default FeedItem
-*/
-
+)
