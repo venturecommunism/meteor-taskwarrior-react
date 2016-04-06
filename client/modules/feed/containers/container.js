@@ -1,7 +1,7 @@
 import {useDeps} from 'react-simple-di'
 import {composeWithTracker, composeAll} from 'react-komposer'
 
-export const composer = ({context, query, recordcount, taskids, single = false}, onData) => {
+export const composer = ({context, query, recordcount, taskids, testmode = false}, onData) => {
   const {Meteor, Collections} = context()
 
   const fields = {
@@ -31,16 +31,8 @@ export const composer = ({context, query, recordcount, taskids, single = false},
   }
 
   if (Meteor.subscribe('feed', fields, recordcount, taskids).ready()) {
-    if (single) {
-      //sweetAlert("single", "true")
-      const initialdata = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
-      const data = initialdata[0] ? initialdata[0] : {}
-      onData(null, {data})
-    } else {
-      //sweetAlert("single", "false")
-      const data = Collections.tasks.find(query, {$sort: {created: 1}}).fetch()
-      onData(null, {data})
-    }
+    const data = Collections.tasks.find(query, {$sort: {created: -1}}).fetch()
+    onData(null, {data})
   }
 }
 

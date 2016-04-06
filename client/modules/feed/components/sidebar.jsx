@@ -8,9 +8,9 @@ import Query from '../state/parentprojectorcontext'
 import Button from './button.jsx'
 const UpOneContainer = Container(Query, Button)
 
-import SingleTask from '../state/singletask'
-import FeedItem from './feeditem.jsx'
-const CurrentProjOrContContainer = Container(SingleTask, FeedItem)
+import CurrentProjOrCont from '../state/projectselector'
+import SimpleFeed from './simplefeed.jsx'
+const CurrentProjOrContContainer = Container(CurrentProjOrCont, SimpleFeed)
 
 export default ({data, flags}) => (
   <div className='params-example'>
@@ -38,7 +38,7 @@ export default ({data, flags}) => (
 
     <UpOneContainer />
 
-    <CurrentProjOrContContainer data={data} />
+    <CurrentProjOrContContainer />
 
     <ul>
       {data.map(task => (
