@@ -18,7 +18,7 @@ import tasksModule from './modules/tasks'
 import tasksRoutes from './modules/tasks/configs/routes.jsx'
 
 import feedModule from './modules/feed'
-import feedRoutes from './modules/feed/configs/routes.jsx'
+import feedRoutes from './modules/feed/routes.jsx'
 
 const context = initContext();
 
