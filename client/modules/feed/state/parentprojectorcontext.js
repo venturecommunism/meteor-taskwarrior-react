@@ -1,6 +1,6 @@
 import FeedDomain from '../actions/feed_domain'
 
-export default (context, actions) => ({
+const parentprojectorcontext = (context, actions) => ({
   query: actions.feed_actions.query().feedquery,
   recordcount: { tasks: 1 },
   taskids: FeedDomain.getTaskCommentIds(),
@@ -11,3 +11,4 @@ export default (context, actions) => ({
   context: () => context,
 })
 
+export default parentprojectorcontext

@@ -1,6 +1,6 @@
 import FeedDomain from '../actions/feed_domain'
 
-export default (context, actions) => ({
+const projectselector = (context, actions) => ({
   project: FlowRouter.current().queryParams.projects,
   query: { _id: FlowRouter.current().queryParams.projects },
   recordcount: { tasks: 1 },
@@ -9,3 +9,4 @@ export default (context, actions) => ({
   context: () => context,
 })
 
+export default projectselector
