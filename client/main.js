@@ -1,7 +1,9 @@
+import { combineReducers } from 'redux'
 import {initContext} from './configs/context';
 import routes from './configs/routes.jsx';
 import {createApp} from './libs/mantra';
 
+// modules and routes
 import coreModule from './modules/core';
 import commentsModule from './modules/comments';
 
@@ -20,7 +22,14 @@ import tasksRoutes from './modules/tasks/configs/routes.jsx'
 import feedModule from './modules/feed'
 import feedRoutes from './modules/feed/routes.jsx'
 
-const context = initContext();
+// reducers
+import { feedReducer } from './modules/feed/actions/feed.js'
+
+const rootReducer = combineReducers({
+  feedReducer
+})
+
+const context = initContext(rootReducer);
 
 const app = createApp(context);
 app.loadModule(coreModule);
