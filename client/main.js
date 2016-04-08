@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import {initContext} from './configs/context';
 import routes from './configs/routes.jsx';
-import {createApp} from './libs/mantra';
+import {createApp} from 'mantra-core';
 
 // modules and routes
 import coreModule from './modules/core';
