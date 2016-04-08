@@ -1,0 +1,121 @@
+.sidebar--container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.sidebar--top {
+    height: 80px;
+    text-align: left;
+    background-color: white;
+}
+
+.sidebar--middle {
+    flex-grow: 1;
+}
+
+.sidebar--bottom {
+    width: 100%;
+    margin-top: auto;
+
+}
+
+.sidebar--bottom_button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar--bottom_button:focus {
+    outline: none;
+}
+
+.fileinfo {
+    justify-content: center;
+    align-items: center;
+}
+
+.fileinfo--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.fileinfo--title {
+    min-height: 100pz;
+    flex: 1;
+}
+
+.fileinfo--button {
+    flex: 1;
+}
+.fileinfo--download-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fileinfo--download {
+    border: 1px solid $main_green;
+    color: $main_green;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.sidebar--header_inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    background-color: #00B0FF;
+}
+
+.fileinfo--header__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background-color: $gray3;
+    cursor: pointer;
+    color: #9E9E9E;
+    height: 40px;
+    /*border-bottom: 4px solid #9E9E9E;*/
+}
+
+.fileinfo--header__tab-active {
+    /*border-bottom: 4px solid $main_green;*/
+    color: $main_green;
+    border: none;
+    background-color: $gray1;
+    height: 40px;
+
+}
+
+.favorite-item-inner {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.favorite-item-logo {
+    display: flex;
+    align-self: flex-start;
+    flex: 0 0 2em;
+}
+.sidebar-header--button__holder {
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.sidebar-header--button__container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar-header--button__inner {
+    display: flex;
+}

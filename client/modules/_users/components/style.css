@@ -1,0 +1,17 @@
+.register-container {
+    lost-column: 4/12;
+    /*text-align: center;*/
+}
+
+.register-container--input {
+    background-color: rgba(255,255,255,0.05);
+    border-color: white;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.register-container--button {
+    background-color: transparent;
+    border-color: white;
+}

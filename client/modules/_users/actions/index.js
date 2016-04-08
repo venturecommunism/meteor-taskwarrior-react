@@ -1,7 +1,9 @@
-import _account from './account';
-import _users from './users';
+import account from './account'
+import users from './users'
 
-export default {
-  _account,
-  _users
-};
+const actions = {
+    account,
+    users
+}
+
+export default actions

@@ -1,0 +1,45 @@
+.favorite-contact-header {
+    height: 20px;
+}
+.favorite-contact-list {
+    overflow-y: scroll;
+    height: calc(100vh - 250px);
+}
+
+.favorite-contact__list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5em 0 0.5em 0.5em;
+    cursor: pointer;
+}
+
+.favorite-contact__list-item:hover {
+    background-color: white;
+}
+
+.favorite-contact__list-item__icon {
+    flex: 0 0 2.25em;
+    text-align: center;
+
+}
+.favorite-contact__list-item__icon > img {
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 0.9em;
+}
+
+.favorite-contact__list-item__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorite-contact__list-item__info-name {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.favorite-contact__list-item__info-details {
+    font-size: 0.9em;
+}

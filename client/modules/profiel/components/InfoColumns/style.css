@@ -1,0 +1,28 @@
+.info-column {
+  column-count: 2;
+  column-gap: 1em;
+
+}
+.info-column-item { /* Masonry bricks or child elements */
+  display: inline-block;
+  padding: 1em 1em 0 1em;
+  margin: 0 0 1em;
+  width: 100%;
+  word-wrap: break-word;
+  box-sizing: border-box;
+
+}
+
+.info-column-item__title {
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.info-column-item__body {
+  box-sizing: border-box;
+}
+
+text-area {
+    width: 100%;
+    border: none;
+}

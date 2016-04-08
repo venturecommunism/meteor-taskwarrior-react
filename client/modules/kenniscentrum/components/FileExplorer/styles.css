@@ -1,0 +1,148 @@
+.header-height {
+    height: 40px;
+
+
+}
+.file-explorer-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 2em;
+    box-sizing: border-box;
+}
+
+.file-explorer-foldername {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.tableheader {
+    display: flex;
+    align-items: center;
+}
+
+.tableheader-container {
+    display: flex;
+    lost-column: 1/1;
+    background-color: $gray1;
+    flex-direction: row;
+    height: 40px;
+    border-bottom: 1px solid $gray3;
+    border-top: 1px solid $gray3;
+}
+
+.tableheader-inner--fileexplorer {
+    lost-column: 9/12;
+}
+
+.tableheader--icon {
+    lost-column: 2/12;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tableheader--name {
+    lost-column: 8/12;
+    box-sizing: border-box;
+}
+
+.tableheader--account-name {
+    lost-column: 6/12;
+}
+
+.tableheader--functie {
+    lost-column: 3/12;
+}
+
+.tableheader--functie {
+    lost-column: 3/12;
+}
+
+
+.tableheader--date {
+    lost-column: 2/12;
+}
+
+.content-list_container {
+    lost-column: 1/1;
+    height: calc(100% - 140px);
+    /*display: flex;*/
+    /*flex: 1;*/
+    overflow-y: scroll;
+    /*flex-direction: column;*/
+}
+
+.content-list-item-outer {
+    lost-column: 1/1;
+    display: flex;
+    align-items: center;
+
+}
+
+.content-list-item_centered-items {
+    display: flex;
+    align-self: flex-start;
+    /*justify-content: center;*/
+}
+
+.content-list-item-inner {
+    display: flex;
+    align-items: center;
+    lost-column: 9/12;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.content-list-item-button {
+    lost-column: 3/12;
+}
+
+.content-list-item_folder:hover {
+    /*background-color: rgba(154,192,0,0.1);*/
+}
+
+.content-list-item {
+    /*font-size: 2em;*/
+    /*flex: 0 0 40px;*/
+    /*height: 100%;*/
+}
+
+.folder__icon {
+    color: #FFF176;
+}
+
+.file__icon {
+    color: $gray3
+}
+
+.content-list-item_folder__title {
+    flex: 1;
+    height: 100%;
+    font-size: 1.1em;
+
+}
+
+.content-list-item_folder__date {
+    flex: 1;
+    height: 100%;
+    font-size: 0.75em;
+}
+
+.content-list-empty {
+    margin-top: 40%;
+}
+
+.fileinfo {
+    justify-content: center;
+    align-items: center;
+}
+
+.content-list-item__button {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}

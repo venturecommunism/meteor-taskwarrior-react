@@ -1,0 +1,147 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceInDown {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -3000px, 0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 25px, 0);
+    }
+
+    75% {
+        transform: translate3d(0, -10px, 0);
+    }
+
+    90% {
+        transform: translate3d(0, 5px, 0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+
+.modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+}
+
+.dialog-style {
+    will-change: translate3d;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 5px;
+    animation: bounceInDown 0.5s 1;
+    z-index: 1;
+    background-color: white;
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+}
+
+.dialog-style:focus {
+    outline: none;
+}
+
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.7);
+    animation: fadeIn 0.2s 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.modal-bottom {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.modal-bottom--button {
+    /*min-width: 100px;*/
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 3px;
+    padding: 0.5em 1em 0.5em 1em;
+    text-transform: uppercase;
+}
+.modal-bottom--button_positive {
+    border: 1px solid $main_green;
+    color: $main_green;
+}
+.modal-bottom--button_negative {
+    border: 1px solid red;
+    color: red;
+}
+.modal-body--input {
+    border-color: $gray3;
+}
+
+.modal-bottom--button_text {
+    flex: 0;
+    margin-right: 5px;
+}
+
+.modal-bottom--button_loading {
+    flex: 0 0 20px;
+    background-color: red;
+    min-width: 20px;
+    position: absolute;
+}
+
+.loading-circle {
+    border: 2px rgba(255,255,255, 0.25) solid;
+    border-top: 2px rgba(255,255,255, 1) solid;
+    border-radius: 50%;
+    animation: spCircRot .6s infinite;
+    width: 26px;
+    height: 26px;
+    clear: both;
+    /*margin: 20px auto;*/
+
+}
+
+@keyframes spCircRot {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(359deg); }
+}

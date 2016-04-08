@@ -1,32 +1,52 @@
 import { combineReducers } from 'redux'
 import {initContext} from './configs/context';
-import routes from './configs/routes.jsx';
 import {createApp} from 'mantra-core';
 
 // modules and routes
 import coreModule from './modules/core';
 import commentsModule from './modules/comments';
-
 import _homeModule from './modules/_home';
-import _homeRoutes from './modules/_home/configs/routes.jsx';
-
+//import _homeRoutes from './modules/_home/configs/routes.jsx';
 import _usersModule from './modules/_users';
 import _usersRoutes from './modules/_users/configs/routes.jsx';
-
-import _colorsModule from './modules/_colors';
-import _colorsRoutes from './modules/_colors/configs/routes.jsx';
-
+//import _colorsModule from './modules/_colors';
+//import _colorsRoutes from './modules/_colors/configs/routes.jsx';
 import tasksModule from './modules/tasks'
 import tasksRoutes from './modules/tasks/configs/routes.jsx'
-
 import feedModule from './modules/feed'
-import feedRoutes from './modules/feed/routes.jsx'
+//import feedRoutes from './modules/feed/routes.jsx'
+
+// kenniscentrum modules
+//import _homeModule from './modules/_home/index.js'
+import _layoutModule from './modules/_layout/index.js'
+import sideMenuModule from './modules/sidemenu/index.js'
+//import _usersModule from './modules/_users/index.js'
+import kennisCentrumModule from './modules/kenniscentrum/index.js'
+import contactenModule from './modules/contacten/index.js'
+import profielModule from './modules/profiel/index.js'
+import snackbarModule from './modules/snackbar/index.js'
+
+//reducers
+import { kennisCentrumReducer } from './modules/kenniscentrum/actions/files.js'
+import { layoutReducer } from './modules/_layout/actions/layout.js'
+import { contactsReducer } from './modules/contacten/actions/contacten'
+import { contactsSearchReducer } from './modules/contacten/actions/search'
+import { profileReducer } from './modules/profiel/actions/profiel'
+import { favorietenReducer } from './modules/favorieten/actions/favorieten'
+import { snackbarReducer } from './modules/snackbar/actions/snackbar'
 
 // reducers
-import { feedReducer } from './modules/feed/actions/feed.js'
+import { feedReducer } from './modules/feed/actions/feed'
 
 const rootReducer = combineReducers({
-  feedReducer
+  feedReducer,
+  snackbarReducer,
+  favorietenReducer,
+  kennisCentrumReducer,
+  layoutReducer,
+  contactsReducer,
+  contactsSearchReducer,
+  profileReducer
 })
 
 const context = initContext(rootReducer);
@@ -37,14 +57,19 @@ app.loadModule(commentsModule);
 
 app.loadModule(_homeModule);
 app.loadModule(_usersModule);
-app.loadModule(_colorsModule);
+//app.loadModule(_colorsModule);
 app.loadModule(tasksModule)
 app.loadModule(feedModule)
 
-app.loadRoutes(_homeRoutes);
-app.loadRoutes(_usersRoutes);
-app.loadRoutes(_colorsRoutes);
-app.loadRoutes(tasksRoutes)
-app.loadRoutes(feedRoutes)
+//loading for kenniscentrum
+app.loadModule(snackbarModule)
+app.loadModule(_layoutModule)
+app.loadModule(contactenModule)
+app.loadModule(sideMenuModule)
+//app.loadModule(_homeModule)
+app.loadModule(profielModule)
+//app.loadModule(_usersModule)
+app.loadModule(kennisCentrumModule)
 
-app.loadRoutes(routes);
+
+app.init()

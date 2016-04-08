@@ -1,0 +1,16 @@
+.layout__main-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.layout__main-header__title {
+    flex: 1;
+}
+
+.layout__main-header__children {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

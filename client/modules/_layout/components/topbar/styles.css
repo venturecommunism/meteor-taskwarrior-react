@@ -1,0 +1,8 @@
+.topbar-container {
+    lost-column: 10/12;
+    background-color: white;
+    min-height: 60px;
+    border-bottom: 1px solid $gray3;
+    background-color: $gray1;
+    display: flex;
+}

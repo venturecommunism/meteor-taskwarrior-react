@@ -1,36 +1,23 @@
-import React from 'react';
-import {FlowRouter} from 'meteor/kadira:flow-router';
-import {mount} from 'react-mounter';
+import React from 'react'
+//import { FlowRouter } from 'meteor/kadira:flow-router'
+import { mount } from 'react-mounter'
+//import { Meteor } from 'meteor/meteor'
 
-import {Layout} from '/client/configs/theme.jsx';
-import Links from '../components/links.jsx';
-import Simple from '../components/simple.jsx';
-import Homepage from '../components/homepageWrapper.jsx';
+import Layout from '../../_layout/components/layout.jsx'
+
 
 export default (injectDeps) => {
 
-  const LayoutCtx = injectDeps(Layout);
-  // const LayoutCtx = injectDeps(context, actions)(Layout)
+    const LayoutCtx = injectDeps(Layout)
 
-  FlowRouter.route('/', {
-    name: 'home',
-    action() {
-      mount(LayoutCtx, {
-        content: () => (<Homepage />),
-        links: () => (<Links />)
-      });
-    }
-  });
+    FlowRouter.route('/', {
+        names: 'hub.newsfeed',
 
-  FlowRouter.route('/home', {
-    name: 'home',
-    action() {
-      mount(LayoutCtx, {
-        content: () => (<Simple name='home container'/>),
-        links: () => (<Links />)
-      });
-    }
-  });
-
-
-};
+        action() {
+            mount(LayoutCtx, {
+                main_content: () => (<h1>LOL HOME</h1>),
+                sidebar_content: () => (<h3>SIDEBAR</h3> )
+            })
+        }
+    })
+}

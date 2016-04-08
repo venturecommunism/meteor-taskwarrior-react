@@ -1,0 +1,49 @@
+.contact-list--container {
+    overflow-y: scroll;
+    height: calc(100% - 110px);
+}
+.contact-list--item {
+    lost-column: 12/12;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.contact-list--item:hover {
+    background-color: $gray0;
+}
+
+.contact-list--container {
+    lost-column: 12/12;
+}
+.contact-table-item__icon {
+    lost-column: 1/12;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-table-item__icon img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+.contact-table-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.contact-table-item__name {
+    lost-column: 3/12;
+}
+
+.contact-table-item__emc {
+    lost-column: 3/12;
+}
+
+.contact-table-item__discipline {
+    lost-column: 3/12;
+}
+
+.contact-table-item__dropdown {
+    lost-column: 2/12;
+}

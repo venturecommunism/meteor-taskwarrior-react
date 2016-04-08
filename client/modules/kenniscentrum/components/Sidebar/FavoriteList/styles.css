@@ -1,0 +1,20 @@
+.favorite-kc-item-inner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    cursor: pointer;
+}
+
+.favorite-kc-item-inner:hover {
+    font-weight: bold;
+}
+
+.favorite-kc-item-logo {
+    flex: 0 0 2em;
+    text-align: center;
+}
+.favorite-kc-item-name {
+    font-size: 0.9em;
+    align-self: center;
+    word-wrap: break-word;
+}

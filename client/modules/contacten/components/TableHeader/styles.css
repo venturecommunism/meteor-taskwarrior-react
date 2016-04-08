@@ -1,0 +1,20 @@
+.tableheader-inner--contacten {
+    lost-column: 1/1;
+}
+
+.tableheader-contacten__icon {
+    lost-column: 1/12;
+}
+
+.tableheader-contacten__name {
+    lost-column: 3/12;
+}
+
+.tableheader-contacten__discipline {
+    lost-column: 3/12;
+}
+
+.tableheader-contacten__emc {
+    lost-column: 3/12;
+}
+

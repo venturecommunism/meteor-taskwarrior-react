@@ -1,0 +1,47 @@
+
+
+.select-users {
+    background-color: red;
+}
+
+/*.Select-control {*/
+    /*width: 100%;*/
+    /*background-color: white;*/
+    /*font-size: 1.25em;*/
+    /*border: 1px solid $gray3;*/
+    /*cursor: default;*/
+    /*overflow: hidden;*/
+    /*position: relative;*/
+    /*display: table;*/
+/*}*/
+/*.Select--multi .Select-clear-zone {*/
+    /*width: 17px;*/
+/*}*/
+
+/*.Select-arrow-zone {*/
+    /*cursor: pointer;*/
+    /*display: table-cell;*/
+    /*position: relative;*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*width: 25px;*/
+    /*padding-right: 5px;*/
+/*}*/
+
+/*.Select-arrow {*/
+    /*border-color: $select-arrow-color transparent transparent;*/
+    /*border-style: solid;*/
+    /*border-width: $select-arrow-width $select-arrow-width ($select-arrow-width / 2);*/
+    /*display: inline-block;*/
+    /*height: 0;*/
+    /*width: 0;*/
+/*}*/
+
+/*.Select-input > input {*/
+    /*border: none;*/
+/*}*/
+
+/*.Select-input > input:focus {*/
+    /*outline: none;*/
+/*}*/
+

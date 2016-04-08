@@ -1,0 +1,70 @@
+.contact-container {
+    height: 100%;
+}
+
+.searchbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    lost-column: 9/12;
+    align-self: center;
+    flex-direction: row;
+    height: 40px;
+}
+
+.searchbar-input {
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    border: 1px solid $gray3;
+    box-shadow: none;
+    border-right: none;
+    margin: 0;
+}
+
+.searchbar-input:focus, active {
+    outline: none;
+}
+
+.searchbar-input-logo {
+    border: 1px solid $gray3;
+    flex: 0 0 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-sizing: border-box;
+
+}
+
+.searchbar-input-logo__search {
+    background-color: $main_green;
+    border-right: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.searchbar-input-logo__close {
+    background-color: white;
+    color: #00B0FF;
+    margin: 0;
+    border-left: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.searchbar-input-logo__close--active {
+    cursor: pointer;
+}
+
+.searchbar-input-animate {
+    animation:rotate 3s linear reverse infinite;
+}
+
+@keyframes rotate {
+    100% { transform:rotate(-360deg); } }

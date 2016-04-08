@@ -1,0 +1,18 @@
+.sidebar--header {
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    border-top: 1px solid $gray3;
+    border-left: 1px solid $gray3;
+    border-bottom: 1px solid $gray3;
+}
+
+.sidebar--top {
+    background-color: white;
+    height: 80px;
+}
+
+.sidebar--body {
+    border-left: 1px solid $gray3;
+    flex: 1;
+}
