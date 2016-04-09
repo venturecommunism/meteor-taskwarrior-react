@@ -1,7 +1,25 @@
-import {useDeps} from 'react-simple-di'
-import {composeWithTracker, composeAll} from 'react-komposer'
+import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
-export const composer = ({context, query, recordcount, taskids, testmode = false}, onData) => {
+export const stateComposer = ({ context }, onData) => {
+  const { Store } = context()
+ 
+  const { coreReducer, feedReducer } = Store.getState()
+  console.log('Core Reducer is', coreReducer)
+  console.log('Feed Reducer is', feedReducer)
+
+  onData(null, {
+    coreStore: coreReducer,
+    feedStore: feedReducer
+  })
+  return Store.subscribe(() => {
+    onData(null, {
+      coreStore: coreReducer,
+      feedStore: feedReducer
+    })
+  })
+}
+
+const collectionComposer = ({context, query, recordcount, taskids, testmode = false}, onData) => {
   const {Meteor, Collections} = context()
 
   const fields = {
@@ -36,7 +54,8 @@ export const composer = ({context, query, recordcount, taskids, testmode = false
   }
 }
 
-export default (query, component) => composeAll(
-  composeWithTracker(composer),
-  useDeps(query)
+export default (actionsMapper, component) => composeAll(
+  composeWithTracker(stateComposer),
+  composeWithTracker(collectionComposer),
+  useDeps(actionsMapper)
 )(component)

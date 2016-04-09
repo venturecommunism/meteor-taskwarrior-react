@@ -1,20 +1,15 @@
 import { combineReducers } from 'redux'
-import {initContext} from './configs/context';
-import {createApp} from 'mantra-core';
+import {initContext} from './configs/context'
+import {createApp} from 'mantra-core'
 
 // modules and routes
-import coreModule from './modules/core';
-import commentsModule from './modules/comments';
-import _homeModule from './modules/_home';
-//import _homeRoutes from './modules/_home/configs/routes.jsx';
-import _usersModule from './modules/_users';
-import _usersRoutes from './modules/_users/configs/routes.jsx';
-//import _colorsModule from './modules/_colors';
-//import _colorsRoutes from './modules/_colors/configs/routes.jsx';
+import coreModule from './modules/core'
+import commentsModule from './modules/comments'
+import _homeModule from './modules/_home'
+import _usersModule from './modules/_users'
+import _usersRoutes from './modules/_users/configs/routes.jsx'
 import tasksModule from './modules/tasks'
-import tasksRoutes from './modules/tasks/configs/routes.jsx'
 import feedModule from './modules/feed'
-//import feedRoutes from './modules/feed/routes.jsx'
 
 // kenniscentrum modules
 //import _homeModule from './modules/_home/index.js'
@@ -27,6 +22,7 @@ import profielModule from './modules/profiel/index.js'
 import snackbarModule from './modules/snackbar/index.js'
 
 //reducers
+import { coreReducer } from './modules/core/actions/core'
 import { kennisCentrumReducer } from './modules/kenniscentrum/actions/files.js'
 import { layoutReducer } from './modules/_layout/actions/layout.js'
 import { contactsReducer } from './modules/contacten/actions/contacten'
@@ -39,6 +35,7 @@ import { snackbarReducer } from './modules/snackbar/actions/snackbar'
 import { feedReducer } from './modules/feed/actions/feed'
 
 const rootReducer = combineReducers({
+  coreReducer,
   feedReducer,
   snackbarReducer,
   favorietenReducer,
@@ -49,15 +46,14 @@ const rootReducer = combineReducers({
   profileReducer
 })
 
-const context = initContext(rootReducer);
+const context = initContext(rootReducer)
 
-const app = createApp(context);
-app.loadModule(coreModule);
-app.loadModule(commentsModule);
+const app = createApp(context)
+app.loadModule(coreModule)
+app.loadModule(commentsModule)
 
-app.loadModule(_homeModule);
-app.loadModule(_usersModule);
-//app.loadModule(_colorsModule);
+app.loadModule(_homeModule)
+app.loadModule(_usersModule)
 app.loadModule(tasksModule)
 app.loadModule(feedModule)
 
@@ -70,6 +66,5 @@ app.loadModule(sideMenuModule)
 app.loadModule(profielModule)
 //app.loadModule(_usersModule)
 app.loadModule(kennisCentrumModule)
-
 
 app.init()

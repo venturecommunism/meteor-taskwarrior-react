@@ -1,5 +1,5 @@
-import posts from './posts';
+import core from './core'
 
 export default {
-  posts
-};
+  core
+}
