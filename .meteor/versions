@@ -17,6 +17,7 @@ callback-hook@1.0.5-modules.4
 check@1.1.1-modules.4
 coffeescript@1.0.12-modules.4
 cosmos:browserify@0.9.3
+creatorkuang:react-meteor-status@0.0.5
 ddp@1.2.2
 ddp-client@1.2.2-modules.4
 ddp-common@1.2.2
@@ -43,6 +44,7 @@ jagi:astronomy-timestamp-behavior@1.1.0
 jagi:astronomy-validators@1.1.2
 jagi:reactive-map@2.0.0
 jquery@1.11.5-modules.4
+jsx@0.2.4
 kadira:flow-router@2.10.0
 kevohagan:sweetalert@1.0.0
 launch-screen@1.0.5-modules.4
@@ -71,6 +73,11 @@ percolate:find-from-publication@0.1.0
 promise@0.5.2-modules.4
 random@1.0.6-modules.4
 rate-limit@1.0.1-modules.4
+react@0.14.3_1
+react-meteor-data@0.2.5
+react-runtime@0.14.4
+react-runtime-dev@0.14.4
+react-runtime-prod@0.14.4
 reactive-dict@1.1.4-modules.4
 reactive-var@1.0.6
 reload@1.1.5-modules.4
