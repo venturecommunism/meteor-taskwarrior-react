@@ -2,12 +2,11 @@ import { combineReducers } from 'redux'
 import {initContext} from './configs/context'
 import {createApp} from 'mantra-core'
 
-// modules and routes
+// modules
 import coreModule from './modules/core'
 import commentsModule from './modules/comments'
 import _homeModule from './modules/_home'
 import _usersModule from './modules/_users'
-import _usersRoutes from './modules/_users/configs/routes.jsx'
 import tasksModule from './modules/tasks'
 import feedModule from './modules/feed'
 
