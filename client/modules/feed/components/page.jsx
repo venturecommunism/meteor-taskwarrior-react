@@ -5,10 +5,12 @@ import CreateTask from './createtask.jsx'
 const CreateTaskContainer = createTaskComposer(CreateTask) 
 
 import Container from '../containers/container'
-
 import MainQuery from '../state/feedquery'
+import PreviousCalendarQuery from '../state/previouscalendarquery'
 import Feed from './feed.jsx'
+
 const FeedContainer = Container(MainQuery, Feed)
+const PreviousCalendarContainer = Container(PreviousCalendarQuery, Feed)
 
 import SideBarQuery from '../state/sidebarquery'
 import ParamsComposer from '../state/params'
@@ -25,6 +27,7 @@ export default class extends React.Component {
           </div>
           <div className="col-md-9">
             <CreateTaskContainer />
+            <PreviousCalendarContainer />
             <FeedContainer />
           </div>
         </div>

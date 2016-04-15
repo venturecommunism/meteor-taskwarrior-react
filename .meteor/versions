@@ -18,6 +18,7 @@ check@1.1.1-modules.4
 coffeescript@1.0.12-modules.4
 cosmos:browserify@0.9.3
 creatorkuang:react-meteor-status@0.0.5
+dburles:mongo-collection-instances@0.3.5
 ddp@1.2.2
 ddp-client@1.2.2-modules.4
 ddp-common@1.2.2
@@ -47,6 +48,7 @@ jquery@1.11.5-modules.4
 jsx@0.2.4
 kadira:flow-router@2.10.0
 kevohagan:sweetalert@1.0.0
+lai:collection-extensions@0.2.1_1
 launch-screen@1.0.5-modules.4
 livedata@1.0.15
 localstorage@1.0.6-modules.4

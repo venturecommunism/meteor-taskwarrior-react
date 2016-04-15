@@ -1,20 +1,27 @@
-import {tasks, TaskComments} from '/lib/collections'
-import {Meteor} from 'meteor/meteor';
-import {check} from 'meteor/check';
+import {tasks, TaskComments, taskspending, tasksbacklog} from '/lib/collections'
+import {Meteor} from 'meteor/meteor'
+import {check} from 'meteor/check'
 
+//TODO: pull this out into a library function or user Roles package
 function adminUser(userId) {
   var adminUser = Meteor.users.findOne({username:"admin"})
   return (userId && adminUser && userId === adminUser._id)
 }
 
-var optional = Match.Optional;
+var optional = Match.Optional
 
-Meteor.publish('feed', function(fields, limits, taskIds) {
-  check(limits, {tasks: Number});
-  check(taskIds, Match.OneOf(null, [String]));
+Meteor.publish('feed', function(fields, query, sort, limits, taskIds) {
+  check(limits, optional({
+                           taskspending: optional(Number), 
+                           tasks: optional(Number),
+                           tasksbacklog: optional(Number),
+                          }))
+  check(sort, Match.Optional(Object))
+  check(taskIds, Match.OneOf(null, [String]))
+  check(query, Match.Optional(Object))
 
-  console.log('Publishing Tasks', fields);
-  console.log("Limit:", limits);
+  console.log('Publishing Tasks', fields)
+  console.log('Limit:', limits)
 
   // SECURITY NOTE
   // if this was data that could not be shown to a specific set of
@@ -31,7 +38,6 @@ Meteor.publish('feed', function(fields, limits, taskIds) {
   //  if (Roles.userIsInRole(this.userId, 'admin'))
   //       throw new Meteor.Error(403, "Not authorized to view this data");
   // -----------------------------------------------------------------------
-
 
   // ensure *only* the fields we whitelist are passed in. Unless wrapped in
   // Match.Optional it will be required. If any key does not match the
@@ -53,6 +59,7 @@ Meteor.publish('feed', function(fields, limits, taskIds) {
       workflow: optional(Boolean),
       project: optional(Boolean),
       super: optional(Boolean),
+      due: optional(Boolean),
     },
     taskComments: {
       _id: Boolean,  // id required for security
@@ -61,14 +68,30 @@ Meteor.publish('feed', function(fields, limits, taskIds) {
       username: optional(Boolean),
       task: optional(Boolean)
     }
-  });
+  })
 
   var userId = this.userId
   if (adminUser(userId)) {
-    // returns Mongo Cursors
-    return [
-      tasks.find({}, {fields: fields.tasks, sort: {created: -1}, limit: limits.tasks}),
-      TaskComments.find({task: {$in: taskIds ? taskIds : []}}, {fields: fields.taskComments})
-    ];
-  };
+    // Mongo Cursors
+    const taskscursor = tasks.find(query, {fields: fields.tasks, sort: sort, limit: limits.tasks})
+    const taskspendingcursor = taskspending.find(query, {fields: fields.tasks, sort: sort, limit: limits.taskspending})
+    const tasksbacklogcursor = tasksbacklog.find(query, {fields: fields.tasks, sort: sort, limit: limits.tasksbacklog})
+    const taskscommentscursor = TaskComments.find({task: {$in: taskIds ? taskIds : []}}, {fields: fields.taskComments})
+
+    // Cursor Array
+    let cursors = []
+    if (limits.tasks) {
+      cursors.push(taskscursor)
+    }
+    if (limits.taskspending) {
+      cursors.push(taskspendingcursor)
+    }
+    if (limits.tasksbacklog) {
+      cursors.push(tasksbacklogcursor)
+    }
+    cursors.push(taskscommentscursor)
+
+    // Return Mongo Cursor Array as a Reactive Join
+    return cursors
+  }
 })

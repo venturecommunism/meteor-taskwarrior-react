@@ -1,9 +1,11 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
-export const stateComposer = ({ context }, onData) => {
-  const { Store } = context()
- 
+export const stateComposer = ({ context, connection = null, collection }, onData) => {
+  const { Store } = context() 
   const { coreReducer, feedReducer } = Store.getState()
+
+  console.log('Connection is', connection)
+  console.log('Collection is', collection)
   console.log('Core Reducer is', coreReducer)
   console.log('Feed Reducer is', feedReducer)
 
@@ -19,7 +21,7 @@ export const stateComposer = ({ context }, onData) => {
   })
 }
 
-const collectionComposer = ({context, query, recordcount, taskids, testmode = false}, onData) => {
+const collectionComposer = ({context, connection = null, collection, query, pubsort, subsort, limit, taskids, testmode = false}, onData) => {
   const {Meteor, Collections} = context()
 
   const fields = {
@@ -38,6 +40,7 @@ const collectionComposer = ({context, query, recordcount, taskids, testmode = fa
       workflow: true,
       project: true,
       super: true,
+      due: true,
     },
     taskComments: {
       _id: true,
@@ -48,8 +51,12 @@ const collectionComposer = ({context, query, recordcount, taskids, testmode = fa
     }
   }
 
-  if (Meteor.subscribe('feed', fields, recordcount, taskids).ready()) {
-    const data = Collections.tasks.find(query, {$sort: {created: -1}}).fetch()
+  if (Meteor.subscribe('feed', fields, query, pubsort, limit, taskids).ready()) {
+    const data = Mongo.Collection.get(collection, { connection: connection }).find(query, {sort: subsort}).fetch()
+
+    console.log('Query, RemotePublishSort, LocalSubscribeSort and Limit are', query, pubsort, subsort, limit)
+    console.log('Count', data.length)
+
     onData(null, {data})
   }
 }
