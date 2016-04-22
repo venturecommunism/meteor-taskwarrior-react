@@ -1,6 +1,7 @@
 import React from 'react'
 import FeedActions from '../actions/feed_actions'
 import FeedDomain from '../actions/feed_domain'
+import FeedActions from '../actions/feed'
 
 import Container from '../containers/container'
 
@@ -12,7 +13,7 @@ import CurrentProjOrCont from '../state/projectselector'
 import SimpleFeed from './simplefeed.jsx'
 const CurrentProjOrContContainer = Container(CurrentProjOrCont, SimpleFeed)
 
-export default ({data, flags}) => (
+export default ({data, actions, flags}) => (
   <div className='params-example'>
     <button className={ flags.clearall } onClick={ FeedActions.clearFilters }>
       Inbox
@@ -44,7 +45,7 @@ export default ({data, flags}) => (
       {data.map(task => (
         <li key={task._id}>
           <div className='feed-item'>
-            <div className='feed-item-description' onClick={ FeedActions.filterByProject }>
+            <div className='feed-item-description' onClick={ actions.selectedProject }>
               <span id={task._id} style={{ color: 'red', }}>{task.description}</span>
             </div>
             <div className='feed-item-entry'>

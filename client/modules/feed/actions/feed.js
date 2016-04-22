@@ -1,26 +1,35 @@
-export const TOGGLE_OVERLAY = 'layout/TOGGLE_OVERLAY'
+export const SELECT_PROJECT = 'feed/SELECT_PROJECT'
 
 const initialState = {
-  overlayIsOpened: false,
-  typeOfOverlay: undefined
+  inboxIsOpened: true,
+  atTopLevel: true,
+  taskMode: 'definework', 
+  selectedProject: undefined,
 }
 
 export function feedReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case TOGGLE_OVERLAY:
-      return {...state, overlayIsOpened: !state.overlayIsOpened, typeOfOverlay: action.typeOfOverlay}
+    case SELECT_PROJECT:
+      return {
+        ...state,
+        selectedProject: action.selectedProject,
+      }
     default:
       return state
   }
 }
 
 export default {
-  toggleOverlay({ context, Store }, type) {
-    //const { Store } = context()
+  selectedProject({context, Store}, e) {
+    // const { Store } = context()
+
+    var id = e.target.id
+
+    sweetAlert("id", id)
 
     Store.dispatch({
-      type: TOGGLE_OVERLAY,
-      typeOfOverlay: type
+      type: SELECT_PROJECT,
+      selectedProject: id
     })
   }
 }
