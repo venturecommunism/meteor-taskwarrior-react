@@ -20,12 +20,11 @@ export function feedReducer(state = initialState, action = {}) {
 }
 
 export default {
-  selectedProject({context, Store}, e) {
-    // const { Store } = context()
+  selectedProject({ context, Store }, e) {
+    //const { Store } = context()
 
     var id = e.target.id
-
-    sweetAlert("id", id)
+    FlowRouter.setQueryParams({ projects: id, type: 'project' })
 
     Store.dispatch({
       type: SELECT_PROJECT,

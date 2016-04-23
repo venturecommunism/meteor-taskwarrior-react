@@ -9,20 +9,20 @@ export const stateComposer = ({ context, connection = null, collection }, onData
   console.log('Core Reducer is', coreReducer)
   console.log('Feed Reducer is', feedReducer)
 
-  onData(null, {
-    coreStore: coreReducer,
-    feedStore: feedReducer
-  })
-  return Store.subscribe(() => {
+  const sendData = () => {
     onData(null, {
       coreStore: coreReducer,
       feedStore: feedReducer
     })
-  })
+  }
+
+  sendData()
+  return Store.subscribe(sendData)
 }
 
 const collectionComposer = ({context, connection = null, collection, query, pubsort, subsort, limit, taskids, testmode = false}, onData) => {
-  const {Meteor, Collections} = context()
+  const {Meteor, Collections, Store} = context()
+  const { feedReducer } = Store.getState()
 
   const fields = {
     tasks: {
@@ -54,10 +54,18 @@ const collectionComposer = ({context, connection = null, collection, query, pubs
   if (Meteor.subscribe('feed', fields, query, pubsort, limit, taskids).ready()) {
     const data = Mongo.Collection.get(collection, { connection: connection }).find(query, {sort: subsort}).fetch()
 
-    console.log('Query, RemotePublishSort, LocalSubscribeSort and Limit are', query, pubsort, subsort, limit)
-    console.log('Count', data.length)
+    //console.log('Query, RemotePublishSort, LocalSubscribeSort and Limit are', query, pubsort, subsort, limit)
+    //console.log('Count', data.length)
 
-    onData(null, {data})
+    const sendData = () => {
+      onData(null, {
+        data,
+        feedStore: feedReducer,
+      })
+    }
+
+    sendData()
+    return Store.subscribe(sendData)
   }
 }
 
