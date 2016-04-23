@@ -30,6 +30,18 @@ export default {
       type: SELECT_PROJECT,
       selectedProject: id
     })
-  }
+  },
+  assignProject({ context, Store }, e) {
+    var id = e.target.parentNode.id
+    var queryParams = FlowRouter.current().queryParams
+    switch (queryParams.type) {
+      case 'project':
+        var data = {super: e.target.id, workflow: {status: "project", workflow: ["project"]}}
+        break
+      default:
+        var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}
+    }
+    Meteor.call('tasks.update', data, id)
+  },
 }
 

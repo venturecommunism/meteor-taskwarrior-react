@@ -7,6 +7,9 @@ const filterprojectsquery = (context, actions) => ({
   subsort: {created: -1},
   limit: { tasks: 10000 },
   taskids: FeedDomain.getTaskCommentIds(),
+
+  actions: actions.feed,
+
   context: () => context,
 })
 
