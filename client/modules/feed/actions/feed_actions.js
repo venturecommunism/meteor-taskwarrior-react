@@ -119,10 +119,6 @@ export default {
     FeedDomain.handleFilterAllContexts()
   },
 
-  filterByProject(_id) {
-    FeedDomain.handleFilterByProject(_id)
-  },
-
   filterDefineSomeWork() {
     FeedDomain.handleFilterDefineSomeWork()
   },
