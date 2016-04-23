@@ -1,28 +1,8 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
-export const stateComposer = ({ context, connection = null, collection }, onData) => {
-  const { Store } = context() 
-  const { coreReducer, feedReducer } = Store.getState()
-
-  console.log('Connection is', connection)
-  console.log('Collection is', collection)
-  console.log('Core Reducer is', coreReducer)
-  console.log('Feed Reducer is', feedReducer)
-
-  const sendData = () => {
-    onData(null, {
-      coreStore: coreReducer,
-      feedStore: feedReducer
-    })
-  }
-
-  sendData()
-  return Store.subscribe(sendData)
-}
-
 const collectionComposer = ({context, connection = null, collection, query, pubsort, subsort, limit, taskids, testmode = false}, onData) => {
   const {Meteor, Collections, Store} = context()
-  const { feedReducer } = Store.getState()
+  const { coreReducer, feedReducer } = Store.getState()
 
   const fields = {
     tasks: {
@@ -54,12 +34,15 @@ const collectionComposer = ({context, connection = null, collection, query, pubs
   if (Meteor.subscribe('feed', fields, query, pubsort, limit, taskids).ready()) {
     const data = Mongo.Collection.get(collection, { connection: connection }).find(query, {sort: subsort}).fetch()
 
+    //console.log('Connection', connection)
+    //console.log('Collection', collection)
     //console.log('Query, RemotePublishSort, LocalSubscribeSort and Limit are', query, pubsort, subsort, limit)
     //console.log('Count', data.length)
 
     const sendData = () => {
       onData(null, {
         data,
+        coreStore: coreReducer,
         feedStore: feedReducer,
       })
     }
@@ -70,7 +53,6 @@ const collectionComposer = ({context, connection = null, collection, query, pubs
 }
 
 export default (actionsMapper, component) => composeAll(
-  composeWithTracker(stateComposer),
   composeWithTracker(collectionComposer),
   useDeps(actionsMapper)
 )(component)
