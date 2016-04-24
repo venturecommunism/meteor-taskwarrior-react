@@ -18,6 +18,7 @@ const FeedDomain = {
     //sweetAlert("super", superid)
   },
 
+  // the component that uses this just needs actions mapped to it via container in order to use a Mantra action
   setProjectOrContext(e) {
     const _id = e.target.className
     //sweetAlert("projorcont", "success")
