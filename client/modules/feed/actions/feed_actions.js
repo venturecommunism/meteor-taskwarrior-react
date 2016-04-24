@@ -78,24 +78,4 @@ export default {
     //sweetAlert("query.feedquery.project", query.feedquery.project)
     return query
   },
-
-  incrementTaskLimit(amount) {
-    FeedDomain.handleIncrementTaskLimit(amount);
-  },
-
-  incrementStepParam() {
-    FeedDomain.handleIncrementStepParam();
-  },
-
-  createTaskComment(data) {
-    FeedDomain.handleCreateTaskComment(data);
-  },
-
-  filterDefineSomeWork() {
-    FeedDomain.handleFilterDefineSomeWork()
-  },
-
-  filterDoDefinedWork() {
-    FeedDomain.handleFilterDoDefinedWork()
-  },
-};
+}

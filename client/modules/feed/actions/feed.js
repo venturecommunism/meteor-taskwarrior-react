@@ -92,5 +92,11 @@ export default {
   clearFilters() {
     FlowRouter.go('/feed')
   },
+  settle({context, Store}, e) {
+    sweetAlert("e", e)
+    const id = e.target.parentNode.parentNode.parentNode.parentNode.id
+    const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
+    Meteor.call('tasks.update', data, id)
+  },
 }
 

@@ -8,7 +8,7 @@ const projectselector = (context, actions) => ({
   subsort: {created: -1},
   limit: { tasks: 1 },
   taskids: FeedDomain.getTaskCommentIds(),
-  buttonpress: actions.feed_actions.settle,
+  buttonpress: actions.feed.settle,
   context: () => context,
 })
 
