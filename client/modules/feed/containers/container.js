@@ -1,6 +1,6 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
-const collectionComposer = ({context, connection = null, collection, query, pubsort, subsort, limit, taskids, testmode = false}, onData) => {
+const collectionComposer = ({context, connection = null, collection, query, pubsort, subsort, limit, testmode = false}, onData) => {
   const {Meteor, Collections, Store} = context()
   const { coreReducer, feedReducer } = Store.getState()
 
@@ -22,16 +22,9 @@ const collectionComposer = ({context, connection = null, collection, query, pubs
       super: true,
       due: true,
     },
-    taskComments: {
-      _id: true,
-      created: true,
-      username: true,
-      description: true,
-      task: true,
-    }
   }
 
-  if (Meteor.subscribe('feed', fields, query, pubsort, limit, taskids).ready()) {
+  if (Meteor.subscribe('feed', fields, query, pubsort, limit).ready()) {
     const data = Mongo.Collection.get(collection, { connection: connection }).find(query, {sort: subsort}).fetch()
 
     //console.log('Connection', connection)

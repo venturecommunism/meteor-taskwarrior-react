@@ -10,14 +10,13 @@ function adminUser(userId) {
 
 var optional = Match.Optional
 
-Meteor.publish('feed', function(fields, query, sort, limits, taskIds) {
+Meteor.publish('feed', function(fields, query, sort, limits) {
   check(limits, optional({
                            taskspending: optional(Number), 
                            tasks: optional(Number),
                            tasksbacklog: optional(Number),
                           }))
   check(sort, Match.Optional(Object))
-  check(taskIds, Match.OneOf(null, [String]))
   check(query, Match.Optional(Object))
 
   console.log('Publishing Tasks', fields)
@@ -61,13 +60,6 @@ Meteor.publish('feed', function(fields, query, sort, limits, taskIds) {
       super: optional(Boolean),
       due: optional(Boolean),
     },
-    taskComments: {
-      _id: Boolean,  // id required for security
-      created: optional(Boolean),
-      description: optional(Boolean),
-      username: optional(Boolean),
-      task: optional(Boolean)
-    }
   })
 
   var userId = this.userId
@@ -76,7 +68,6 @@ Meteor.publish('feed', function(fields, query, sort, limits, taskIds) {
     const taskscursor = tasks.find(query, {fields: fields.tasks, sort: sort, limit: limits.tasks})
     const taskspendingcursor = taskspending.find(query, {fields: fields.tasks, sort: sort, limit: limits.taskspending})
     const tasksbacklogcursor = tasksbacklog.find(query, {fields: fields.tasks, sort: sort, limit: limits.tasksbacklog})
-    const taskscommentscursor = TaskComments.find({task: {$in: taskIds ? taskIds : []}}, {fields: fields.taskComments})
 
     // Cursor Array
     let cursors = []
@@ -89,7 +80,6 @@ Meteor.publish('feed', function(fields, query, sort, limits, taskIds) {
     if (limits.tasksbacklog) {
       cursors.push(tasksbacklogcursor)
     }
-    cursors.push(taskscommentscursor)
 
     // Return Mongo Cursor Array as a Reactive Join
     return cursors

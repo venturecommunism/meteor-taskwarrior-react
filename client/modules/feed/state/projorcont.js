@@ -4,11 +4,11 @@ const projorcont = (context, actions) => ({
   pubsort: {created: -1},
   subsort: {created: -1},
   limit: { tasks: 1 },
+
   //TODO: use a new composer/container to remove query, limit and taskids since no query is necessary
   data: {},
 
   actions: actions.feed,
-
   context: () => context,
 })
 

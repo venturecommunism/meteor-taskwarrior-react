@@ -12,7 +12,6 @@ const FeedItemFooter = ({task}) => (
         </span>
 
         <span className='by-people'>
-{/*          {this.props.taskcommentcount} TaskComments */}
         </span>
       </div>
 

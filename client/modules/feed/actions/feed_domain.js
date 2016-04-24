@@ -1,13 +1,9 @@
-import {tasks, TaskComments} from '/lib/collections'
-import {Meteor} from 'meteor/meteor'
+import { tasks } from '/lib/collections'
+import { Meteor } from 'meteor/meteor'
 
 const FeedDomain = {
   // these are pulling from the Minimongo cache, only the subscription can
   // fetch data from the server
-
-  getTaskCommentIds() {
-    return tasks.find({}, {fields: {_id: 1}}).map(doc => doc._id);
-  },
 
   upprojorcont() {
     var queryParams = FlowRouter.current().queryParams

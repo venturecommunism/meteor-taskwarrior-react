@@ -1,7 +1,7 @@
-import {tasks, TaskComments} from '/lib/collections';
+import { tasks } from '/lib/collections';
 // import {_task} from '/lib/task.js';
-import {Meteor} from 'meteor/meteor';
-import {check} from 'meteor/check';
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 // import _ from 'lodash';
 
 export default function () {

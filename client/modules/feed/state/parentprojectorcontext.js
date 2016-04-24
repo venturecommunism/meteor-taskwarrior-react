@@ -6,7 +6,7 @@ const parentprojectorcontext = (context, actions) => ({
   pubsort: {created: -1},
   subsort: {created: -1},
   limit: { tasks: 1 },
-  taskids: FeedDomain.getTaskCommentIds(),
+
   //TODO: use a new composer/container to remove query, limit and taskids since no query is necessary
   data: {},
   buttonpress: FeedDomain.upprojorcont,
