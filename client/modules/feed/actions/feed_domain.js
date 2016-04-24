@@ -5,6 +5,10 @@ const FeedDomain = {
   // these are pulling from the Minimongo cache, only the subscription can
   // fetch data from the server
 
+  getTaskCommentIds() {
+    return tasks.find({}, {fields: {_id: 1}}).map(doc => doc._id);
+  },
+
   upprojorcont() {
     var queryParams = FlowRouter.current().queryParams
     var id = queryParams.projects
@@ -12,45 +16,6 @@ const FeedDomain = {
     var superid = superprojorcont ? superprojorcont.super : null
     FlowRouter.setQueryParams({ projects: superid })
     //sweetAlert("super", superid)
-  },
-
-  getAllFeedTasks() {
-    return tasks.find({}, {sort: {created: -1}}).fetch();
-  },
-
-  getTaskCommentIds() {
-    return tasks.find({}, {fields: {_id: 1}}).map(doc => doc._id);
-  },
-
-  getTaskCommentsFromTaskId(docId) {
-    return TaskComments.find({task: docId}, {sort: {created: -1}}).fetch();
-  },
-
-  // this might go in a TaskCommentsDomain but since we only have 1 method...
-  handleCreateTaskComment(data) {
-    Meteor.call('TaskComment.create', data);
-  },
-
-  handleIncrementTaskLimit(amount) {
-    // TODO
-    console.log('[FeedDomain.incrementTaskLimit]', amount);
-  },
-
-  // should params go in a RouteStore or ParamStore? perhaps overkill
-
-  handleIncrementStepParam() {
-    var currentStep = FlowRouter.getQueryParam('step') || 0;
-    var nextStep = parseInt(currentStep) + 1;
-    FlowRouter.setQueryParams({ step: nextStep });
-  },
-
-  getTypeParam() {
-    return FlowRouter.getQueryParam('type')
-  },
-
-  getStepParam() {
-    // see full API - https://github.com/meteorhacks/flow-router#api
-    return FlowRouter.getQueryParam('step');
   },
 
   setProjectOrContext(e) {

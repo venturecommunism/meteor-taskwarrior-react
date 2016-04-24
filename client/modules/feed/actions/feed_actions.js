@@ -21,7 +21,6 @@ export default {
     var queryParams = FlowRouter.current().queryParams
     //sweetAlert("queryParams", queryParams)
     //sweetAlert("queryParams.projects", queryParams.projects)
-    //var type = FeedDomain.getTypeParam()
 
     var query = {}
     query.feedquery = {}
