@@ -1,8 +1,6 @@
 import React from 'react'
 import FeedDomain from '../actions/feed_domain'
 
-//import ProjOrCont from './projorcont.jsx'
-
 export default ({data}) => (
   <div key={data._id} className='project-or-context'>
     {/* name has to be the same for buttons to toggle between them */}

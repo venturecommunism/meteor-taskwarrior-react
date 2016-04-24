@@ -79,5 +79,18 @@ export default {
     Meteor.call('tasks.update', data, _id)
     // {_id: _id}, {$set: {type: projorcont}})
   },
+  paramsflags() {
+    var queryParams = FlowRouter.current().queryParams
+    var paramsflags = {}
+    paramsflags.context = (queryParams.type == 'context') ? 'blueflag' : null
+    paramsflags.project = (queryParams.type == 'project') ? 'blueflag' : null
+    paramsflags.definesome = (queryParams.mode == null) ? 'redflag' : null
+    paramsflags.dodefined = (queryParams.mode == 'do') ? 'greenflag' : null
+    paramsflags.clearall = (JSON.stringify(queryParams) == '{}' ) ? 'blueflag' : null
+    return paramsflags
+  },
+  clearFilters() {
+    FlowRouter.go('/feed')
+  },
 }
 

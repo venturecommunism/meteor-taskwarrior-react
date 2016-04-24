@@ -1,16 +1,6 @@
 import FeedDomain from './feed_domain'
 
 export default {
-  paramsflags() {
-    var queryParams = FlowRouter.current().queryParams
-    var paramsflags = {}
-    paramsflags.context = (queryParams.type == 'context') ? 'blueflag' : null
-    paramsflags.project = (queryParams.type == 'project') ? 'blueflag' : null
-    paramsflags.definesome = (queryParams.mode == null) ? 'redflag' : null
-    paramsflags.dodefined = (queryParams.mode == 'do') ? 'greenflag' : null
-    paramsflags.clearall = (JSON.stringify(queryParams) == '{}' ) ? 'blueflag' : null
-    return paramsflags
-  },
   settle(c, e) {
     const _id = e.target.parentNode.parentNode.parentNode.parentNode.id
     const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
@@ -87,10 +77,6 @@ export default {
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
     return query
-  },
-
-  clearFilters() {
-    FlowRouter.go('/feed')
   },
 
   incrementTaskLimit(amount) {

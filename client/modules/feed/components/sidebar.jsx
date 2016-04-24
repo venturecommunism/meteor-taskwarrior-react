@@ -1,6 +1,4 @@
 import React from 'react'
-import FeedActions from '../actions/feed_actions'
-import FeedDomain from '../actions/feed_domain'
 
 import Container from '../containers/container'
 
@@ -15,7 +13,7 @@ const CurrentProjOrContContainer = Container(CurrentProjOrCont, SimpleFeed)
 export default ({data, actions, feedStore, flags}) => (
   <div className='params-example'>
     <p>{ feedStore.selectedProject }</p>
-    <button className={ flags.clearall } onClick={ FeedActions.clearFilters }>
+    <button className={ flags.clearall } onClick={ actions.clearFilters }>
       Inbox
     </button>
 
