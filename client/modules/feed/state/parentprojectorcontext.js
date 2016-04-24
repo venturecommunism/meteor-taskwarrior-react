@@ -9,7 +9,7 @@ const parentprojectorcontext = (context, actions) => ({
   taskids: FeedDomain.getTaskCommentIds(),
   //TODO: use a new composer/container to remove query, limit and taskids since no query is necessary
   data: {},
-  buttonpress: actions.feed_actions.upprojorcont,
+  buttonpress: actions.feed.upprojorcont,
   buttontext: "Up one level",
   context: () => context,
 })

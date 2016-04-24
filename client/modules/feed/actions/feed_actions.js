@@ -1,11 +1,6 @@
 import FeedDomain from './feed_domain'
 
 export default {
-  upprojorcont() {
-    var superid = FeedDomain.getSuper()
-    FlowRouter.setQueryParams({ projects: superid })
-    //sweetAlert("super", superid)
-  },
   paramsflags() {
     var queryParams = FlowRouter.current().queryParams
     var paramsflags = {}
