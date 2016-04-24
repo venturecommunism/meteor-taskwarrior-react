@@ -1,7 +1,3 @@
-//make it so actions depending on tasks.findOne no longer do
-import {tasks, TaskComments} from '/lib/collections'
-import {Meteor} from 'meteor/meteor'
-
 export const SELECT_PROJECT = 'feed/SELECT_PROJECT'
 
 const initialState = {
@@ -46,14 +42,6 @@ export default {
         var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}
     }
     Meteor.call('tasks.update', data, id)
-  },
-  upprojorcont() {
-    var queryParams = FlowRouter.current().queryParams
-    var id = queryParams.projects
-    var superprojorcont = tasks.findOne({ super: {$exists: 1}, _id: id})
-    var superid = superprojorcont ? superprojorcont.super : null
-    FlowRouter.setQueryParams({ projects: superid })
-    //sweetAlert("super", superid)
   },
   filterAllProjects() {
     var currentState = FlowRouter.getQueryParam('type')
