@@ -106,14 +106,6 @@ export default {
     FeedDomain.handleCreateTaskComment(data);
   },
 
-  filterAllProjects() {
-    FeedDomain.handleFilterAllProjects()
-  },
-
-  filterAllContexts() {
-    FeedDomain.handleFilterAllContexts()
-  },
-
   filterDefineSomeWork() {
     FeedDomain.handleFilterDefineSomeWork()
   },

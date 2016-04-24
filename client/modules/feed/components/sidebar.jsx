@@ -19,19 +19,19 @@ export default ({data, actions, feedStore, flags}) => (
       Inbox
     </button>
 
-    <button className={ flags.project } onClick={ FeedActions.filterAllProjects }>
+    <button className={ flags.project } onClick={ actions.filterAllProjects }>
       Projects
     </button>
 
-    <button className={ flags.context } onClick={ FeedActions.filterAllContexts }>
+    <button className={ flags.context } onClick={ actions.filterAllContexts }>
       Contexts
     </button>
 
-    <button className={ flags.definesome } onClick={ FeedActions.filterDefineSomeWork }>
+    <button className={ flags.definesome } onClick={ actions.filterDefineSomeWork }>
       Define Some Work
     </button>
 
-    <button className={ flags.dodefined } onClick={ FeedActions.filterDoDefinedWork }>
+    <button className={ flags.dodefined } onClick={ actions.filterDoDefinedWork }>
       Do Defined Work
     </button>
 

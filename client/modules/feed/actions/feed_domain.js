@@ -35,39 +35,6 @@ const FeedDomain = {
     FlowRouter.setQueryParams({ step: nextStep });
   },
 
-  handleFilterAllProjects() {
-    var currentState = FlowRouter.getQueryParam('type')
-    if (currentState != 'project') {
-      FlowRouter.setQueryParams({ type: 'project' })
-    } else {
-      FlowRouter.setQueryParams({ type: null })
-    }
-  },
-
-  handleFilterAllContexts() {
-    var currentState = FlowRouter.getQueryParam('type')
-    if (currentState != 'context') {
-      FlowRouter.setQueryParams({ type: 'context' })
-    } else {
-      FlowRouter.setQueryParams({ type: null })
-    }
-  },
-
-  handleFilterDefineSomeWork(e) {
-    var currentState = FlowRouter.getQueryParam('mode')
-    if (currentState) {
-      FlowRouter.setQueryParams({ mode: null })
-    }
-  },
-
-  handleFilterDoDefinedWork(e) {
-    var currentState = FlowRouter.getQueryParam('mode')
-    if (!currentState) {
-      FlowRouter.setQueryParams({ mode: 'do' })
-    }
-  },
-
-
   getTypeParam() {
     return FlowRouter.getQueryParam('type')
   },
