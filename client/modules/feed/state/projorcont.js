@@ -1,6 +1,6 @@
 const projorcont = (context, actions) => ({
   collection: 'tasks',
-  query: actions.feed_actions.query().feedquery,
+  query: actions.feed.query().feedquery,
   pubsort: {created: -1},
   subsort: {created: -1},
   limit: { tasks: 1 },
