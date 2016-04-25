@@ -9,6 +9,7 @@ import _homeModule from './modules/_home'
 import _usersModule from './modules/_users'
 import tasksModule from './modules/tasks'
 import feedModule from './modules/feed'
+import otModule from './modules/ot'
 
 // kenniscentrum modules
 //import _homeModule from './modules/_home/index.js'
@@ -32,10 +33,12 @@ import { snackbarReducer } from './modules/snackbar/actions/snackbar'
 
 // reducers
 import { feedReducer } from './modules/feed/actions/feed'
+import { otReducer } from './modules/ot/actions/feed'
 
 const rootReducer = combineReducers({
   coreReducer,
   feedReducer,
+  otReducer,
   snackbarReducer,
   favorietenReducer,
   kennisCentrumReducer,
@@ -55,6 +58,7 @@ app.loadModule(_homeModule)
 app.loadModule(_usersModule)
 app.loadModule(tasksModule)
 app.loadModule(feedModule)
+app.loadModule(otModule)
 
 //loading for kenniscentrum
 app.loadModule(snackbarModule)
