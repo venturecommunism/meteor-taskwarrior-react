@@ -1,20 +1,19 @@
 import {useDeps} from 'react-simple-di'
 import {composeWithTracker, composeAll} from 'react-komposer';
 
-export const composer = ({context, clearErrors}, onData) => {
-  const {LocalState} = context();
-  const error = LocalState.get('SAVING_ERROR');
-  onData(null, {error});
+export const composer = ({context, actions}, onData) => {
+  const {LocalState} = context()
+  const error = LocalState.get('SAVING_ERROR')
+  onData(null, {error})
 
   // clearErrors when unmounting the component
-  return clearErrors;
-};
+  return actions.clearErrors
+}
 
 export const depsMapper = (context, actions) => ({
-  create: actions.feed.create,
-  clearErrors: actions.feed.clearErrors,
+  actions: actions.feed,
   context: () => context
-});
+})
 
 export default (component) => composeAll(
   composeWithTracker(composer),
