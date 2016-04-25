@@ -5,65 +5,6 @@ const initialState = {
   atTopLevel: true,
   taskMode: 'definework', 
   selectedProject: undefined,
-  feedquery: {
-    connection: null,
-    collection: 'tasks',
-    query: { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox' },
-    pubsort: {created: -1},
-    subsort: {created: -1},
-    limit: { tasks: 10000 },
-  },
-  sidebarquery: {
-    connection: null,
-    collection: 'tasks',
-    query: { type : 'project', super: {$exists: 0} },
-    pubsort: {created: -1},
-    subsort: {created: -1},
-    limit: { tasks: 10000 },
-  },
-  filterprojectsquery: {
-    connection: null,
-    collection: 'tasks',
-    query: { type : 'project', super: {$exists: 0} },
-    pubsort: {created: -1},
-    subsort: {created: -1},
-    limit: { tasks: 10000 },
-  },
-  parentprojectorcontext: {
-    connection: null,
-    collection: 'tasks',
-    query: { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox' },
-    pubsort: {created: -1},
-    subsort: {created: -1},
-    limit: { tasks: 1 },
-  },
-  previouscalendarquery: {
-    connection: null,
-    collection: 'tasksbacklog',
-    query: {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]},
-    pubsort: {due: -1},
-    subsort: {due: 1},
-    limit: { tasksbacklog: 5 },
-  },
-  fields: {
-    tasks: {
-      _id: true,
-      description: true,
-      uuid: true,
-      status: true,
-      entry: true,
-      likecount: true,
-      taskcommentcount: true,
-      username: true,
-      created: true,
-      owner: true,
-      type: true,
-      workflow: true,
-      project: true,
-      super: true,
-      due: true,
-    },
-  },
 }
 
 export function feedReducer(state = initialState, action = {}) {
@@ -159,10 +100,7 @@ export default {
 
     Store.dispatch({
       type: SELECT_PROJECT,
-      selectedProject: id,
-      feedquery: { $or: [ { super: id }, { project: id} ] },
-      sidebarquery: { type: 'project', super: id },
-      "filterpprojectsquery._id": {$ne: id},
+      selectedProject: id
     })
   },
   assignProject({ context, Store }, e) {
@@ -264,7 +202,7 @@ export default {
     // FlowRouter.go(`/task/${id}`);
   },
 
-  clearErrors({context, LocalState}) {
+  clearErrors({LocalState}) {
     return LocalState.set('SAVING_ERROR', null);
   },
 }

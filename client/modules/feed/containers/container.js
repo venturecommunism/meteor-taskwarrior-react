@@ -1,19 +1,27 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
-const collectionComposer = ({ context, queryid, connection = null, collection, query, pubsort, subsort, limit, testmode = false }, onData) => {
-  const { Meteor, Collections, Store } = context()
+const collectionComposer = ({context, connection = null, collection, query, pubsort, subsort, limit, testmode = false}, onData) => {
+  const {Meteor, Collections, Store} = context()
   const { coreReducer, feedReducer } = Store.getState()
 
-  const fields = feedReducer.fields
-
-  if (queryid) {
-    rootquery = feedReducer[queryid]
-    connection = rootquery.connection
-    collection = rootquery.collection
-    query = rootquery.query
-    pubsort = rootquery.pubsort
-    subsort = rootquery.subsort
-    limit = rootquery.limit
+  const fields = {
+    tasks: {
+      _id: true,
+      description: true,
+      uuid: true,
+      status: true,
+      entry: true,
+      likecount: true,
+      taskcommentcount: true,
+      username: true,
+      created: true,
+      owner: true,
+      type: true,
+      workflow: true,
+      project: true,
+      super: true,
+      due: true,
+    },
   }
 
   if (Meteor.subscribe('feed', fields, query, pubsort, limit).ready()) {
