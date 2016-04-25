@@ -1,7 +1,7 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
 const collectionComposer = ({ context, queryid, connection = null, collection, query, pubsort, subsort, limit, testmode = false }, onData) => {
-  const {Meteor, Collections, Store, LocalState} = context()
+  const { Meteor, Collections, Store } = context()
   const { coreReducer, feedReducer } = Store.getState()
 
   const fields = feedReducer.fields

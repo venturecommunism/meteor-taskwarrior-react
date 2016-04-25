@@ -159,7 +159,10 @@ export default {
 
     Store.dispatch({
       type: SELECT_PROJECT,
-      selectedProject: id
+      selectedProject: id,
+      feedquery: { $or: [ { super: id }, { project: id} ] },
+      sidebarquery: { type: 'project', super: id },
+      "filterpprojectsquery._id": {$ne: id},
     })
   },
   assignProject({ context, Store }, e) {
