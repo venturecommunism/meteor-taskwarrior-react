@@ -1,4 +1,4 @@
-import FeedDomain from '../actions/feed_domain'
+import FeedDomain from '../actions/domain'
 
 const parentprojectorcontext = (context, actions) => ({
   collection: 'tasks',

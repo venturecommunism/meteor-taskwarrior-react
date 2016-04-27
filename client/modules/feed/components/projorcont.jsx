@@ -1,5 +1,5 @@
 import React from 'react'
-import FeedDomain from '../actions/feed_domain'
+import FeedDomain from '../actions/domain'
 
 export default ({data}) => (
   <div key={data._id} className='project-or-context'>
