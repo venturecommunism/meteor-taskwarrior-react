@@ -10,6 +10,8 @@ import _usersModule from './modules/_users'
 import tasksModule from './modules/tasks'
 import feedModule from './modules/feed'
 import otModule from './modules/ot'
+import pomodoroModule from './modules/pomodoro'
+import timerModule from './modules/timer'
 
 // kenniscentrum modules
 //import _homeModule from './modules/_home/index.js'
@@ -59,6 +61,8 @@ app.loadModule(_usersModule)
 app.loadModule(tasksModule)
 app.loadModule(feedModule)
 app.loadModule(otModule)
+app.loadModule(pomodoroModule)
+app.loadModule(timerModule)
 
 //loading for kenniscentrum
 app.loadModule(snackbarModule)

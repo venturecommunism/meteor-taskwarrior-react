@@ -1,0 +1,197 @@
+
+.timer {
+    width: 100%;
+    display: block;
+
+    .counter-block {
+        background: #f6f5f6;
+        width: 100%;
+        display: block;
+        padding: 50px 0;
+    }
+
+    .timer-component {
+        font-size: 50px;
+        display: block;
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        line-height: 200px;
+        font-weight: 100;
+    }
+
+    .timer-holder {
+        width: 200px;
+        display: block;
+        margin: auto;
+        position: relative;
+        margin: auto;
+    }
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.task-list {
+    width: 100%;
+    text-align: left;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    /* background: #ededeb; */
+    background: #fff;
+    color: #5a5a58;
+
+    h1 {
+        margin: 0;
+        width: 100%;
+        display: block;
+        font: 25px 'Open Sans' !important;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
+
+hr {
+    width: 100%;
+    background: #ccc;
+    height: 1px;
+    border: 0;
+    margin-bottom: 50px;
+}
+
+
+.add-task {
+    width: 100%;
+    position: relative;
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        margin: auto;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    input {
+        width: 100%;
+        height: 36px;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+        font: 14px/36px 'Open Sans';
+        background: none;
+
+        &:active, &:focus{
+            outline: none;
+        }
+    }
+}
+
+
+.task {
+    width: 100%;
+    background: #fff;
+    padding: 15px 20px;
+    color: #555;
+    font-weight: 300;
+    margin: 5px 0;
+    border: 1px solid #f2f2f2;
+    position: relative;
+    border-radius: 3px;
+
+    .priority {
+        width: 16px;
+        height: 16px;
+        background: #ffa800;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: -8px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        cursor: pointer;
+        transition: all 400ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+        &:hover {
+            .tooltip {
+                opacity: 1;
+                right: 190%;
+            }
+        }
+
+        .tooltip {
+            width: 120px;
+            height: 30px;
+            position: absolute;
+            right: 70%;
+            top: 50%;
+            transform: translateY(-50%);
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: 500 !important;
+            font: 9px/9px 'Roboto';
+            color: #fff;
+            padding: 10px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: all 200ms ease;
+            border-radius: 3px;
+
+            .triangle {
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 5px 0 5px 5px;
+                border-color: transparent transparent transparent #007bff;
+                transition: all 200ms ease;
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    .complete {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 10px;
+        cursor: pointer;
+
+        .fa.fa-check:after, .fa.fa-check:before{
+            transition: all 500ms ease;
+        }
+    }
+
+    .mins-per-task {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .fa-clock-o {
+        vertical-align: middle;
+        color: #9dc3ad;
+        margin-right: 5px;
+    }
+
+    .remove {
+        display: inline-block;
+        vertical-align: top;
+        color: #9a9eaf;
+        margin-left: 20px;
+        cursor: pointer;
+        transition: all 200ms ease;
+
+        &:hover {
+            color: #555;
+        }
+    }
+}
