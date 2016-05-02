@@ -3,27 +3,17 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
     Meteor.methods({
-        'home.create.timer'(type) {
+        'home.create.timer'(duration) {
             console.log("home.create.timer")
-            check(type, String);
+            check(duration, Number);
             let time = 0;
 
             const createdAt = new Date();
-            switch (type) {
-                case 'shortbreak':
-                    time = (60*5)*1000;
-                    break;
-                case 'longbreak':
-                    time = (60*10)*1000;
-                    break;
-                default:
-                    time = (60*25)*1000;
-                    break;
-            }
+            time = (60*duration)*1000;
 
             const counting = false;
             const owner = Meteor.userId();
-            const newTimer = { type, time, owner, counting, createdAt };
+            const newTimer = {duration, time, owner, counting, createdAt};
             return Timer.insert(newTimer);
         }
     })

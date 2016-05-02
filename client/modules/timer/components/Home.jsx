@@ -10,9 +10,8 @@ class Home extends Component {
                 <Helmet title="Timer" />
                 <h1>Pomodoro Timer</h1>
                 <div className="buttons-holder">
-                    <button onClick={this.newTimer.bind(this, 'pomodoro')}>pomodoro</button>
-                    <button onClick={this.newTimer.bind(this, 'shortbreak')}>short break</button>
-                    <button onClick={this.newTimer.bind(this, 'longbreak')}>long break</button>
+                    <button onClick={this.newTimer.bind(this, 1)}>1 min</button>
+                    <button onClick={this.newTimer.bind(this, 5)}>5 min</button>
                 </div>
 
                 <div className="pomodoros-list">
