@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Moment from 'moment';
 import Helmet from 'react-helmet';
 import Counter from '../containers/Counter.js';
-import TaskList from '../containers/TaskList.js';
+//import TaskList from '../containers/TaskList.js';
 
 class Timer extends Component {
     render() {
@@ -15,7 +15,7 @@ class Timer extends Component {
 
                 <Counter _id={_id} counting={counting} time={time} type={type} ended={ended}/>
 
-                {(type == 'pomodoro') ? <TaskList timerId={_id} /> : <h1>Enjoy your free time!</h1>}
+                {(type == 'pomodoro') ? '' : <h1>Enjoy your free time!</h1>}
             </div>
         );
     }
