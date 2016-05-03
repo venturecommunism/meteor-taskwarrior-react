@@ -10,7 +10,6 @@ import {check} from 'meteor/check';
 
             const createdAt = new Date();
             time = (duration)*1000;
-
             const counting = false;
             const owner = Meteor.userId();
             const newTimer = {duration, time, owner, counting, createdAt};

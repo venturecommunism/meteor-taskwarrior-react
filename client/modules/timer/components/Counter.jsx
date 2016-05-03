@@ -67,7 +67,6 @@ class Counter extends Component{
 
   _startTimer() {
     const {_id, counting, set_counting} = this.props
-    console.log("_id, counting", _id, counting)
     let isCounting = !counting
     set_counting(_id, isCounting)
   }
