@@ -33,6 +33,7 @@ import {check} from 'meteor/check';
             timer.counting = false;
             timer.ended = true;
 
+            timer.time = timer.duration * 1000
             return Timer.update({_id: timerId}, timer);
         }
     });

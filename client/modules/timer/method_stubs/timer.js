@@ -36,6 +36,7 @@ export default function({Collections, Meteor, LocalState}) {
             timer.counting = false;
             timer.ended = true;
 
+            timer.time = timer.duration * 1000
             Timer.update({_id: timerId}, timer);
         }
     });
