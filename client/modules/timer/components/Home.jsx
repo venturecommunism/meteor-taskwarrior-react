@@ -23,6 +23,7 @@ class Home extends Component {
                     <button onClick={this.newTimer.bind(this, 60)}>1 min</button>
                     <button onClick={this.newTimer.bind(this, 300)}>5 min</button>
                     <button onClick={this.newTimer.bind(this, 600)}>10 min</button>
+                    <button onClick={this.newTimer.bind(this, 900)}>15 min</button>
                 </div>
 
                 <div className="pomodoros-list">

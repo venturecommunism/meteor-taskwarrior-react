@@ -10,6 +10,7 @@ export const depsMapper = (context, actions) => ({
     set: actions.counter.set,
     set_counting: actions.counter.set_counting,
     end_timer: actions.counter.end_timer,
+    reset_timer: actions.counter.reset_timer,
     clearErrors: actions.counter.clearErrors,
     context: () => context
 });

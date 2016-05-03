@@ -9,10 +9,10 @@ class Counter extends Component{
     const timer = setInterval(() => {
       const { _id, time, counting } = this.props
       if(time > 0){
-        if(counting) set(_id, time)
-      } else {
-        const { _id, time, counting } = this.props
-        clearInterval(timer)
+        if (counting) set(_id, time)
+      } else if (counting) {
+        const { _id, time, counting} = this.props
+        //clearInterval(timer)
         end_timer(_id)
       }
     }, 1000)
@@ -28,10 +28,16 @@ class Counter extends Component{
 
         <button onClick={this._startTimer.bind(this)}>{ (counting) ? 'Pause' : 'Start' }</button>
 
+        <button onClick={this._resetTimer.bind(this)}>Reset</button>
         { (ended) ? this._renderSound() : null }
         { (ended) ? this._newNotification() : null }
       </div>
     )
+  }
+
+  _resetTimer() {
+    const {_id, reset_timer} = this.props
+    reset_timer(_id)
   }
 
   _newNotification() {

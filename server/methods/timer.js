@@ -33,7 +33,19 @@ import {check} from 'meteor/check';
             timer.counting = false;
             timer.ended = true;
 
-            timer.time = timer.duration * 1000
             return Timer.update({_id: timerId}, timer);
         }
     });
+
+    Meteor.methods({
+        'timer.reset'(timerId) {
+            check(timerId, String);
+            const timer = Timer.findOne(timerId);
+            timer.counting = false;
+            delete timer.ended
+
+            timer.time = timer.duration * 1000
+            Timer.update({_id: timerId}, timer);
+        }
+    });
+

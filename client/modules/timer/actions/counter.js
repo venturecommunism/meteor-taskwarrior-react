@@ -22,6 +22,11 @@ export default {
         Meteor.call('timer.end', timerId, (err, result) => {});
     },
 
+  reset_timer({Meteor, LocalState, FlowRouter}, timerId) {
+        if(!timerId) return LocalState.set('ERROR_RESET_TIMER', 'Timer ID is required');
+        Meteor.call('timer.reset', timerId, (err, result) => {});
+  },
+
     clearErrors({LocalState}) {
         return LocalState.set('SAVING_ERROR', null);
     }

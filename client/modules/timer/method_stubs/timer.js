@@ -18,6 +18,18 @@ export default function({Collections, Meteor, LocalState}) {
     });
 
     Meteor.methods({
+        'timer.reset'(timerId) {
+            check(timerId, String);
+            const timer = Timer.findOne(timerId);
+            timer.counting = false;
+            delete timer.ended
+
+            timer.time = timer.duration * 1000
+            Timer.update({_id: timerId}, timer);
+        }
+    });
+
+    Meteor.methods({
         'timer.counting'(timerId, counting) {
             check(timerId, String);
             check(counting, Boolean);
@@ -36,8 +48,8 @@ export default function({Collections, Meteor, LocalState}) {
             timer.counting = false;
             timer.ended = true;
 
-            timer.time = timer.duration * 1000
             Timer.update({_id: timerId}, timer);
         }
     });
+
 }
