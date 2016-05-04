@@ -3,8 +3,6 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 export default function({Collections, Meteor, LocalState}) {
-    console.log('method stubs: home');
-
     Meteor.methods({
         'home.create.timer'(duration) {
             check(duration, Number);

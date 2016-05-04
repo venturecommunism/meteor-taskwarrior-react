@@ -3,8 +3,6 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 export default function({Collections, Meteor, LocalState}) {
-    console.log('method stubs: timer');
-
     Meteor.methods({
         'timer.set'(timerId, time) {
             check(timerId, String);

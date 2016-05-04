@@ -3,8 +3,6 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 export default function({Collections, Meteor, LocalState}) {
-    console.log('method stubs: tasks');
-
     Meteor.methods({
         'pomodoro.tasks.create'(timerId, task) {
             check(timerId, String);
