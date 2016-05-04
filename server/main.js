@@ -1,5 +1,5 @@
 import publications from './publications'
-import methods from './methods'
+import methods from '/lib/methods'
 
 publications()
 methods()
