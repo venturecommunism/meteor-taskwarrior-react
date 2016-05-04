@@ -1,4 +1,4 @@
-import {tasks, TaskComments, taskspending, tasksbacklog} from '/lib/collections'
+import {tasks, TaskComments, taskspending, tasksbacklog} from '/lib/collections/collections'
 import {Meteor} from 'meteor/meteor'
 import {check} from 'meteor/check'
 

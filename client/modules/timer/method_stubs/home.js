@@ -1,4 +1,4 @@
-import {Timer} from '/lib/collections';
+import {Timer} from '/lib/collections/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -12,9 +12,8 @@ export default function({Collections, Meteor, LocalState}) {
             time = (duration)*1000;
             const counting = false;
             const owner = Meteor.userId();
-            const timer = {duration, time, owner, counting, createdAt};
-            const id = Timer.insert(timer);
-            return id;
+            const newTimer = {duration, time, owner, counting, createdAt};
+            return Timer.insert(newTimer);
         }
-    });
+    })
 }

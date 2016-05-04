@@ -1,10 +1,9 @@
-import {Timer} from '/lib/collections';
+import {Timer} from '/lib/collections/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
     Meteor.methods({
         'home.create.timer'(duration) {
-            console.log("home.create.timer")
             check(duration, Number);
             let time = 0;
 

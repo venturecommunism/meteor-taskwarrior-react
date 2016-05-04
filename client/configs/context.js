@@ -1,4 +1,4 @@
-import Collections from '/lib/collections'
+import Collections from '/lib/collections/collections'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'

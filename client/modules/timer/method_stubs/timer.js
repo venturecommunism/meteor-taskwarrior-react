@@ -1,4 +1,4 @@
-import {Timer} from '/lib/collections';
+import {Timer} from '/lib/collections/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 

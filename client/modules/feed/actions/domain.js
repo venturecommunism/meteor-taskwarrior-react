@@ -1,4 +1,4 @@
-import { tasks } from '/lib/collections'
+import { tasks } from '/lib/collections/collections'
 import { Meteor } from 'meteor/meteor'
 
 const FeedDomain = {

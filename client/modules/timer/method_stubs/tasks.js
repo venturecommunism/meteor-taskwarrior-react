@@ -1,4 +1,4 @@
-import {Tasks} from '/lib/collections';
+import {Tasks} from '/lib/collections/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
