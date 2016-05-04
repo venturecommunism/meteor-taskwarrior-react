@@ -1,6 +1,6 @@
-import tasks from '/lib/methods/tasks';
+import feed from '/lib/methods/feed'
 
 export default function (context) {
-  tasks(context);
+  feed(context)
 }
 
