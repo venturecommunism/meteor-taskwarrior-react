@@ -2,6 +2,7 @@ import {tasks, TaskComments, taskspending, tasksbacklog} from '/lib/collections/
 import {Meteor} from 'meteor/meteor'
 import {check} from 'meteor/check'
 
+export default function () {
 //TODO: pull this out into a library function or user Roles package
 function adminUser(userId) {
   var adminUser = Meteor.users.findOne({username:"admin"})
@@ -85,3 +86,4 @@ Meteor.publish('feed', function(fields, query, sort, limits) {
     return cursors
   }
 })
+}

@@ -2,6 +2,7 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 // import _ from 'lodash';
 
+export default function () {
 Meteor.methods({
 
   '_users.add'(data) {
@@ -60,3 +61,4 @@ Meteor.methods({
     }
   }
 });
+}

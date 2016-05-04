@@ -2,6 +2,7 @@ import {Timer} from '/lib/collections/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
+export default function () {
     Meteor.publish('all.timers', () => {
         const selector = {};
         const options = {
@@ -18,3 +19,4 @@ import {check} from 'meteor/check';
 
         return Timer.find(selector);
     })
+}

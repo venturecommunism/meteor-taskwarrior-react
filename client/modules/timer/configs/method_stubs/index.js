@@ -1,4 +1,4 @@
-import home from './home';
+import home from '../../../../../lib/methods/home';
 import timer from './timer';
 import tasks from './tasks';
 

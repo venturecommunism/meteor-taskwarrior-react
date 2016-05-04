@@ -4,6 +4,7 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 // import _ from 'lodash';
 
+export default function () {
 Meteor.methods({
   'tasks.create'(data, _id) {
     check(data, {
@@ -60,4 +61,4 @@ Meteor.methods({
     record.remove();
   }
 });
-
+}

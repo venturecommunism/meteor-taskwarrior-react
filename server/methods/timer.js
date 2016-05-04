@@ -2,6 +2,7 @@ import {Timer} from '/lib/collections/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
+export default function () {
     Meteor.methods({
         'timer.set'(timerId, time) {
             check(timerId, String);
@@ -48,4 +49,4 @@ import {check} from 'meteor/check';
             Timer.update({_id: timerId}, timer);
         }
     });
-
+}
