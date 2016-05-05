@@ -17,6 +17,12 @@ import ParamsComposer from '../state/params'
 import SideBar from './sidebar.jsx'
 const SideBarContainer = ParamsComposer(Container(SideBarQuery, SideBar))
 
+import OverDueQuery from '../state/overduequery'
+const OverDueContainer = Container(OverDueQuery, Feed)
+
+import CalendarQuery from '../state/calendarquery'
+const CalendarContainer = Container(CalendarQuery, Feed)
+
 export default class extends React.Component {
   render() {
     return (
@@ -27,8 +33,10 @@ export default class extends React.Component {
           </div>
           <div className="col-md-9">
             <CreateTaskContainer />
-            <PreviousCalendarContainer />
-            <FeedContainer />
+            <OverDueContainer />
+            {/* <PreviousCalendarContainer />
+            <FeedContainer /> */}
+            <CalendarContainer />
           </div>
         </div>
       </div>

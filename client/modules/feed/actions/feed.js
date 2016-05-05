@@ -103,6 +103,20 @@ export default {
       selectedProject: id
     })
   },
+  overduequery({ Meteor, LocalState }) {
+    LocalState.set('now', formattedNow())
+    var now = LocalState.get('now')
+    console.log(now)
+    var query = { due: {$lt: now} }
+    return query
+  },
+  calendarquery({ Meteor, LocalState }) {
+    LocalState.set('now', formattedNow())
+    var now = LocalState.get('now')
+    console.log(now)
+    var query = { due: {$gte: now} }
+    return query
+  },
   assignProject({ context, Store }, e) {
     var id = e.target.parentNode.id
     var queryParams = FlowRouter.current().queryParams
