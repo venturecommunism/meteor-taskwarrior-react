@@ -5,10 +5,10 @@ export const composer = ({context, clearErrors, timerId}, onData) => {
     const {Meteor, LocalState, Collections} = context();
 
     if(Meteor.subscribe('all.tasks', timerId).ready()) {
-        const tasks = Collections.Tasks.find({timerId: timerId}).fetch();
+        const tasks = Tasks.find({timerId: timerId}).fetch();
         return onData(null, {tasks});
     } else {
-        const tasks = Collections.Tasks.find({timerId: timerId}).fetch();
+        const tasks = Tasks.find({timerId: timerId}).fetch();
         if(tasks) return onData(null, {tasks});
     }
 

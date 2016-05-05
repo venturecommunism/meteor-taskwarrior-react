@@ -1,32 +1,34 @@
 import React from 'react'
+import {FlowRouter} from 'meteor/kadira:flow-router'
 import {mount} from 'react-mounter'
 
-import Layout from './components/MainLayout.jsx'
+import {Layout} from '/client/configs/theme.jsx'
+import Links from '../_home/components/links.jsx'
+
 import Home from '../timer/containers/Home.js'
 import Timer from '../timer/containers/Timer.js'
 
 import TimerTemplate from './components/TimerTemplate.jsx'
 
-export default function (injectDeps, {FlowRouter}) {
-    const MainLayoutCtx = injectDeps(Layout);
+export default (injectDeps) => {
+  const LayoutCtx = injectDeps(Layout)
 
-    FlowRouter.route('/pomodoro', {
-        name: 'timer.index',
-        action() {
-//            if(!Meteor.user()) return FlowRouter.go('/login');
-
-            mount(MainLayoutCtx, {
-                content: () => (<Home />)
-            });
-        }
-    });
+  FlowRouter.route('/pomodoro', {
+    name: 'timer.index',
+    action() {
+      mount(LayoutCtx, {
+        content: () => (<Home />),
+        links: () => (<Links />)
+      })
+    }
+  })
 
     FlowRouter.route('/timer/:timerId', {
         name: 'timer.id',
         action(timerId) {
 //            if(!Meteor.user()) return FlowRouter.go('/login');
 
-            mount(MainLayoutCtx, {
+            mount(LayoutCtx, {
                 content: () => (<Timer timerId={timerId} />)
             });
         }
@@ -37,7 +39,7 @@ export default function (injectDeps, {FlowRouter}) {
         action(timerId) {
             if(!Meteor.user()) return FlowRouter.go('/login');
 
-            mount(MainLayoutCtx, {
+            mount(LayoutCtx, {
                 content: () => (<TimerTemplate timerId={timerId} />)
             });
         }
@@ -46,7 +48,7 @@ export default function (injectDeps, {FlowRouter}) {
     FlowRouter.route('/register', {
         name: 'users.new',
         action() {
-            mount(MainLayoutCtx, {
+            mount(LayoutCtx, {
                 content: () => (<NewUser />)
             });
         }
@@ -55,7 +57,7 @@ export default function (injectDeps, {FlowRouter}) {
     FlowRouter.route('/login', {
         name: 'users.login',
         action() {
-            mount(MainLayoutCtx, {
+            mount(LayoutCtx, {
                 content: () => (<Login />)
             });
         }

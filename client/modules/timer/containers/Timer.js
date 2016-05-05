@@ -1,4 +1,5 @@
-import Timer from '../components/Timer.jsx';
+import { Timer } from '/lib/collections/collections'
+import TimerComponent from '../components/Timer.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Moment from 'moment';
 
@@ -7,10 +8,10 @@ export const composer = ({context, timerId}, onData) => {
     const id = timerId.timerId;
 
     if(Meteor.subscribe('single.timer', id).ready()) {
-        const timer = Collections.Timer.findOne(id);
+        const timer = Timer.findOne(id);
         onData(null, timer);
     } else {
-        const timer = Collections.Timer.findOne(id);
+        const timer = Timer.findOne(id);
         if(timer) onData(null, timer);
     }
 };
@@ -22,4 +23,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
     composeWithTracker(composer),
     useDeps()
-)(Timer);
+)(TimerComponent);
