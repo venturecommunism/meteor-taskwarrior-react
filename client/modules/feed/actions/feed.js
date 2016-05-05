@@ -103,17 +103,15 @@ export default {
       selectedProject: id
     })
   },
-  overduequery({ Meteor, LocalState }) {
-    LocalState.set('now', formattedNow())
-    var now = LocalState.get('now')
-    console.log(now)
+  overduequery({ Meteor, Session }) {
+    // Session.set('now', formattedNow())
+    var now = Session.get('now')
     var query = { due: {$lt: now} }
     return query
   },
-  calendarquery({ Meteor, LocalState }) {
-    LocalState.set('now', formattedNow())
-    var now = LocalState.get('now')
-    console.log(now)
+  calendarquery({ Meteor, Session }) {
+    // Session.set('now', formattedNow())
+    var now = Session.get('now')
     var query = { due: {$gte: now} }
     return query
   },
