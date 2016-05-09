@@ -10,9 +10,8 @@ import CurrentProjOrCont from '../state/projectselector'
 import SimpleFeed from './simplefeed.jsx'
 const CurrentProjOrContContainer = Container(CurrentProjOrCont, SimpleFeed)
 
-export default ({data, actions, feedStore, flags}) => (
+export default ({data, actions, flags}) => (
   <div className='params-example'>
-    <p>{ feedStore.selectedProject }</p>
     <button className={ flags.clearall } onClick={ actions.clearFilters }>
       Inbox
     </button>

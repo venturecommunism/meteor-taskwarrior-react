@@ -93,8 +93,6 @@ export default {
     return query
   },
   selectedProject({ context, Store }, e) {
-    //const { Store } = context()
-
     var id = e.target.id
     FlowRouter.setQueryParams({ projects: id, type: 'project' })
 
@@ -103,19 +101,19 @@ export default {
       selectedProject: id
     })
   },
-  overduequery({ Meteor, Session }) {
+  overduequery({ Meteor }) {
     // Session.set('now', formattedNow())
-    var now = Session.get('now')
+    var now = '123'
     var query = { due: {$lt: now} }
     return query
   },
   calendarquery({ Meteor, Session }) {
-    // Session.set('now', formattedNow())
+    Session.set('now', formattedNow())
     var now = Session.get('now')
     var query = { due: {$gte: now} }
     return query
   },
-  assignProject({ context, Store }, e) {
+  assignProject({ context }, e) {
     var id = e.target.parentNode.id
     var queryParams = FlowRouter.current().queryParams
     switch (queryParams.type) {
@@ -155,7 +153,7 @@ export default {
       FlowRouter.setQueryParams({ mode: 'do' })
     }
   },
-  setProjectOrContext({ context, Store }, e) {
+  setProjectOrContext({ context }, e) {
     const _id = e.target.className
     sweetAlert("projorcont", _id)
     const projorcont = e.target.value
@@ -176,8 +174,8 @@ export default {
   clearFilters() {
     FlowRouter.go('/feed')
   },
-  settle({ context, Store }, e) {
-    sweetAlert("e", e)
+  settle({ context }, e) {
+    //sweetAlert("e", e)
     const id = e.target.parentNode.parentNode.parentNode.parentNode.id
     const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
     Meteor.call('tasks.update', data, id)

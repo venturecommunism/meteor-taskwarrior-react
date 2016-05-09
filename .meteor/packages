@@ -8,21 +8,37 @@ meteor-base             # Packages every Meteor app needs to have
 mobile-experience       # Packages for a great mobile UX
 mongo                   # The database Meteor supports right now
 blaze-html-templates    # Compile .html files into Meteor Blaze views
-session                 # Client-side reactive dictionary for your app
+reactive-var            # Reactive variable for tracker
 jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
 
-standard-minifiers      # JS/CSS minifiers run for production mode
+standard-minifier-css   # CSS minifier run for production mode
+standard-minifier-js    # JS minifier run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
+std:accounts-ui
+std:accounts-basic
+accounts-password
+react-meteor-data
+
+####   Mantra   ####
 kadira:flow-router
 reactive-dict
-audit-argument-checks
+
+####   Util   ####
+momentjs:moment
+
+#### Makes Match work on publications ####
 check
+
+#### Try to remove this later ####
+session
+
+#### Meteor publications ####
+audit-argument-checks
 random
 fortawesome:fontawesome
-accounts-password
 percolate:find-from-publication
 reywood:publish-composite
 jagi:astronomy
@@ -30,15 +46,6 @@ jagi:astronomy-slug-behavior
 jagi:astronomy-timestamp-behavior
 jagi:astronomy-validators
 email
-
-#meteor-platform
-#kadira:react-layout
 kevohagan:sweetalert
-#fourseven:scss
 matb33:collection-hooks
-#velocity:html-reporter
-#sanjo:jasmine
-momentjs:moment
-#react-meteor-data
-creatorkuang:react-meteor-status
 dburles:mongo-collection-instances

@@ -1,10 +1,6 @@
 import React from 'react';
 
-import authComposer from '../../_users/composers/account/auth.jsx';
-import _userControls from './userControls.jsx';
 import AppConfig from '/client/configs/app.js';
-
-const UserControls = authComposer(_userControls);
 
 export default React.createClass({
 
@@ -31,8 +27,6 @@ export default React.createClass({
             <div className="navbar-collapse collapse navbar-inverse-collapse">
 
               {this.props.children}
-
-              <UserControls />
 
             </div>
 

@@ -10,13 +10,6 @@ export default class extends React.Component {
       <div>
 
         <Navheader>
-          <ConnectStatus lang={{
-                              waiting: 'Waiting for server, system will reconnect in ',
-                              waitingAfter: ' seconds.',
-                              connecting: 'Connecting...',
-                              offline: 'Offline! Please check your network.',
-                              retryNow: 'Reconnect Now!'
-                              }} />
           {this.props.links ? this.props.links() : ''}
         </Navheader>
 
