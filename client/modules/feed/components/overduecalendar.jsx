@@ -14,8 +14,15 @@ const App = ({ userId, querywrapper }) => {
   return (
     <div>
       <Accounts.ui.LoginForm />
-      { userId ? (
+      { userId && !querywrapper.loading ? (
         <div>
+          <ul>{querywrapper.oldfeed.map( (task) => 
+            <li>
+              <p>{task.due}</p>
+              <p>{task.description}</p>
+              <p>{task.uuid}</p>
+            </li>
+          )}</ul>
           <pre>{JSON.stringify(querywrapper, null, 2)}</pre>
           <button onClick={() => querywrapper.refetch()}>Refetch!</button>
         </div>
