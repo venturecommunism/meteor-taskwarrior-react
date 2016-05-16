@@ -14,7 +14,7 @@ type OldTask {
 }
 
 type Query {
-  feed(description: String): [Task]
+  feed(limit: Int=1, description: String): [Task]
   oldfeed(limit: Int=1, description: String, dueafter: String): [OldTask]
   user(id: String!): User
 }

@@ -5,7 +5,8 @@ export const feed = {
 
   Query: {
     feed(root, args, context) {
-      return tasks.find().fetch();
+      var limit = args.limit
+      return tasks.find({}, {limit: limit}).fetch();
     },
     oldfeed(root, args, context) {
       if (args.dueafter) {
