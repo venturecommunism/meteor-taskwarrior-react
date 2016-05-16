@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Moment from 'moment'
-import {Circle} from 'rc-progress'
 import Sound from 'react-sound'
 
 class Counter extends Component{
@@ -19,7 +18,7 @@ class Counter extends Component{
   }
 
   render() {
-    const {_id, counting, time, type, ended} = this.props
+    const {_id, counting, time, ended} = this.props
     return (
       <div className="counter-block">
         <div className="timer-holder">
@@ -40,6 +39,12 @@ class Counter extends Component{
     reset_timer(_id)
   }
 
+  _startTimer() {
+    const {_id, counting, set_counting} = this.props
+    let isCounting = !counting
+    set_counting(_id, isCounting)
+  }
+
   _newNotification() {
     let description = 'Timer ended' 
     let options = {body: description}
@@ -56,25 +61,6 @@ class Counter extends Component{
         onPlaying={this.handleSongPlaying}
         onFinishedPlaying={this.handleSongFinishedPlaying} />
     )
-  }
-
-  _getPercent() {
-    const {type, time} = this.props
-    let mins = 0
-
-    if(type == 'pomodoro') mins = 25
-    else if(type == 'shortbreak') mins = 5
-    else mins = 15
-
-    let total = (60*mins)*1000
-    let percent = (time/total)*100
-    return percent
-  }
-
-  _startTimer() {
-    const {_id, counting, set_counting} = this.props
-    let isCounting = !counting
-    set_counting(_id, isCounting)
   }
 }
 
