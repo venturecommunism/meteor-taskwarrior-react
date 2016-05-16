@@ -13,17 +13,17 @@ Accounts.ui.config({
 const App = ({ userId, querywrapper }) => {
   return (
     <div>
+     { !userId && !querywrapper.loading ? (
       <Accounts.ui.LoginForm />
+     ) : '' }
       { userId && !querywrapper.loading ? (
         <div>
           <ul>{querywrapper.oldfeed.map( (task) => 
             <li>
-              <p>{task.due}</p>
+              <p>{countdowntimer(task.due)}</p>
               <p>{task.description}</p>
-              <p>{task.uuid}</p>
             </li>
           )}</ul>
-          <pre>{JSON.stringify(querywrapper, null, 2)}</pre>
           <button onClick={() => querywrapper.refetch()}>Refetch!</button>
         </div>
       ) : 'Please log in!' }
@@ -38,7 +38,7 @@ const AppWithData = connect({
         querywrapper: {
           query: gql`
             query getOverdueCalendarData ($dueafter: String) {
-              oldfeed (dueafter: $dueafter) {
+              oldfeed (limit: 5, dueafter: $dueafter) {
                 due
                 description
                 uuid
