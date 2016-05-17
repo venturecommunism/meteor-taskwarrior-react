@@ -2,6 +2,9 @@ import React from 'react';
 
 import ApolloContainer from '../../apollo/containers/container'
 
+import PreviousComponent from './previouscalendar.jsx'
+const PreviousCalendarContainer = ApolloContainer(PreviousComponent)
+
 import OverDueComponent from './overduecalendar.jsx'
 const OverDueContainer = ApolloContainer(OverDueComponent)
 
@@ -18,7 +21,7 @@ import PreviousCalendarQuery from '../state/previouscalendarquery'
 import Feed from './feed.jsx'
 
 const FeedContainer = Container(MainQuery, Feed)
-const PreviousCalendarContainer = Container(PreviousCalendarQuery, Feed)
+//const PreviousCalendarContainer = Container(PreviousCalendarQuery, Feed)
 
 import SideBarQuery from '../state/sidebarquery'
 import ParamsComposer from '../state/params'
@@ -41,8 +44,8 @@ export default class extends React.Component {
           </div>
           <div className="col-md-9">
             <CreateTaskContainer />
-            <OverDueContainer />
             <PreviousCalendarContainer />
+            <OverDueContainer />
             <FeedContainer />
             <CalendarContainer />
           </div>
