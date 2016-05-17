@@ -15,7 +15,7 @@ export const feed = {
         var dueafter = args.dueafter
         delete args.dueafter
         console.log(args)
-        return taskspending.find({due: {$gte: dueafter}}, {limit: limit, sort: {due: -1}}).fetch()
+        return taskspending.find({due: {$gte: dueafter}}, {limit: limit, sort: {due: 1}}).fetch()
       }
       if (args.duebefore) {
         var limit = args.limit
