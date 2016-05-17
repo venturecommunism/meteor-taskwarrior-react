@@ -21,7 +21,7 @@ type BacklogTask {
 
 type Query {
   feed(limit: Int=1, description: String): [Task]
-  oldfeed(limit: Int=1, description: String, dueafter: String): [OldTask]
+  oldfeed(limit: Int=1, description: String, duebefore: String, dueafter: String): [OldTask]
   backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
   user(id: String!): User
 }

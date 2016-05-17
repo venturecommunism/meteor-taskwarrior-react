@@ -18,9 +18,9 @@ const App = ({ userId, querywrapper }) => {
      ) : '' }
       { userId && !querywrapper.loading ? (
         <div>
-          <ul>{querywrapper.oldfeed.map( (task) => 
+          <ul>{querywrapper.oldfeed.reverse().map( (task) => 
             <li>
-              <p>{countdowntimer(task.due)}</p>
+              <p>{task.due}</p>
               <p>{task.description}</p>
             </li>
           )}</ul>
@@ -37,8 +37,8 @@ const AppWithData = connect({
       return {
         querywrapper: {
           query: gql`
-            query getOverdueCalendarData ($dueafter: String) {
-              oldfeed (limit: 5, dueafter: $dueafter) {
+            query getOverdueCalendarData ($duebefore: String) {
+              oldfeed (limit: 5, duebefore: $duebefore) {
                 due
                 description
                 uuid
@@ -46,7 +46,7 @@ const AppWithData = connect({
             }
           `,
           variables: {
-             dueafter: ownProps.dueafter
+             duebefore: ownProps.duebefore
           },
         },
       }
@@ -59,7 +59,7 @@ const AppWithUserId = createContainer(() => {
   var now = formattedNow()
   return {
     userId: Meteor.userId(),
-    dueafter: now,
+    duebefore: now,
   }
 }, AppWithData)
 

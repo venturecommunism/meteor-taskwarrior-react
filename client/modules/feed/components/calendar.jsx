@@ -10,14 +10,21 @@ Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY'
 })
 
-const App = ({ userId, calendar }) => {
+const App = ({ userId, querywrapper }) => {
   return (
     <div>
+     { !userId && !querywrapper.loading ? (
       <Accounts.ui.LoginForm />
-      { userId ? (
+     ) : '' }
+      { userId && !querywrapper.loading ? (
         <div>
-          <pre>{JSON.stringify(calendar, null, 2)}</pre>
-          <button onClick={() => calendar.refetch()}>Refetch!</button>
+          <ul>{querywrapper.oldfeed.map( (task) => 
+            <li>
+              <p>{countdowntimer(task.due)}</p>
+              <p>{task.description}</p>
+            </li>
+          )}</ul>
+          <button onClick={() => querywrapper.refetch()}>Refetch!</button>
         </div>
       ) : 'Please log in!' }
     </div>
@@ -27,31 +34,32 @@ const App = ({ userId, calendar }) => {
 // This container brings in Apollo GraphQL data
 const AppWithData = connect({
   mapQueriesToProps({ ownProps }) {
-    if (ownProps.userId) {
       return {
-        calendar: {
+        querywrapper: {
           query: gql`
-            query getCalendarData ($desc: String!) {
-              feed(description: $desc) {
+            query getOverdueCalendarData ($dueafter: String) {
+              oldfeed (limit: 5, dueafter: $dueafter) {
+                due
                 description
                 uuid
-                randomString
               }
             }
           `,
           variables: {
-            desc: "test",
+             dueafter: ownProps.dueafter
           },
         },
       }
-    }
   },
 })(App)
 
 // This container brings in Tracker-enabled Meteor data
 const AppWithUserId = createContainer(() => {
+  //Session.set('now', formattedNow())
+  var now = formattedNow()
   return {
     userId: Meteor.userId(),
+    dueafter: now,
   }
 }, AppWithData)
 
