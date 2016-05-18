@@ -42,6 +42,10 @@ export const feed = {
       console.log(args.limit)
       return tasksbacklog.find(args, {limit: limit}).fetch()
     },
+    count(root, args, context) {
+      console.log("count")
+      return taskspending.find({})
+    },
     user(root, args, context) {
       // Only return the current user, for security
       if (context.user._id === args.id) {
@@ -51,6 +55,9 @@ export const feed = {
   },
   Task: {
     randomString: () => Random.id(),
+  },
+  Count: {
+    total: () => taskspending.find().count(),
   },
 
 }

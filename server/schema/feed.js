@@ -19,10 +19,15 @@ type BacklogTask {
   uuid: String
 }
 
+type Count {
+  total: Int
+}
+
 type Query {
   feed(limit: Int=1, description: String): [Task]
   oldfeed(limit: Int=1, description: String, duebefore: String, dueafter: String): [OldTask]
   backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
+  count(collection: String!): Count
   user(id: String!): User
 }
 
