@@ -58,6 +58,21 @@ export const feed = {
   },
   Count: {
     total: () => taskspending.find().count(),
+    projects: () => taskspending.find({tags: "largeroutcome"}).count(),
+    contexts: () => taskspending.find({tags: "largercontext"}).count(),
+    hardlandscape: () => taskspending.find({due: {$exists: 1}}).count(),
+    bothcontextandproject: () => taskspending.find({context: {$exists: 1}, project: {$exists: 1}}).count(),
+    contextonly: () => taskspending.find({context: {$exists: 1}, project: {$exists: 0}}).count(),
+    projectonly: () => taskspending.find({context: {$exists: 0}, project: {$exists: 1}}).count(),
+    noprojectorcontext: () => taskspending.find({context: {$exists: 0}, project: {$exists: 0}}).count(),
+    hardlandscapenoprojectorcontext: () => taskspending.find({due: {$exists: 1}, context: {$exists: 0}, project: {$exists: 0}}).count(),
+    hardlandscapeprojectonly: () => taskspending.find({due: {$exists: 1}, context: {$exists: 0}, project: {$exists: 1}}).count(),
+    hardlandscapecontextonly: () => taskspending.find({due: {$exists: 1}, context: {$exists: 1}, project: {$exists: 0}}).count(),
+    hardlandscapebothprojectandcontext: () => taskspending.find({due: {$exists: 1}, context: {$exists: 1}, project: {$exists: 1}}).count(),
+    nouuid: () => taskspending.find({uuid: {$exists: 0}}).count(),
+    nouuidorprojectorcontext: () => taskspending.find({uuid: {$exists: 0}, project: {$exists: 0}, context: {$exists: 0}}).count(),
+    nouuidprojectonly: () => taskspending.find({uuid: {$exists: 0}, project: {$exists: 1}, context: {$exists: 0}}).count(),
+    nouuidcontextonly: () => taskspending.find({uuid: {$exists: 0}, project: {$exists: 0}, context: {$exists: 1}}).count(),
   },
 
 }

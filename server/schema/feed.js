@@ -21,6 +21,21 @@ type BacklogTask {
 
 type Count {
   total: Int
+  projects: Int
+  contexts: Int
+  bothcontextandproject: Int
+  contextonly: Int
+  projectonly: Int
+  noprojectorcontext: Int
+  hardlandscape: Int
+  hardlandscapenoprojectorcontext: Int
+  hardlandscapeprojectonly: Int
+  hardlandscapecontextonly: Int
+  hardlandscapebothprojectandcontext: Int
+  nouuid: Int
+  nouuidorprojectorcontext: Int
+  nouuidprojectonly: Int
+  nouuidcontextonly: Int
 }
 
 type Query {

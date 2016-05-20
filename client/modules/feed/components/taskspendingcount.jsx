@@ -18,7 +18,24 @@ const App = ({ userId, querywrapper }) => {
      ) : '' }
       { userId && !querywrapper.loading ? (
         <div>
-          {JSON.stringify(querywrapper, null, 2)}
+          <pre>{JSON.stringify(querywrapper, null, 2)}</pre>
+          <p>Projects, Contexts, Due: {
+            querywrapper.count.projects +
+            querywrapper.count.contexts +
+            querywrapper.count.hardlandscape
+          }</p>
+          <p>HL subtotal: {
+            querywrapper.count.hardlandscapenoprojectorcontext +
+            querywrapper.count.hardlandscapeprojectonly +
+            querywrapper.count.hardlandscapecontextonly +
+            querywrapper.count.hardlandscapebothprojectandcontext
+          }</p>
+          <p>Subtotal: {
+            querywrapper.count.bothcontextandproject +
+            querywrapper.count.contextonly +
+            querywrapper.count.projectonly +
+            querywrapper.count.noprojectorcontext
+          }</p>
           <button onClick={() => querywrapper.refetch()}>Refetch!</button>
         </div>
       ) : 'Please log in!' }
@@ -34,6 +51,21 @@ const AppWithData = connect({
           query: gql`
             query {
               count (collection: "taskspending") {
+                projects
+                contexts
+                hardlandscape
+                bothcontextandproject
+                contextonly
+                projectonly
+                noprojectorcontext
+                hardlandscapenoprojectorcontext
+                hardlandscapeprojectonly
+                hardlandscapecontextonly
+                hardlandscapebothprojectandcontext
+                nouuid
+                nouuidorprojectorcontext
+                nouuidprojectonly
+                nouuidcontextonly
                 total
               }
             }
