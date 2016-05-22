@@ -13,7 +13,7 @@ export default ({data}) => (
       <div className="name">{data.username}</div>
     </div>
 
-    <ProjCont data={data} />
+    <ProjContContainer params={data} />
 
   </div>
 );

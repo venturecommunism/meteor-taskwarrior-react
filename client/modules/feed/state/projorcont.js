@@ -6,7 +6,6 @@ const projorcont = (context, actions) => ({
   limit: { tasks: 1 },
 
   //TODO: use a new composer/container to remove query, limit and taskids since no query is necessary
-  data: {},
 
   actions: actions.feed,
   context: () => context,

@@ -113,18 +113,6 @@ export default {
     var query = { due: {$gte: now} }
     return query
   },
-  assignProject({ context }, e) {
-    var id = e.target.parentNode.id
-    var queryParams = FlowRouter.current().queryParams
-    switch (queryParams.type) {
-      case 'project':
-        var data = {super: e.target.id, workflow: {status: "project", workflow: ["project"]}}
-        break
-      default:
-        var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}
-    }
-    Meteor.call('tasks.update', data, id)
-  },
   filterAllProjects() {
     var currentState = FlowRouter.getQueryParam('type')
     if (currentState != 'project') {
@@ -153,14 +141,6 @@ export default {
       FlowRouter.setQueryParams({ mode: 'do' })
     }
   },
-  setProjectOrContext({ context }, e) {
-    const _id = e.target.className
-    sweetAlert("projorcont", _id)
-    const projorcont = e.target.value
-    const data = {type: projorcont}
-    Meteor.call('tasks.update', data, _id)
-    // {_id: _id}, {$set: {type: projorcont}})
-  },
   paramsflags() {
     var queryParams = FlowRouter.current().queryParams
     var paramsflags = {}
@@ -173,6 +153,29 @@ export default {
   },
   clearFilters() {
     FlowRouter.go('/feed')
+  },
+  clearErrors({LocalState}) {
+    return LocalState.set('SAVING_ERROR', null);
+  },
+  assignProject({ context }, e) {
+    var id = e.target.parentNode.id
+    var queryParams = FlowRouter.current().queryParams
+    switch (queryParams.type) {
+      case 'project':
+        var data = {super: e.target.id, workflow: {status: "project", workflow: ["project"]}}
+        break
+      default:
+        var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}
+    }
+    Meteor.call('tasks.update', data, id)
+  },
+  setProjectOrContext({ context }, e) {
+    const _id = e.target.className
+    //sweetAlert("projorcont", _id)
+    const projorcont = e.target.value
+    const data = {type: projorcont}
+    Meteor.call('tasks.update', data, _id)
+    // {_id: _id}, {$set: {type: projorcont}})
   },
   settle({ context }, e) {
     //sweetAlert("e", e)
@@ -210,10 +213,6 @@ export default {
       }
     });
     // FlowRouter.go(`/task/${id}`);
-  },
-
-  clearErrors({LocalState}) {
-    return LocalState.set('SAVING_ERROR', null);
   },
 }
 
