@@ -56,6 +56,7 @@ const AppWithData = connect({
                 hardlandscape
                 bothcontextandproject
                 contextonly
+                contextonlynotsomedaymaybe
                 projectonly
                 noprojectorcontext
                 hardlandscapenoprojectorcontext

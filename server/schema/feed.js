@@ -25,6 +25,7 @@ type Count {
   contexts: Int
   bothcontextandproject: Int
   contextonly: Int
+  contextonlynotsomedaymaybe: Int
   projectonly: Int
   noprojectorcontext: Int
   hardlandscape: Int

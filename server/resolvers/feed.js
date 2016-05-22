@@ -63,6 +63,7 @@ export const feed = {
     hardlandscape: () => taskspending.find({due: {$exists: 1}}).count(),
     bothcontextandproject: () => taskspending.find({context: {$exists: 1}, project: {$exists: 1}}).count(),
     contextonly: () => taskspending.find({context: {$exists: 1}, project: {$exists: 0}}).count(),
+    contextonlynotsomedaymaybe: () => taskspending.find({context: {$exists: 1}, project: {$exists: 0}, tags: {$nin: ["somedaymaybe"]}}).count(),
     projectonly: () => taskspending.find({context: {$exists: 0}, project: {$exists: 1}}).count(),
     noprojectorcontext: () => taskspending.find({context: {$exists: 0}, project: {$exists: 0}}).count(),
     hardlandscapenoprojectorcontext: () => taskspending.find({due: {$exists: 1}, context: {$exists: 0}, project: {$exists: 0}}).count(),
