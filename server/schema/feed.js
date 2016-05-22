@@ -40,7 +40,7 @@ type Count {
 
 type Query {
   feed(limit: Int=1, description: String): [Task]
-  oldfeed(limit: Int=1, description: String, duebefore: String, dueafter: String): [OldTask]
+  oldfeed(limit: Int=1, skip: Int=0, description: String, duebefore: String, dueafter: String): [OldTask]
   backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
   count(collection: String!): Count
   user(id: String!): User
