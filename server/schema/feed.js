@@ -2,9 +2,18 @@
 export const feed = `
 
 type Task {
+  _id: String
+  created: String
+  username: String
+  entry: String
+  status: String
+  type: String
   description: String
   uuid: String
-  randomString: String
+  project: String
+  context: String
+  super: String
+  workflow: String
 }
 
 type OldTask {
@@ -56,7 +65,7 @@ type NewCount {
 }
 
 type Query {
-  feed(limit: Int=1, description: String): [Task]
+  feed(limit: Int=1, skip: Int=0, description: String, type: String, super: String, project: String, context: String, uuid: String): [Task]
   oldfeed(limit: Int=1, skip: Int=0, description: String, duebefore: String, dueafter: String): [OldTask]
   backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
   count(collection: String="taskspending"): Count

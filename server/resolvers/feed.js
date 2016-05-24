@@ -6,7 +6,12 @@ export const feed = {
   Query: {
     feed(root, args, context) {
       var limit = args.limit
-      return tasks.find({}, {limit: limit}).fetch();
+      delete args.limit
+      var skip = args.skip
+      delete args.skip
+      console.log(args)
+      console.log(limit)
+      return tasks.find(args, {limit: limit, skip: skip}).fetch();
     },
     oldfeed(root, args, context) {
       var limit = args.limit
@@ -55,9 +60,6 @@ export const feed = {
         return context.user;
       }
     },
-  },
-  Task: {
-    randomString: () => Random.id(),
   },
   Count: {
     total: () => taskspending.find().count(),
