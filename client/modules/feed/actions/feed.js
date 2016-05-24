@@ -157,6 +157,7 @@ export default {
   clearErrors({LocalState}) {
     return LocalState.set('SAVING_ERROR', null);
   },
+/*
   assignProject({ context }, e) {
     var id = e.target.parentNode.id
     var queryParams = FlowRouter.current().queryParams
@@ -183,6 +184,7 @@ export default {
     const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
     Meteor.call('tasks.update', data, id)
   },
+*/
   create({Meteor, LocalState, FlowRouter}, description) {
     if (!description) {
       return LocalState.set('SAVING_ERROR', 'Description required!');
