@@ -65,7 +65,7 @@ type NewCount {
 }
 
 type Query {
-  feed(limit: Int=1, skip: Int=0, description: String, type: String, super: String, project: String, context: String, uuid: String): [Task]
+  feed(limit: Int=1, skip: Int=0, _id: String, description: String, type: String, super: String, project: String, context: String, uuid: String): [Task]
   oldfeed(limit: Int=1, skip: Int=0, description: String, duebefore: String, dueafter: String): [OldTask]
   backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
   count(collection: String="taskspending"): Count
