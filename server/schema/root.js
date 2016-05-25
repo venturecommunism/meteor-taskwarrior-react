@@ -5,7 +5,8 @@ type Query {
 }
 
 schema {
-  query: Query
+  query: Query,
+  mutation: Mutation
 }
 
 `;

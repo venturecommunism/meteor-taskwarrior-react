@@ -73,6 +73,21 @@ type Query {
   user(id: String!): User
 }
 
+type Mutation {
+  feedinsert(firstfield: String, secondfield: String): FeedInsert
+  feedupdate(firstfield: String, secondfield: String): FeedUpdate
+}
+
+type FeedInsert {
+  firstfield: String
+  secondfield: String
+}
+
+type FeedUpdate {
+  firstfield: String
+  secondfield: String
+}
+
 `;
 
 export default feed

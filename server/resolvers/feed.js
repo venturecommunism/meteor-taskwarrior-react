@@ -1,5 +1,5 @@
 import { Random } from 'meteor/random'
-import { tasks, taskspending, tasksbacklog } from '/lib/collections/collections'
+import { tasks, taskspending, tasksbacklog, tmpmutation } from '/lib/collections/collections'
 
 export const feed = {
 
@@ -59,6 +59,19 @@ export const feed = {
       if (context.user._id === args.id) {
         return context.user;
       }
+    },
+  },
+  Mutation: {
+    async feedinsert(root, args) {
+      console.log("insert mutation")
+      let id = tmpmutation.insert(args)
+      return tmpmutation.findOne({_id: id})
+    },
+    async feedupdate(root, args) {
+      console.log("update mutation")
+      let returnvalue = tmpmutation.update(args, args)
+      console.log(returnvalue)
+      return returnvalue
     },
   },
   Count: {
