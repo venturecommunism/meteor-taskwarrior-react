@@ -26,20 +26,75 @@ if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"
       metaquery.errors = errors
       return metaquery
     },
-    async _query(root, args, context) {
+    xquery(root, args, context) {
+/*
+      if (args.duebefore) {
+        var limit = args.limit
+        delete args.limit
+        var duebefore = args.duebefore
+        delete args.duebefore
+        console.log(args)
+        return tasksbacklog.find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}}).fetch()
+      }
+*/
 
-if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-  return {errors: ['', 'access denied']}
-}
+/*
+      if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
+        return {errors: ['', 'access denied']}
+      }
+*/
 
-      let selector = JSON.parse(JSONize(args.selector))
-      return Mongo.Collection.get(args.collection).find(selector).fetch()
+console.log(args)
+
+      let limit = args.limit
+      delete args.limit
+
+      let skip = args.skip
+      delete args.skip
+
+      let collection = args.collection
+      delete args.collection
+
+      console.log(args)
+
+      let logicalswitch = Object.keys(args).sort().join(" ")
+      console.log(logicalswitch)
+
+      switch (logicalswitch) {
+        case ('duebefore'):
+          console.log(args)
+          var duebefore = args.duebefore
+          delete args.duebefore
+          var data = tasksbacklog.find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}}).fetch()
+          return data
+          break
+        case (args.selector):
+          let selector = JSON.parse(JSONize(args.selector))      
+          var data = Mongo.Collection.get(args.collection).find(selector).fetch()
+          return data
+          break
+        default:
+          return {errors: ['', 'no case in resolver']}
+      }
     },
     user(root, args, context) {
       // Only return the current user, for security
       if (context.user._id === args.id) {
         return context.user;
       }
+    },
+    backlogfeed(root, args, context) {
+      if (args.duebefore) {
+        var limit = args.limit
+        delete args.limit
+        var duebefore = args.duebefore
+        delete args.duebefore
+        console.log(args)
+        return tasksbacklog.find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}}).fetch()
+      }
+      console.log(args)
+      console.log(args.limit)
+      return tasksbacklog.find(args, {limit: limit}).fetch()
     },
   },
   Mutation: {

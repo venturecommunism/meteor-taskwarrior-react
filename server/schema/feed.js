@@ -37,11 +37,17 @@ type MetaMutate {
   return: [RootQuery]!
 }
 
+type BacklogTask {
+  due: String
+  description: String
+  uuid: String
+}
 
 type Query {
-  query(collection: String="tmpmutation", selector: String!, limit: Int=0, skip: Int=0): MetaQuery
-  _query(collection: String="tmpmutation", selector: String!, limit: Int=0, skip: Int=0): [RootQuery]
+  query(collection: String="tmpmutation", selector: String, limit: Int=0, skip: Int=0, duebefore: String): MetaQuery
+ xquery(collection: String="tmpmutation", selector: String, limit: Int=0, skip: Int=0, duebefore: String): [RootQuery]
   user(id: String!): User
+  backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
 }
 
 type Mutation {
