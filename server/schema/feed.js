@@ -74,8 +74,16 @@ type Query {
 }
 
 type Mutation {
+  mutate(collection: String="tmpmutation", op: String!, selector: String): RootMutate
   feedinsert(firstfield: String, secondfield: String): FeedInsert
   feedupdate(firstfield: String, secondfield: String): FeedUpdate
+}
+
+type RootMutate {
+  collection: String
+  op: String
+  selector: String
+  mutator: String
 }
 
 type FeedInsert {

@@ -62,6 +62,36 @@ export const feed = {
     },
   },
   Mutation: {
+    async mutate(root, args) {
+
+function JSONize(str) {
+  return str
+    // wrap keys without quote with valid double quote
+    .replace(/([\$\w]+)\s*:/g, function(_, $1){return '"'+$1+'":'})
+    // replacing single quote wrapped ones to double quote
+    .replace(/'([^']+)'/g, function(_, $1){return '"'+$1+'"'})
+}
+
+
+      console.log(root, args)
+      switch (args.op) {
+        case 'insert':
+          break
+        case 'update':
+          console.log('update mutation')
+          let selector = JSON.parse(JSONize(args.selector))
+          console.log("args.selector", args.selector, typeof args.selector)
+          console.log("selector", selector, typeof selector)
+          let data = Mongo.Collection.get(args.collection).find(selector).fetch()
+          console.log("data", data)
+          return args
+          break
+        case 'remove':
+          break
+        default:
+          return {error: "No Operation"}
+      }
+    },
     async feedinsert(root, args) {
       console.log("insert mutation")
       let id = tmpmutation.insert(args)
