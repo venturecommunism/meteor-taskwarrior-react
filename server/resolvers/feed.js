@@ -8,8 +8,8 @@ export const feed = {
     async query(root, args, context) {
 
 if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-  console.log(Meteor.users.findOne()._id)
-  return {errors: ['userid', '']}
+  console.log(Meteor.users.findOne({username: "admin"})._id)
+  return {errors: ['', 'access denied']}
 }
 
       let errors = []
@@ -29,7 +29,7 @@ if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"
     async _query(root, args, context) {
 
 if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-  return {errors: ['userid', '']}
+  return {errors: ['', 'access denied']}
 }
 
       let selector = JSON.parse(JSONize(args.selector))
@@ -46,7 +46,7 @@ if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"
     async mutate(root, args) {
 
 if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-  return {errors: ['userid', '']}
+  return {errors: ['', 'acccess denied']}
 }
 
       let errors = []
@@ -105,7 +105,7 @@ if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"
     async _mutate(root, args) {
 
 if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-  return {errors: ['userid', '']}
+  return {errors: ['', 'access denied']}
 }
 
       let errors = []
