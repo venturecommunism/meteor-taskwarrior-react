@@ -1,4 +1,3 @@
-
 export const feed = `
 
 type Task {
@@ -64,7 +63,13 @@ type NewCount {
   nouuid: Int
 }
 
+type RootQuery {
+  firstfield: String
+  secondfield: String
+}
+
 type Query {
+  query(collection: String="tmpmutation", selector: String, limit: String): [RootQuery]
   feed(limit: Int=1, skip: Int=0, _id: String, description: String, type: String, super: String, project: String, context: String, uuid: String): [Task]
   oldfeed(limit: Int=1, skip: Int=0, description: String, duebefore: String, dueafter: String): [OldTask]
   backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
@@ -83,6 +88,8 @@ type RootMutate {
   collection: String
   op: String
   selector: String
+  count: String
+  outpipe: String
   mutator: String
 }
 

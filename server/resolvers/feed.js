@@ -4,6 +4,20 @@ import { tasks, taskspending, tasksbacklog, tmpmutation } from '/lib/collections
 export const feed = {
 
   Query: {
+    async query(root, args, context) {
+
+function JSONize(str) {
+  return str
+    // wrap keys without quote with valid double quote
+    .replace(/([\$\w]+)\s*:/g, function(_, $1){return '"'+$1+'":'})
+    // replacing single quote wrapped ones to double quote
+    .replace(/'([^']+)'/g, function(_, $1){return '"'+$1+'"'})
+}
+
+      let selector = JSON.parse(JSONize(args.selector))
+      console.log("selector", selector, typeof selector)
+      return Mongo.Collection.get(args.collection).find(selector).fetch()
+    },
     feed(root, args, context) {
       var limit = args.limit
       delete args.limit
@@ -84,6 +98,12 @@ function JSONize(str) {
           console.log("selector", selector, typeof selector)
           let data = Mongo.Collection.get(args.collection).find(selector).fetch()
           console.log("data", data)
+          let outpipe = data.map( function(item) {
+            return item._id
+          })
+          args.count = outpipe.length
+
+          args.outpipe = outpipe
           return args
           break
         case 'remove':
