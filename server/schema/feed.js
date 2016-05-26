@@ -1,12 +1,5 @@
 export const feed = `
 
-type MetaQuery {
-  count: String
-  subtotal: String
-  errors: [String]!
-  return: [RootQuery]!
-}
-
 type RootQuery {
   _id: String
   created: String
@@ -25,15 +18,11 @@ type RootQuery {
   secondfield: String
 }
 
-type Query {
-  query(collection: String="tmpmutation", selector: String!, limit: Int=0, skip: Int=0): MetaQuery
-  _query(collection: String="tmpmutation", selector: String!, limit: String): [RootQuery]
-  user(id: String!): User
-}
-
-type Mutation {
-  mutate(collection: String="tmpmutation", op: String!, selector: String!, mutator: String): MetaMutate
-  _mutate(collection: String="tmpmutation", op: String!, selector: String): [RootQuery]
+type MetaQuery {
+  count: String
+  subtotal: String
+  errors: [String]!
+  return: [RootQuery]!
 }
 
 type MetaMutate {
@@ -46,6 +35,18 @@ type MetaMutate {
   mutator: String
   errors: [String]!
   return: [RootQuery]!
+}
+
+
+type Query {
+  query(collection: String="tmpmutation", selector: String!, limit: Int=0, skip: Int=0): MetaQuery
+  _query(collection: String="tmpmutation", selector: String!, limit: Int=0, skip: Int=0): [RootQuery]
+  user(id: String!): User
+}
+
+type Mutation {
+  mutate(collection: String="tmpmutation", op: String!, selector: String!, mutator: String): MetaMutate
+  _mutate(collection: String="tmpmutation", op: String!, selector: String!, mutator: String): [RootQuery]
 }
 
 `;

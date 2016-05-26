@@ -30,58 +30,50 @@ export const feed = {
       }
     },
   },
-  MetaQuery: {
-    return: (root) => root.return
-  },
-  MetaMutate: {
-    return: (root) => root.return
-  },
   Mutation: {
     async mutate(root, args) {
-      console.log(root, args)
       let errors = []
       let selector = JSON.parse(JSONize(args.selector))
       let data = Mongo.Collection.get(args.collection).find(selector).fetch()
       let inputpipe = data.map( function(item) {
         return item._id
       })
+      if (args.mutator) {
+        let mutator = JSON.parse(JSONize(args.mutator))
+      }
       switch (args.op) {
         case 'insert':
           if (args.mutator) {
-            let mutator = JSON.prase(JSONize(args.mutator))
+            let mutator = JSON.parse(JSONize(args.mutator))
             return Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
           } else {
             errors.push(...['mutator', 'No mutator'])
           }
-          console.log("data", data)
           args.count = inputpipe.length
           args.errors = errors
           args.in = inputpipe
           return args
           break
         case 'update':
-          console.log('update mutation')
           if (args.mutator) {
-            let mutator = JSON.prase(JSONize(args.mutator))
-            return Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
+            let mutator = JSON.parse(JSONize(args.mutator))
+            args.return = Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
           } else {
+            args.return = Mongo.Collection.get(args.collection).find(selector).fetch()
             errors.push(...['mutator', 'No mutator'])
           }
-          console.log("data", data)
           args.count = inputpipe.length
           args.errors = errors
           args.in = inputpipe
           return args
           break
         case 'remove':
-          console.log('remove mutation')
           if (args.mutator) {
-            let mutator = JSON.prase(JSONize(args.mutator))
+            let mutator = JSON.parse(JSONize(args.mutator))
             return Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
           } else {
             errors.push(...['mutator', 'No mutator'])
           }
-          console.log("data", data)
           args.count = inputpipe.length
           args.errors = errors
           args.in = inputpipe
@@ -102,6 +94,12 @@ export const feed = {
       })
       return Mongo.Collection.get(args.collection).find(selector).fetch()
     },
+  },
+  MetaQuery: {
+    return: (root) => root.return
+  },
+  MetaMutate: {
+    return: (root) => root.return
   },
 }
 
