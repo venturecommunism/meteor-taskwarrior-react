@@ -5,30 +5,19 @@ export const feed = {
 
   Query: {
     async metaquery(root, args, context) {
-
-function JSONize(str) {
-  return str
-    // wrap keys without quote with valid double quote
-    .replace(/([\$\w]+)\s*:/g, function(_, $1){return '"'+$1+'":'})
-    // replacing single quote wrapped ones to double quote
-    .replace(/'([^']+)'/g, function(_, $1){return '"'+$1+'"'})
-}
-      let selector = JSON.parse(JSONize(args.selector))
-      let metaquery = {}
-      metaquery.count = Mongo.Collection.get(args.collection).find(selector).count()
-      metaquery.returnval = Mongo.Collection.get(args.collection).find(selector).fetch()
+      let limit = args.limit
+      delete args.limit
+      let skip = args.skip
+      delete args.skip
+      const selector = JSON.parse(JSONize(args.selector))
+      const cursor = Mongo.Collection.get(args.collection).find(selector, {limit: limit, skip: skip})
+      const metaquery = {}
+      metaquery.count = cursor.count()
+      metaquery.return = cursor.fetch()
+      metaquery.subtotal = metaquery.return.length
       return metaquery
     },
     async query(root, args, context) {
-
-function JSONize(str) {
-  return str
-    // wrap keys without quote with valid double quote
-    .replace(/([\$\w]+)\s*:/g, function(_, $1){return '"'+$1+'":'})
-    // replacing single quote wrapped ones to double quote
-    .replace(/'([^']+)'/g, function(_, $1){return '"'+$1+'"'})
-}
-
       let selector = JSON.parse(JSONize(args.selector))
       console.log("selector", selector, typeof selector)
       return Mongo.Collection.get(args.collection).find(selector).fetch()
@@ -91,20 +80,10 @@ function JSONize(str) {
     },
   },
   MetaQuery: {
-    returnval: (root, args) => root.returnval
+    return: (root, args) => root.return
   },
   Mutation: {
     async mutate(root, args) {
-
-function JSONize(str) {
-  return str
-    // wrap keys without quote with valid double quote
-    .replace(/([\$\w]+)\s*:/g, function(_, $1){return '"'+$1+'":'})
-    // replacing single quote wrapped ones to double quote
-    .replace(/'([^']+)'/g, function(_, $1){return '"'+$1+'"'})
-}
-
-
       console.log(root, args)
       switch (args.op) {
         case 'insert':

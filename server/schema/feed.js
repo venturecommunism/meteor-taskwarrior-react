@@ -65,7 +65,8 @@ type NewCount {
 
 type MetaQuery {
   count: String
-  returnval: [RootQuery]
+  subtotal: String
+  return: [RootQuery]
 }
 
 type RootQuery {
@@ -74,7 +75,7 @@ type RootQuery {
 }
 
 type Query {
-  metaquery(collection: String="tmpmutation", selector: String): MetaQuery
+  metaquery(collection: String="tmpmutation", selector: String, limit: Int=0, skip: Int=0): MetaQuery
   query(collection: String="tmpmutation", selector: String, limit: String): [RootQuery]
   feed(limit: Int=1, skip: Int=0, _id: String, description: String, type: String, super: String, project: String, context: String, uuid: String): [Task]
   oldfeed(limit: Int=1, skip: Int=0, description: String, duebefore: String, dueafter: String): [OldTask]
