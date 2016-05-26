@@ -18,8 +18,8 @@ const App = ({ userId, querywrapper }) => {
      ) : '' }
       { userId && !querywrapper.loading ? (
         <div>
-          <ul>{querywrapper.oldfeed.map( (task) => 
-            <li>
+          <ul>{querywrapper.query.return.map( (task) => 
+            <li key={task.uuid}>
               <p>{countdowntimer(task.due)}</p>
               <p>{task.description}</p>
             </li>
@@ -38,10 +38,12 @@ const AppWithData = connect({
         querywrapper: {
           query: gql`
             query getOverdueCalendarData ($dueafter: String) {
-              oldfeed (limit: 5, dueafter: $dueafter) {
-                due
-                description
-                uuid
+              query (collection: "taskspending", limit: 5, dueafter: $dueafter) {
+                return {
+                  due
+                  description
+                  uuid
+                }
               }
             }
           `,

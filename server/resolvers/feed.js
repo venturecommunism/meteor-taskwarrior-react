@@ -30,7 +30,13 @@ if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"
           //console.log(args)
           var duebefore = args.duebefore
           delete args.duebefore
-          var cursor = await Mongo.Collection.get(collection).find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}})
+          var cursor = await Mongo.Collection.get(collection).find({due: {$lte: duebefore}}, {limit: limit, sort: {due: -1}})
+          break
+        case ('dueafter'):
+          var dueafter = args.dueafter
+          delete args.dueafter
+          console.log(args)
+          var cursor = await Mongo.Collection.get(collection).find({due: {$gte: dueafter}}, {limit: limit, skip: skip, sort: {due: 1}})
           break
         case ('selector'):
           let selector = JSON.parse(JSONize(args.selector))

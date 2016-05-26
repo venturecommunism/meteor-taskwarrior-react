@@ -22,7 +22,7 @@ type MetaQuery {
   count: String
   subtotal: String
   errors: [String]!
-  return: [RootQuery]!
+  return: [RootQuery]
 }
 
 type MetaMutate {
@@ -44,7 +44,7 @@ type BacklogTask {
 }
 
 type Query {
-  query(collection: String="tmpmutation", selector: String, limit: Int=0, skip: Int=0, duebefore: String): MetaQuery
+  query(collection: String="tmpmutation", selector: String, limit: Int=0, skip: Int=0, duebefore: String, dueafter: String): MetaQuery
   user(id: String!): User
 }
 

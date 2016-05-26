@@ -11,9 +11,6 @@ const OverDueContainer = ApolloContainer(OverDueComponent)
 import CalendarComponent from './calendar.jsx'
 const CalendarContainer = ApolloContainer(CalendarComponent)
 
-import TaskspendingCountComponent from './taskspendingcount.jsx'
-const TaskspendingCountContainer = ApolloContainer(TaskspendingCountComponent)
-
 import createTaskComposer from '../state/createtask'
 import CreateTask from './createtask.jsx'
 const CreateTaskContainer = createTaskComposer(CreateTask) 
@@ -51,7 +48,6 @@ export default class extends React.Component {
             <OverDueContainer />
             <FeedContainer />
             <CalendarContainer />
-            <TaskspendingCountContainer />
           </div>
         </div>
       </div>

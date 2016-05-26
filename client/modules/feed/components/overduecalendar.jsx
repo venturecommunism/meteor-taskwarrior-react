@@ -18,8 +18,8 @@ const App = ({ userId, querywrapper }) => {
      ) : '' }
       { userId && !querywrapper.loading ? (
         <div>
-          <ul>{querywrapper.oldfeed.reverse().map( (task) => 
-            <li>
+          <ul>{querywrapper.query.return.reverse().map( (task) => 
+            <li key={task.uuid}>
               <p>{task.due}</p>
               <p>{task.description}</p>
             </li>
@@ -38,10 +38,12 @@ const AppWithData = connect({
         querywrapper: {
           query: gql`
             query getOverdueCalendarData ($duebefore: String) {
-              oldfeed (limit: 5, duebefore: $duebefore) {
-                due
-                description
-                uuid
+              query (collection: "taskspending", limit: 5, duebefore: $duebefore) {
+                return {
+                  due
+                  description
+                  uuid
+                }
               }
             }
           `,
