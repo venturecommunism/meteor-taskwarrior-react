@@ -45,14 +45,11 @@ type BacklogTask {
 
 type Query {
   query(collection: String="tmpmutation", selector: String, limit: Int=0, skip: Int=0, duebefore: String): MetaQuery
- _query(collection: String="tmpmutation", selector: String, limit: Int=0, skip: Int=0, duebefore: String): [RootQuery]
   user(id: String!): User
-  backlogfeed(limit: Int=1, description: String, duebefore: String): [BacklogTask]
 }
 
 type Mutation {
   mutate(collection: String="tmpmutation", op: String!, selector: String!, mutator: String): MetaMutate
-  _mutate(collection: String="tmpmutation", op: String!, selector: String!, mutator: String): [RootQuery]
 }
 
 `;
