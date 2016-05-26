@@ -4,6 +4,21 @@ import { tasks, taskspending, tasksbacklog, tmpmutation } from '/lib/collections
 export const feed = {
 
   Query: {
+    async metaquery(root, args, context) {
+
+function JSONize(str) {
+  return str
+    // wrap keys without quote with valid double quote
+    .replace(/([\$\w]+)\s*:/g, function(_, $1){return '"'+$1+'":'})
+    // replacing single quote wrapped ones to double quote
+    .replace(/'([^']+)'/g, function(_, $1){return '"'+$1+'"'})
+}
+      let selector = JSON.parse(JSONize(args.selector))
+      let metaquery = {}
+      metaquery.count = Mongo.Collection.get(args.collection).find(selector).count()
+      metaquery.returnval = Mongo.Collection.get(args.collection).find(selector).fetch()
+      return metaquery
+    },
     async query(root, args, context) {
 
 function JSONize(str) {
@@ -74,6 +89,9 @@ function JSONize(str) {
         return context.user;
       }
     },
+  },
+  MetaQuery: {
+    returnval: (root, args) => root.returnval
   },
   Mutation: {
     async mutate(root, args) {
