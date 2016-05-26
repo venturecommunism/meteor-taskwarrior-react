@@ -11,9 +11,10 @@ export default function () {
                             }))
     check(sort, Match.Optional(Object))
     check(query, Match.Optional(Object))
-
+/*
     console.log('Publishing Tasks', fields)
     console.log('Limit:', limits)
+*/
 
     try {
       if (!this.userId) {
