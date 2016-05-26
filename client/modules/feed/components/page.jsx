@@ -42,7 +42,7 @@ export default class extends React.Component {
     return (
       <div className="bs-docs-section clearfix">
         <div className="row">
-          <div className="col-md-3" style={{"background-color": "gray"}}>
+          <div className="col-md-3" style={{"backgroundColor": "gray"}}>
             <SideBarContainer />
           </div>
           <div className="col-md-9">
