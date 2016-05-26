@@ -19,7 +19,7 @@ const App = ({ userId, querywrapper }) => {
       { userId && !querywrapper.loading ? (
         <div>
           <ul>{querywrapper.query.return.reverse().map( (task) => 
-            <li>
+            <li key={task.uuid}>
               <p>{task.due}</p>
               <p>{task.description}</p>
             </li>
