@@ -18,7 +18,7 @@ const App = ({ userId, querywrapper }) => {
      ) : '' }
       { userId && !querywrapper.loading ? (
         <div>
-          <ul>{querywrapper.xquery.reverse().map( (task) => 
+          <ul>{querywrapper.query.return.reverse().map( (task) => 
             <li>
               <p>{task.due}</p>
               <p>{task.description}</p>
@@ -38,10 +38,12 @@ const AppWithData = connect({
         querywrapper: {
           query: gql`
             query getPreviousCalendarData ($duebefore: String) {
-              xquery (limit: 1, duebefore: $duebefore) {
-                due
-                description
-                uuid
+              query (collection: "tasksbacklog", limit: 1, duebefore: $duebefore) {
+                return {
+                  due
+                  description
+                  uuid
+                }
               }
             }
           `,

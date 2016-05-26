@@ -7,44 +7,16 @@ export const feed = {
   Query: {
     async query(root, args, context) {
 
+/*
 if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
   console.log(Meteor.users.findOne({username: "admin"})._id)
   return {errors: ['', 'access denied']}
 }
+*/
+
+console.log("query",args)
 
       let errors = []
-      let limit = args.limit
-      delete args.limit
-      let skip = args.skip
-      delete args.skip
-      const selector = JSON.parse(JSONize(args.selector))
-      const cursor = Mongo.Collection.get(args.collection).find(selector, {limit: limit, skip: skip})
-      const metaquery = {}
-      metaquery.count = cursor.count()
-      metaquery.return = cursor.fetch()
-      metaquery.subtotal = metaquery.return.length
-      metaquery.errors = errors
-      return metaquery
-    },
-    xquery(root, args, context) {
-/*
-      if (args.duebefore) {
-        var limit = args.limit
-        delete args.limit
-        var duebefore = args.duebefore
-        delete args.duebefore
-        console.log(args)
-        return tasksbacklog.find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}}).fetch()
-      }
-*/
-
-/*
-      if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-        return {errors: ['', 'access denied']}
-      }
-*/
-
-console.log(args)
 
       let limit = args.limit
       delete args.limit
@@ -55,7 +27,48 @@ console.log(args)
       let collection = args.collection
       delete args.collection
 
-      console.log(args)
+      let logicalswitch = Object.keys(args).sort().join(" ")
+      console.log(logicalswitch)
+
+      const metaquery = {}
+
+      switch (logicalswitch) {
+        case ('duebefore'):
+          console.log(args)
+          var duebefore = args.duebefore
+          delete args.duebefore
+          var cursor = await Mongo.Collection.get(collection).find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}})
+          break
+        case (args.selector):
+          let selector = JSON.parse(JSONize(args.selector))
+          var cursor = Mongo.Collection.get(args.collection).find(selector)
+          break
+        default:
+          errors = ['', 'no case in resolver']
+      }
+
+      metaquery.count = cursor.count()
+      metaquery.return = cursor.fetch()
+      metaquery.subtotal = metaquery.return.length
+      metaquery.errors = errors
+      return metaquery
+    },
+    async _query(root, args, context) {
+
+/*
+      if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
+        return {errors: ['', 'access denied']}
+      }
+*/
+
+      let limit = args.limit
+      delete args.limit
+
+      let skip = args.skip
+      delete args.skip
+
+      let collection = args.collection
+      delete args.collection
 
       let logicalswitch = Object.keys(args).sort().join(" ")
       console.log(logicalswitch)
@@ -65,7 +78,7 @@ console.log(args)
           console.log(args)
           var duebefore = args.duebefore
           delete args.duebefore
-          var data = tasksbacklog.find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}}).fetch()
+          var data = await Mongo.Collection.get(collection).find({due: {$lte: duebefore}, status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}, {limit: limit, sort: {due: -1}}).fetch()
           return data
           break
         case (args.selector):
