@@ -80,34 +80,76 @@ export const feed = {
     },
   },
   MetaQuery: {
-    return: (root, args) => root.return
+    return: (root) => root.return
+  },
+  MetaMutate: {
+    return: (root) => root.return
   },
   Mutation: {
-    async mutate(root, args) {
+    async metamutate(root, args) {
       console.log(root, args)
+      let errors = []
+      let selector = JSON.parse(JSONize(args.selector))
+      let data = Mongo.Collection.get(args.collection).find(selector).fetch()
+      let out = data.map( function(item) {
+        return item._id
+      })
       switch (args.op) {
         case 'insert':
+          if (args.mutator) {
+            let mutator = JSON.prase(JSONize(args.mutator))
+            return Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
+          } else {
+            errors.push(...['mutator', 'No mutator'])
+          }
+          console.log("data", data)
+          args.count = out.length
+          args.errors = errors
+          args.out = out
+          return args
           break
         case 'update':
           console.log('update mutation')
-          let selector = JSON.parse(JSONize(args.selector))
-          console.log("args.selector", args.selector, typeof args.selector)
-          console.log("selector", selector, typeof selector)
-          let data = Mongo.Collection.get(args.collection).find(selector).fetch()
+          if (args.mutator) {
+            let mutator = JSON.prase(JSONize(args.mutator))
+            return Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
+          } else {
+            errors.push(...['mutator', 'No mutator'])
+          }
           console.log("data", data)
-          let outpipe = data.map( function(item) {
-            return item._id
-          })
-          args.count = outpipe.length
-
-          args.outpipe = outpipe
+          args.count = out.length
+          args.errors = errors
+          args.out = out
           return args
           break
         case 'remove':
+          console.log('remove mutation')
+          if (args.mutator) {
+            let mutator = JSON.prase(JSONize(args.mutator))
+            return Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
+          } else {
+            errors.push(...['mutator', 'No mutator'])
+          }
+          console.log("data", data)
+          args.count = out.length
+          args.errors = errors
+          args.out = out
+          return args
           break
         default:
-          return {error: "No Operation"}
+          errors.push(...['op', 'No Operation'])
+          args.errors = errors
+          return args
       }
+    },
+    async mutate(root, args) {
+      let errors = []
+      let selector = JSON.parse(JSONize(args.selector))
+      let data = Mongo.Collection.get(args.collection).find(selector).fetch()
+      let out = data.map( function(item) {
+        return item._id
+      })
+      return Mongo.Collection.get(args.collection).find(selector).fetch()
     },
     async feedinsert(root, args) {
       console.log("insert mutation")

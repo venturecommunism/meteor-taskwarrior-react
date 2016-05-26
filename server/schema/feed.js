@@ -6,6 +6,7 @@ type Task {
   username: String
   entry: String
   status: String
+  due: String
   type: String
   description: String
   uuid: String
@@ -70,6 +71,20 @@ type MetaQuery {
 }
 
 type RootQuery {
+  _id: String
+  created: String
+  username: String
+  entry: String
+  status: String
+  due: String
+  type: String
+  description: String
+  uuid: String
+  project: String
+  context: String
+  super: String
+  workflow: String
+
   firstfield: String
   secondfield: String
 }
@@ -86,18 +101,22 @@ type Query {
 }
 
 type Mutation {
-  mutate(collection: String="tmpmutation", op: String!, selector: String): RootMutate
+  metamutate(collection: String="tmpmutation", op: String!, selector: String!, mutator: String): MetaMutate
+  mutate(collection: String="tmpmutation", op: String!, selector: String): [RootQuery]
   feedinsert(firstfield: String, secondfield: String): FeedInsert
   feedupdate(firstfield: String, secondfield: String): FeedUpdate
 }
 
-type RootMutate {
+type MetaMutate {
   collection: String
   op: String
   selector: String
   count: String
-  outpipe: String
+  in: String
+  out: String
   mutator: String
+  errors: [String]!
+  return: [RootQuery]
 }
 
 type FeedInsert {
