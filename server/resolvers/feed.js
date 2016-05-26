@@ -1,10 +1,17 @@
 import { Random } from 'meteor/random'
+import { Meteor } from 'meteor/meteor'
 import { tasks, taskspending, tasksbacklog, tmpmutation } from '/lib/collections/collections'
 
 export const feed = {
 
   Query: {
     async query(root, args, context) {
+
+if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
+  console.log(Meteor.users.findOne()._id)
+  return {errors: ['userid', '']}
+}
+
       let errors = []
       let limit = args.limit
       delete args.limit
@@ -20,6 +27,11 @@ export const feed = {
       return metaquery
     },
     async _query(root, args, context) {
+
+if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
+  return {errors: ['userid', '']}
+}
+
       let selector = JSON.parse(JSONize(args.selector))
       return Mongo.Collection.get(args.collection).find(selector).fetch()
     },
@@ -32,6 +44,11 @@ export const feed = {
   },
   Mutation: {
     async mutate(root, args) {
+
+if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
+  return {errors: ['userid', '']}
+}
+
       let errors = []
       let selector = JSON.parse(JSONize(args.selector))
       let data = Mongo.Collection.get(args.collection).find(selector).fetch()
@@ -45,7 +62,7 @@ export const feed = {
         case 'insert':
           if (args.mutator) {
             let mutator = JSON.parse(JSONize(args.mutator))
-            return Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
+            return Mongo.Collection.get(args.collection).insert(mutator).fetch()
           } else {
             errors.push(...['mutator', 'No mutator'])
           }
@@ -86,6 +103,11 @@ export const feed = {
       }
     },
     async _mutate(root, args) {
+
+if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
+  return {errors: ['userid', '']}
+}
+
       let errors = []
       let selector = JSON.parse(JSONize(args.selector))
       let data = Mongo.Collection.get(args.collection).find(selector).fetch()
