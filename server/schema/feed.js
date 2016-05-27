@@ -34,7 +34,7 @@ type MetaMutate {
   out: String
   mutator: String
   errors: [String]!
-  return: [RootQuery]!
+  return: [RootQuery]
 }
 
 type BacklogTask {

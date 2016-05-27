@@ -1,12 +1,11 @@
 import { Random } from 'meteor/random'
-import { Meteor } from 'meteor/meteor'
 import { tasks, taskspending, tasksbacklog, tmpmutation } from '/lib/collections/collections'
 
 export const feed = {
 
   Query: {
     async query(root, args, context) {
-//      if (resolver_auth(context)) { return resolver_auth(context) }      
+      //if (resolver_auth(context)) { return resolver_auth(context) }      
       let logicalswitch = resolvers_init(args)
 
       switch (logicalswitch) {
@@ -30,7 +29,7 @@ export const feed = {
           errors = ['', 'no case in resolver']
       }
 
-      return metaquery(cursor, errors)
+      return metaquery(cursor, options, args, errors)
     },
     user(root, args, context) {
       // Only return the current user, for security
@@ -41,10 +40,13 @@ export const feed = {
   },
   Mutation: {
     async mutate(root, args, context) {
-      if (resolver_auth(context)) { return resolver_auth(context) }
+      //if (resolver_auth(context)) { return resolver_auth(context) }
+console.log("hit the top")
       let logicalswitch = resolvers_init(args)
 
-      let data = Mongo.Collection.get(args.collection).find(selector).fetch()
+      console.log("logicalswitch",logicalswitch)
+      console.log("selector",selector)
+      let data = Mongo.Collection.get(collection).find(selector).fetch()
       let inputpipe = data.map( function(item) {
         return item._id
       })
@@ -62,20 +64,29 @@ export const feed = {
           args.count = inputpipe.length
           args.errors = errors
           args.in = inputpipe
-          return args
           break
         case 'update':
+
+      switch(logicalswitch) {
+        case('op'):
+          break
+        case('selector'):
+          var cursor = []
+          break
+        default:
+          errors = ['', 'no case in resolver']
+      }
+
           if (args.mutator) {
             let mutator = JSON.parse(JSONize(args.mutator))
-            args.return = Mongo.Collection.get(args.collection).update(selector, {$set: mutator}).fetch()
+            args.return = Mongo.Collection.get(collection).update(selector, {$set: mutator}).fetch()
           } else {
-            args.return = Mongo.Collection.get(args.collection).find(selector).fetch()
+            args.return = Mongo.Collection.get(collection).find(selector).fetch()
             errors.push(...['mutator', 'No mutator'])
           }
           args.count = inputpipe.length
           args.errors = errors
           args.in = inputpipe
-          return args
           break
         case 'remove':
           if (args.mutator) {
@@ -87,13 +98,13 @@ export const feed = {
           args.count = inputpipe.length
           args.errors = errors
           args.in = inputpipe
-          return args
           break
         default:
           errors.push(...['op', 'No Operation'])
           args.errors = errors
-          return args
       }
+
+      return metamutate(cursor, options, args, errors)
     },
   },
   MetaQuery: {
