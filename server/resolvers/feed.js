@@ -10,7 +10,6 @@ export const feed = {
 
       switch (logicalswitch) {
         case ('duebefore'):
-          //console.log(args)
           var duebefore = args.duebefore
           delete args.duebefore
           var cursor = await Mongo.Collection.get(collection).find({due: {$lte: duebefore}}, {limit: limit, sort: {due: -1}})
@@ -18,7 +17,6 @@ export const feed = {
         case ('dueafter'):
           var dueafter = args.dueafter
           delete args.dueafter
-          console.log(args)
           var cursor = await Mongo.Collection.get(collection).find({due: {$gte: dueafter}}, {limit: limit, skip: skip, sort: {due: 1}})
           break
         case ('selector'):
@@ -26,7 +24,7 @@ export const feed = {
           var cursor = Mongo.Collection.get(collection).find(selector, {limit: limit, skip: skip})
           break
         default:
-          errors = ['', 'no case in resolver']
+          errors = ['', 'no case in resolver, found this logical switch: ' + logicalswitch]
       }
 
       return metaquery(cursor, options, args, errors)
@@ -41,18 +39,8 @@ export const feed = {
   Mutation: {
     async mutate(root, args, context) {
       //if (resolver_auth(context)) { return resolver_auth(context) }
-console.log("hit the top")
       let logicalswitch = resolvers_init(args)
 
-      console.log("logicalswitch",logicalswitch)
-      console.log("selector",selector)
-      let data = Mongo.Collection.get(collection).find(selector).fetch()
-      let inputpipe = data.map( function(item) {
-        return item._id
-      })
-      if (args.mutator) {
-        let mutator = JSON.parse(JSONize(args.mutator))
-      }
       switch (args.op) {
         case 'insert':
           if (args.mutator) {
@@ -66,7 +54,6 @@ console.log("hit the top")
           args.in = inputpipe
           break
         case 'update':
-
       switch(logicalswitch) {
         case('op'):
           break
