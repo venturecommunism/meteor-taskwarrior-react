@@ -6,24 +6,8 @@ export const feed = {
 
   Query: {
     async query(root, args, context) {
-
-/*
-if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-  console.log(Meteor.users.findOne({username: "admin"})._id)
-  return {errors: ['', 'access denied']}
-}
-*/
-
-      let errors = []
-
-      let limit = args.limit
-      delete args.limit
-      let skip = args.skip
-      delete args.skip
-      let collection = args.collection
-      delete args.collection
-      let logicalswitch = Object.keys(args).sort().join(" ")
-      console.log("logicalswitch", logicalswitch)
+//      if (resolver_auth(context)) { return resolver_auth(context) }      
+      let logicalswitch = resolvers_init(args)
 
       switch (logicalswitch) {
         case ('duebefore'):
@@ -40,18 +24,13 @@ if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"
           break
         case ('selector'):
           let selector = JSON.parse(JSONize(args.selector))
-          var cursor = Mongo.Collection.get(args.collection).find(selector)
+          var cursor = Mongo.Collection.get(collection).find(selector, {limit: limit, skip: skip})
           break
         default:
           errors = ['', 'no case in resolver']
       }
 
-      const metaquery = {}
-      metaquery.count = cursor ? cursor.count() : null
-      metaquery.return = cursor ? cursor.fetch() : null
-      metaquery.subtotal = cursor ? cursor.fetch().length : null
-      metaquery.errors = errors
-      return metaquery
+      return metaquery(cursor, errors)
     },
     user(root, args, context) {
       // Only return the current user, for security
@@ -61,14 +40,10 @@ if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"
     },
   },
   Mutation: {
-    async mutate(root, args) {
+    async mutate(root, args, context) {
+      if (resolver_auth(context)) { return resolver_auth(context) }
+      let logicalswitch = resolvers_init(args)
 
-if (!context.user || context.user._id != Meteor.users.findOne({username: "admin"})._id) {
-  return {errors: ['', 'acccess denied']}
-}
-
-      let errors = []
-      let selector = JSON.parse(JSONize(args.selector))
       let data = Mongo.Collection.get(args.collection).find(selector).fetch()
       let inputpipe = data.map( function(item) {
         return item._id

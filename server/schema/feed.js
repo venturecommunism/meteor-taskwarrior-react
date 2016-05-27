@@ -49,7 +49,7 @@ type Query {
 }
 
 type Mutation {
-  mutate(collection: String="tmpmutation", op: String!, selector: String!, mutator: String): MetaMutate
+  mutate(collection: String, op: String, selector: String, mutator: String): MetaMutate
 }
 
 `;
