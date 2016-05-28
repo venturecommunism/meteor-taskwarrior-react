@@ -35,12 +35,12 @@ export default {
       case "{}":
         //sweetAlert("case", "{}")
         query.feedquery = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
-        query.projectsquery = { type : 'project', super: {$exists: 0} }
-        query.filtprojquery = { type : 'project', super: {$exists: 0}}
+        query.projectsquery = { type : 'project', project: {$exists: 0} }
+        query.filtprojquery = { type : 'project', project: {$exists: 0}}
         break
       default:
         query.feedquery = { type: {$nin: ['project', 'context']}}
-        query.projectsquery = { type: 'project', super: { $exists: 0} }
+        query.projectsquery = { type: 'project', project: { $exists: 0} }
         query.filtprojquery = { type: 'project' }
     }
 
@@ -51,7 +51,7 @@ export default {
         var project = queryParams.projects
         query.feedquery = { project: project }
         //sweetAlert("project", project)
-        query.filtprojquery = { type: 'project', super: project}
+        query.filtprojquery = { type: 'project', project: project}
     }
 
     switch (queryParams.type) {
@@ -69,8 +69,8 @@ export default {
       default:
         var project = queryParams.projects
         var type = queryParams.type
-        query.feedquery = { $or: [ { super: project }, { project: project} ] }
-        query.projectsquery = { type: type, super: project }
+        query.feedquery = { project: project }
+        query.projectsquery = { type: type, project: project }
         query.filtprojquery._id = {$ne: project}
     }
 
@@ -78,7 +78,7 @@ export default {
       case (false):
         break
       default:
-        query.feedquery.super = { $exists: 0 }
+        query.feedquery.project = { $exists: 0 }
     }
 
     switch(queryParams.mode) {
@@ -163,7 +163,7 @@ export default {
     var queryParams = FlowRouter.current().queryParams
     switch (queryParams.type) {
       case 'project':
-        var data = {super: e.target.id, workflow: {status: "project", workflow: ["project"]}}
+        var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}
         break
       default:
         var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}

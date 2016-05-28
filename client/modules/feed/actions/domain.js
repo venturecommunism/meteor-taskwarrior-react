@@ -8,10 +8,10 @@ const FeedDomain = {
   upprojorcont() {
     var queryParams = FlowRouter.current().queryParams
     var id = queryParams.projects
-    var superprojorcont = tasks.findOne({ super: {$exists: 1}, _id: id})
-    var superid = superprojorcont ? superprojorcont.super : null
-    FlowRouter.setQueryParams({ projects: superid })
-    //sweetAlert("super", superid)
+    var projectprojorcont = tasks.findOne({ project: {$exists: 1}, _id: id})
+    var projectid = projectprojorcont ? projectprojorcont.project : null
+    FlowRouter.setQueryParams({ projects: projectid })
+    //sweetAlert("project", projectid)
   },
 
 };

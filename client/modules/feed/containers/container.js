@@ -19,7 +19,6 @@ const collectionComposer = ({ context, connection = null, collection, query, pub
       type: true,
       workflow: true,
       project: true,
-      super: true,
       due: true,
     },
   }
