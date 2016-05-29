@@ -3,7 +3,7 @@ import React from 'react';
 import ApolloContainer from '../../apollo/containers/container'
 
 import PreviousComponent from './previouscalendar.jsx'
-const PreviousCalendarContainer = ApolloContainer(PreviousComponent)
+//const PreviousCalendarContainer = ApolloContainer(PreviousComponent)
 
 import OverDueComponent from './overduecalendar.jsx'
 const OverDueContainer = ApolloContainer(OverDueComponent)
@@ -18,16 +18,13 @@ const CreateTaskContainer = createTaskComposer(CreateTask)
 import Container from '../../core/containers/container'
 import NewContainer from '../../core/containers/newcontainer'
 import MainQuery from '../state/feedquery'
-import PreviousCalendarQuery from '../state/previouscalendarquery'
 import Feed from './feed.jsx'
 
 const FeedContainer = Container(MainQuery, Feed)
-//const PreviousCalendarContainer = Container(PreviousCalendarQuery, Feed)
+const PreviousCalendarContainer = NewContainer('previouscalendar', Feed)
 
-import SideBarQuery from '../state/sidebarquery'
-import ParamsComposer from '../state/params'
 import SideBar from './sidebar.jsx'
-const SideBarContainer = ParamsComposer(Container(SideBarQuery, SideBar))
+const SideBarContainer = NewContainer('sidebar', SideBar)
 
 //import OverDueQuery from '../state/overduequery'
 //const OverDueContainer = Container(OverDueQuery, Feed)

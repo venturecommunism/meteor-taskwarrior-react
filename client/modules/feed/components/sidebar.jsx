@@ -10,25 +10,25 @@ import CurrentProjOrCont from '../state/projectselector'
 import SimpleFeed from './simplefeed.jsx'
 const CurrentProjOrContContainer = Container(CurrentProjOrCont, SimpleFeed)
 
-export default ({data, actions, flags}) => (
+export default ({data, actions }) => (
   <div className='params-example'>
-    <button className={ flags.clearall } onClick={ actions.clearFilters }>
+    <button className={ actions().flags().clearall } onClick={ actions().clearFilters }>
       Inbox
     </button>
 
-    <button className={ flags.project } onClick={ actions.filterAllProjects }>
+    <button className={ actions().flags().project } onClick={ actions().filterAllProjects }>
       Projects
     </button>
 
-    <button className={ flags.context } onClick={ actions.filterAllContexts }>
+    <button className={ actions().flags().context } onClick={ actions().filterAllContexts }>
       Contexts
     </button>
 
-    <button className={ flags.definesome } onClick={ actions.filterDefineSomeWork }>
+    <button className={ actions().flags().definesome } onClick={ actions().filterDefineSomeWork }>
       Define Some Work
     </button>
 
-    <button className={ flags.dodefined } onClick={ actions.filterDoDefinedWork }>
+    <button className={ actions().flags().dodefined } onClick={ actions().filterDoDefinedWork }>
       Do Defined Work
     </button>
 

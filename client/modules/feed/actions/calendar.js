@@ -10,8 +10,9 @@ export default {
     }
   },
   selector({ Meteor, Session }) {
-    Session.set('now', formattedNow())
-    var now = Session.get('now')
+//    Session.set('now', formattedNow())
+//    var now = Session.get('now')
+    var now = formattedNow()
     var query = { due: {$gte: now} }
     return query
   },
