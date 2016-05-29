@@ -32,9 +32,6 @@ const SideBarContainer = ParamsComposer(Container(SideBarQuery, SideBar))
 //import OverDueQuery from '../state/overduequery'
 //const OverDueContainer = Container(OverDueQuery, Feed)
 
-//import CalendarQuery from '../state/calendarquery'
-//const CalendarContainer = Container(CalendarQuery, Feed)
-
 const CalendarNewContainer = NewContainer('calendar', Feed)
 
 export default class extends React.Component {
