@@ -20,7 +20,7 @@ export default {
     return {}
   },
   buttonpress() {
-    return FeedDomain.upprojorcont
+    return FeedDomain.upprojorcont()
   },
   buttontext() {
     return "Up One Level"
