@@ -11,13 +11,12 @@ import OverDueComponent from './overduecalendar.jsx'
 import CalendarComponent from './calendar.jsx'
 const CalendarContainer = ApolloContainer(CalendarComponent)
 
-import createTaskComposer from '../state/createtask'
-import CreateTask from './createtask.jsx'
-const CreateTaskContainer = createTaskComposer(CreateTask) 
-
 import Container from '../../core/containers/container'
 import NewContainer from '../../core/containers/newcontainer'
 import Feed from './feed.jsx'
+
+import CreateTask from './createtask.jsx'
+const CreateTaskContainer = NewContainer('createtask', CreateTask)
 
 const FeedContainer = NewContainer('feed', Feed)
 const PreviousCalendarContainer = NewContainer('previouscalendar', Feed)

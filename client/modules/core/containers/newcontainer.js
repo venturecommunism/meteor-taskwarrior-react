@@ -2,11 +2,10 @@ import { composeWithTracker, composeAll } from 'mantra-core'
 import { useDeps } from '/lib/helpers/usedeps'
 
 const collectionComposer = ({ context, actions }, onData) => {
-  const { Meteor, Collections, Store } = context()
+  const { Meteor, Collections, Store, LocalState } = context()
   const { sidebarReducer } = Store.getState()
 
-  const {LocalState} = context()
-  const error = LocalState.get(actions.errortype)
+  const error = actions.errortype ? LocalState.get(actions.errortype()) : null
 
   //sweetAlert("actions", Object.keys(actions().query()))
   const { connection, collection, pubsort, subsort, limit } = actions.query()
@@ -35,10 +34,10 @@ const collectionComposer = ({ context, actions }, onData) => {
   if (Meteor.subscribe('feed', fields, runselector, pubsort, limit).ready()) {
     const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort}).fetch()
 
-    console.log('Connection', connection)
-    console.log('Collection', collection)
-    console.log('Selector, RemotePublishSort, LocalSubscribeSort and Limit are', runselector, pubsort, subsort, limit)
-    console.log('Count', data.length)
+    //console.log('Connection', connection)
+    //console.log('Collection', collection)
+    //console.log('Selector, RemotePublishSort, LocalSubscribeSort and Limit are', runselector, pubsort, subsort, limit)
+    //console.log('Count', data.length)
 
     const sendData = () => {
       onData(null, {
@@ -47,7 +46,7 @@ const collectionComposer = ({ context, actions }, onData) => {
         error,
       })
       // clearErrors when unmounting the component
-      return actions.clearErrors
+      return actions.clearErrors ? actions.clearErrors() : null
     }
 
     sendData()

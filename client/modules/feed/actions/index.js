@@ -9,6 +9,7 @@ import parentprojectorcontext from './parentprojectorcontext'
 import filterprojects from './filterprojects'
 import overdue from './overdue'
 import projectselector from './projectselector'
+import createtask from './createtask'
 
 const actions = {
   feed,
@@ -20,6 +21,7 @@ const actions = {
   filterprojects,
   overdue,
   projectselector,
+  createtask,
 }
 
 export default actions
