@@ -5,6 +5,9 @@ const collectionComposer = ({ context, actions }, onData) => {
   const { Meteor, Collections, Store } = context()
   const { sidebarReducer } = Store.getState()
 
+  const {LocalState} = context()
+  const error = LocalState.get(actions.errortype)
+
   //sweetAlert("actions", Object.keys(actions().query()))
   const { connection, collection, pubsort, subsort, limit } = actions.query()
   const { selector } = actions
@@ -41,7 +44,10 @@ const collectionComposer = ({ context, actions }, onData) => {
       onData(null, {
         data,
         sidebarStore: sidebarReducer,
+        error,
       })
+      // clearErrors when unmounting the component
+      return actions.clearErrors
     }
 
     sendData()

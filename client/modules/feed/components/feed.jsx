@@ -2,10 +2,9 @@ import React from 'react'
 
 import FeedItem from './feeditem.jsx'
 
-import Container from '../../core/containers/container'
-import Query from '../state/filterprojectsquery'
+import NewContainer from '../../core/containers/newcontainer'
 import ProjectSelector from './projectselector.jsx'
-const ProjectSelectorContainer = Container(Query, ProjectSelector) 
+const ProjectSelectorContainer = NewContainer('filterprojects', ProjectSelector) 
 
 export default ({data}) => (
   <div className='feed-wrapper'>

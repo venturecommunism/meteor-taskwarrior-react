@@ -1,9 +1,8 @@
 import React from 'react'
 
 import ProjCont from './projorcont.jsx'
-import Query from '../state/projorcont'
-import Container from '../../core/containers/container'
-const ProjContContainer = Container(Query, ProjCont)
+import NewContainer from '../../core/containers/newcontainer'
+const ProjContContainer = NewContainer('projorcont', ProjCont)
 
 export default ({data}) => (
   <div className="feed-item__header">

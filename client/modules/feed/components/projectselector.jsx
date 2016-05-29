@@ -1,10 +1,9 @@
 import React from 'react'
 
-import Container from '../../core/containers/container'
+import NewContainer from '../../core/containers/newcontainer'
 
-import Query from '../state/projectselector'
 import Button from './button.jsx'
-const ButtonContainer = Container(Query, Button)
+const ButtonContainer = NewContainer('projectselector', Button)
 
 export default ({taskid, data, actions}) => (
   <div>

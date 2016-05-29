@@ -1,5 +1,17 @@
 export default {
+  name() {
+    return 'feed'
+  },
   query() {
+    return {
+      connection: null,
+      collection: 'tasks',
+      pubsort: {created: -1},
+      subsort: {created: -1},
+      limit: { tasks: 10000 },
+    }
+  },
+  selector() {
     // get the URL contents
     var queryParams = FlowRouter.current().queryParams
     //sweetAlert("queryParams", queryParams)
@@ -69,7 +81,7 @@ export default {
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
-    return query
+    return query.feedquery
   },
   selectedProject({ context, Store }, e) {
     var id = e.target.id
