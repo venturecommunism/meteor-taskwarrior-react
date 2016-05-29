@@ -2,7 +2,7 @@ import React from 'react'
 
 import ProjCont from './projorcont.jsx'
 import Query from '../state/projorcont'
-import Container from '../containers/container'
+import Container from '../../core/containers/container'
 const ProjContContainer = Container(Query, ProjCont)
 
 export default ({data}) => (

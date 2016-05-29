@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Container from '../containers/container'
+import Container from '../../core/containers/container'
 
 import Query from '../state/parentprojectorcontext'
 import Button from './button.jsx'

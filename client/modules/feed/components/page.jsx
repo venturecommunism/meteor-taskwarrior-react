@@ -15,8 +15,8 @@ import createTaskComposer from '../state/createtask'
 import CreateTask from './createtask.jsx'
 const CreateTaskContainer = createTaskComposer(CreateTask) 
 
-import Container from '../containers/container'
-import NewContainer from '../containers/newcontainer'
+import Container from '../../core/containers/container'
+import NewContainer from '../../core/containers/newcontainer'
 import MainQuery from '../state/feedquery'
 import PreviousCalendarQuery from '../state/previouscalendarquery'
 import Feed from './feed.jsx'

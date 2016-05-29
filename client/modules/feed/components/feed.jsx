@@ -2,7 +2,7 @@ import React from 'react'
 
 import FeedItem from './feeditem.jsx'
 
-import Container from '../containers/container'
+import Container from '../../core/containers/container'
 import Query from '../state/filterprojectsquery'
 import ProjectSelector from './projectselector.jsx'
 const ProjectSelectorContainer = Container(Query, ProjectSelector) 
