@@ -2,13 +2,13 @@ import React from 'react';
 
 import ApolloContainer from '../../apollo/containers/container'
 
-import PreviousComponent from './previouscalendar.jsx'
+import PreviousComponent from '../../apollo/components/previouscalendar.jsx'
 //const PreviousCalendarContainer = ApolloContainer(PreviousComponent)
 
-import OverDueComponent from './overduecalendar.jsx'
+import OverDueComponent from '../../apollo/components/overduecalendar.jsx'
 //const OverDueContainer = ApolloContainer(OverDueComponent)
 
-import CalendarComponent from './calendar.jsx'
+import CalendarComponent from '../../apollo/components/calendar.jsx'
 const CalendarContainer = ApolloContainer(CalendarComponent)
 
 import Container from '../../core/containers/container'
