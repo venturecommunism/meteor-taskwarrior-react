@@ -1,3 +1,24 @@
+export const SELECT_PROJECT = 'feed/SELECT_PROJECT'
+
+const initialState = {
+  inboxIsOpened: true,
+  atTopLevel: true,
+  taskMode: 'definework',
+  selectedProject: undefined,
+}
+
+export function sidebarReducer(state = initialState, action = {}) {
+  switch (action.type) {
+    case SELECT_PROJECT:
+      return {
+        ...state,
+        selectedProject: action.selectedProject,
+      }
+    default:
+      return state
+  }
+}
+
 export default {
   name() {
     return 'sidebar'
@@ -55,7 +76,6 @@ export default {
     return paramsflags
   },
   selectedProject({ context, Store }, e) {
-sweetAlert("test", "test")
     var id = e.target.id
     FlowRouter.setQueryParams({ projects: id, type: 'project' })
 

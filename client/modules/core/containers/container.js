@@ -2,7 +2,7 @@ import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
 const collectionComposer = ({ context, connection = null, collection, query, pubsort, subsort, limit, testmode = false }, onData) => {
   const { Meteor, Collections, Store } = context()
-  const { feedReducer } = Store.getState()
+  const { sidebarReducer } = Store.getState()
 
   const fields = {
     tasks: {
@@ -34,7 +34,7 @@ const collectionComposer = ({ context, connection = null, collection, query, pub
     const sendData = () => {
       onData(null, {
         data,
-        feedStore: feedReducer,
+        sidebarStore: sidebarReducer,
       })
     }
 

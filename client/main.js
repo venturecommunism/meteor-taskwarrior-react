@@ -8,10 +8,10 @@ import feedModule from './modules/feed'
 import pomodoroModule from './modules/pomodoro'
 import timerModule from './modules/timer'
 
-import { feedReducer } from './modules/feed/actions/feed'
+import { sidebarReducer } from './modules/feed/actions/sidebar'
 
 const rootReducer = combineReducers({
-  feedReducer,
+  sidebarReducer,
 })
 
 const context = initContext(rootReducer)

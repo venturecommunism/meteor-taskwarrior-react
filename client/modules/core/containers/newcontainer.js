@@ -3,7 +3,7 @@ import { useDeps } from '/lib/helpers/usedeps'
 
 const collectionComposer = ({ context, actions }, onData) => {
   const { Meteor, Collections, Store } = context()
-  const { feedReducer } = Store.getState()
+  const { sidebarReducer } = Store.getState()
 
   //sweetAlert("actions", Object.keys(actions().query()))
   const { connection, collection, pubsort, subsort, limit } = actions.query()
@@ -40,7 +40,7 @@ const collectionComposer = ({ context, actions }, onData) => {
     const sendData = () => {
       onData(null, {
         data,
-        feedStore: feedReducer,
+        sidebarStore: sidebarReducer,
       })
     }
 
