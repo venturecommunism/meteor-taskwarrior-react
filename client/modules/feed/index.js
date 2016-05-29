@@ -1,5 +1,5 @@
 import routes from './routes.jsx'
-import methodStubs from './configs/method_stubs';
+import methodStubs from '/lib/methods/feed';
 import actions from './actions';
 
 export default {
