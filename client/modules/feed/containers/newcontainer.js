@@ -1,9 +1,14 @@
 import { composeWithTracker, composeAll } from 'mantra-core'
-import { useDeps } from '/lib/helpers/useDeps'
+import { useDeps } from '/lib/helpers/usedeps'
 
-const collectionComposer = ({ context, connection = null, collection, query, pubsort, subsort, limit, testmode = false }, onData) => {
+const collectionComposer = ({ context, actions }, onData) => {
   const { Meteor, Collections, Store } = context()
   const { feedReducer } = Store.getState()
+
+  //sweetAlert("actions", Object.keys(actions().query()))
+  const { connection, collection, pubsort, subsort, limit } = actions().query()
+  const { selector } = actions()
+  var runselector = selector()
 
   const fields = {
     tasks: {
@@ -24,13 +29,13 @@ const collectionComposer = ({ context, connection = null, collection, query, pub
     },
   }
 
-  if (Meteor.subscribe('feed', fields, query, pubsort, limit).ready()) {
-    const data = Mongo.Collection.get(collection, { connection: connection }).find(query, {sort: subsort}).fetch()
+  if (Meteor.subscribe('feed', fields, runselector, pubsort, limit).ready()) {
+    const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort}).fetch()
 
-    //console.log('Connection', connection)
-    //console.log('Collection', collection)
-    //console.log('Query, RemotePublishSort, LocalSubscribeSort and Limit are', query, pubsort, subsort, limit)
-    //console.log('Count', data.length)
+    console.log('Connection', connection)
+    console.log('Collection', collection)
+    console.log('Selector, RemotePublishSort, LocalSubscribeSort and Limit are', runselector, pubsort, subsort, limit)
+    console.log('Count', data.length)
 
     const sendData = () => {
       onData(null, {
@@ -44,31 +49,7 @@ const collectionComposer = ({ context, connection = null, collection, query, pub
   }
 }
 
-const initialMapper = (context, actions, thing) => ({
-  connection: null,
-  collection: 'taskspending',
-  query: actions.feed.calendarquery(),
-  pubsort: {due: -1},
-  subsort: {due: 1},
-  limit: { taskspending: 100000 },
-
-  actions: () => actions[thing],
-  context: () => context,
-})
-
-const actionsMapper = (context, actions) => ({
-  connection: initialMapper.connection,
-  collection: initialMapper.collection,
-  query: initialMapper.query,
-  pubsort: initialMapper.pubsort,
-  subsort: initialMapper.subsort,
-  limit: initialMapper.limit,
-
-  actions: () => initialMapper.actions,
-  context: () => context,
-})
-
-export default (thing, component) => composeAll(
+export default (actionset, component) => composeAll(
   composeWithTracker(collectionComposer),
-  useDeps(thing)
+  useDeps(actionset)
 )(component)
