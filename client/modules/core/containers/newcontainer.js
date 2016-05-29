@@ -6,8 +6,8 @@ const collectionComposer = ({ context, actions }, onData) => {
   const { feedReducer } = Store.getState()
 
   //sweetAlert("actions", Object.keys(actions().query()))
-  const { connection, collection, pubsort, subsort, limit } = actions().query()
-  const { selector } = actions()
+  const { connection, collection, pubsort, subsort, limit } = actions.query()
+  const { selector } = actions
   var runselector = selector()
 
   const fields = {
