@@ -1,12 +1,12 @@
 import React from 'react'
 
-import NewContainer from '../../core/containers/newcontainer'
+import Container from '../../core/containers/container'
 
 import Button from './button.jsx'
-const UpOneContainer = NewContainer('parentprojectorcontext', Button)
+const UpOneContainer = Container('parentprojectorcontext', Button)
 
 import SimpleFeed from './simplefeed.jsx'
-const CurrentProjOrContContainer = NewContainer('projectselector', SimpleFeed)
+const CurrentProjOrContContainer = Container('projectselector', SimpleFeed)
 
 export default ({data, actions }) => (
   <div className='params-example'>

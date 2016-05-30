@@ -1,9 +1,9 @@
 import React from 'react'
 
-import NewContainer from '../../core/containers/newcontainer'
+import Container from '../../core/containers/container'
 
 import Button from './button.jsx'
-const ButtonContainer = NewContainer('projectselector', Button)
+const ButtonContainer = Container('projectselector', Button)
 
 export default ({taskid, data, actions}) => (
   <div>

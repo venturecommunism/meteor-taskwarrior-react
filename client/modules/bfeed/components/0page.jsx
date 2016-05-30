@@ -1,20 +1,20 @@
 import React from 'react';
 
-import NewContainer from '../../core/containers/newcontainer'
+import Container from '../../core/containers/container'
 import Feed from './feed.jsx'
 
 import CreateTask from './createtask.jsx'
-const CreateTaskContainer = NewContainer('createtask', CreateTask)
+const CreateTaskContainer = Container('createtask', CreateTask)
 
-const FeedContainer = NewContainer('feed', Feed)
-const PreviousCalendarContainer = NewContainer('previouscalendar', Feed)
+const FeedContainer = Container('feed', Feed)
+const PreviousCalendarContainer = Container('previouscalendar', Feed)
 
 import SideBar from './sidebar.jsx'
-const SideBarContainer = NewContainer('sidebar', SideBar)
+const SideBarContainer = Container('sidebar', SideBar)
 
-const OverDueContainer = NewContainer('overdue', Feed)
+const OverDueContainer = Container('overdue', Feed)
 
-const CalendarNewContainer = NewContainer('calendar', Feed)
+const CalendarContainer = Container('calendar', Feed)
 
 export default class extends React.Component {
   render() {
@@ -25,7 +25,7 @@ export default class extends React.Component {
             <SideBarContainer />
           </div>
           <div className="col-md-9">
-            <CalendarNewContainer />
+            <CalendarContainer />
             <CreateTaskContainer />
             <PreviousCalendarContainer />
             <OverDueContainer />

@@ -1,8 +1,14 @@
-import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
+import { composeWithTracker, composeAll } from 'mantra-core'
+import { useDeps } from '/lib/helpers/usedeps'
 
-const collectionComposer = ({ context, connection = null, collection, query, pubsort, subsort, limit, testmode = false }, onData) => {
-  const { Meteor, Collections, Store } = context()
+const collectionComposer = ({ context, query, err }, onData) => {
+  const { Meteor, Collections, Store, LocalState } = context()
   const { sidebarReducer } = Store.getState()
+
+  const error = err ? LocalState.get(err().errortype) : null
+
+  const { connection, collection, selector, pubsort, subsort, limit } = query()
+  var runselector = selector()
 
   const fields = {
     tasks: {
@@ -23,19 +29,22 @@ const collectionComposer = ({ context, connection = null, collection, query, pub
     },
   }
 
-  if (Meteor.subscribe('feed', fields, query, pubsort, limit).ready()) {
-    const data = Mongo.Collection.get(collection, { connection: connection }).find(query, {sort: subsort}).fetch()
+  if (Meteor.subscribe('feed', fields, runselector, pubsort, limit).ready()) {
+    const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
 
     //console.log('Connection', connection)
     //console.log('Collection', collection)
-    //console.log('Query, RemotePublishSort, LocalSubscribeSort and Limit are', query, pubsort, subsort, limit)
+    //console.log('Selector, RemotePublishSort, LocalSubscribeSort and Limit are', runselector, pubsort, subsort, limit)
     //console.log('Count', data.length)
 
     const sendData = () => {
       onData(null, {
         data,
         sidebarStore: sidebarReducer,
+        error,
       })
+      // clearErrors when unmounting the component
+      return err ? err().clearErrors : null
     }
 
     sendData()
@@ -43,7 +52,7 @@ const collectionComposer = ({ context, connection = null, collection, query, pub
   }
 }
 
-export default (actionsMapper, component) => composeAll(
+export default (actionset, component) => composeAll(
   composeWithTracker(collectionComposer),
-  useDeps(actionsMapper)
+  useDeps(actionset)
 )(component)
