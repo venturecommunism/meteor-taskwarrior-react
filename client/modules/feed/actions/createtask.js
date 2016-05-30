@@ -1,15 +1,19 @@
 export default {
   query() {
+
+    function selector() {
+      return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
+    }
+
     return {
+      name: 'createtask',
       connection: null,
       collection: 'tasksbacklog',
+      selector: selector,
       pubsort: {due: -1},
       subsort: {due: 1},
       limit: { tasksbacklog: 5 },
     }
-  },
-  selector() {
-    return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
   },
   create({Meteor, LocalState, FlowRouter}, description) {
     if (!description) {
@@ -42,8 +46,11 @@ export default {
     });
     // FlowRouter.go(`/task/${id}`);
   },
-  errortype() {
-    return 'SAVING_ERROR'
+  err() {
+    function clearErrors({LocalState}) {
+      return LocalState.set('SAVING_ERROR', null)
+    }
+    return { errortype: 'SAVING_ERROR', clearErrors: clearErrors }
   },
 }
 

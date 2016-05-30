@@ -1,15 +1,13 @@
 import { composeWithTracker, composeAll } from 'mantra-core'
 import { useDeps } from '/lib/helpers/usedeps'
 
-const collectionComposer = ({ context, actions }, onData) => {
+const collectionComposer = ({ context, query, err }, onData) => {
   const { Meteor, Collections, Store, LocalState } = context()
   const { sidebarReducer } = Store.getState()
 
-  const error = actions.errortype ? LocalState.get(actions.errortype()) : null
+  const error = err ? LocalState.get(err().errortype) : null
 
-  //sweetAlert("actions", Object.keys(actions().query()))
-  const { connection, collection, pubsort, subsort, limit } = actions.query()
-  const { selector } = actions
+  const { connection, collection, selector, pubsort, subsort, limit } = query()
   var runselector = selector()
 
   const fields = {
@@ -46,7 +44,7 @@ const collectionComposer = ({ context, actions }, onData) => {
         error,
       })
       // clearErrors when unmounting the component
-      return actions.clearErrors ? actions.clearErrors() : null
+      return err ? err().clearErrors : null
     }
 
     sendData()
