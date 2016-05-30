@@ -1,8 +1,15 @@
 export default {
   query() {
+
+  function selector() {
+    return { _id: FlowRouter.current().queryParams.projects }
+  }
+
     return {
+      name: 'projectselector',
       connection: null,
       collection: 'tasks',
+      selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
       limit: { tasks: 1 },

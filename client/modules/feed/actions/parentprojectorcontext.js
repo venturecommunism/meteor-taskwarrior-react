@@ -5,9 +5,16 @@ import FeedDomain from '../actions/domain'
 export default {
   //TODO: get rid of this query
   query() {
+
+    function selector() {
+      return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
+    }
+
     return {
+      name: 'parentprojectorcontext',
       connection: null,
       collection: 'tasks',
+      selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
       limit: { tasks: 1 },
