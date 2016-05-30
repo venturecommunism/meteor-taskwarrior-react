@@ -8,7 +8,7 @@ const UpOneContainer = Container('parentprojectorcontext', Button)
 import SimpleFeed from './simplefeed.jsx'
 const CurrentProjOrContContainer = Container('projectselector', SimpleFeed)
 
-export default ({data, actions }) => (
+export default ({ data, actions }) => (
   <div className='params-example'>
     <button className={ actions.flags().clearall } onClick={ actions.clearFilters }>
       Inbox

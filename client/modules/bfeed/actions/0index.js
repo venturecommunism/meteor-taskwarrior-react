@@ -1,5 +1,6 @@
 // feed should be the one main reducer / actions set
 
+import main from './main'
 import feed from './feed'
 import calendar from './calendar'
 import previouscalendar from './previouscalendar'
@@ -12,6 +13,7 @@ import projectselector from './projectselector'
 import createtask from './createtask'
 
 const actions = {
+  main,
   feed,
   calendar,
   previouscalendar,
