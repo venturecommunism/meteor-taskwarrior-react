@@ -32,7 +32,7 @@ const collectionComposer = ({ context, actions }, onData) => {
   }
 
   if (Meteor.subscribe('feed', fields, runselector, pubsort, limit).ready()) {
-    const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort}).fetch()
+    const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
 
     //console.log('Connection', connection)
     //console.log('Collection', collection)
