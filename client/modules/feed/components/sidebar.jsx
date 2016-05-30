@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Container from '../../core/containers/container'
 import NewContainer from '../../core/containers/newcontainer'
 
 import Button from './button.jsx'

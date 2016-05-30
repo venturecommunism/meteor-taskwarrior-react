@@ -1,17 +1,5 @@
 import React from 'react';
 
-import ApolloContainer from '../../apollo/containers/container'
-
-import PreviousComponent from '../../apollo/components/previouscalendar.jsx'
-//const PreviousCalendarContainer = ApolloContainer(PreviousComponent)
-
-import OverDueComponent from '../../apollo/components/overduecalendar.jsx'
-//const OverDueContainer = ApolloContainer(OverDueComponent)
-
-import CalendarComponent from '../../apollo/components/calendar.jsx'
-const CalendarContainer = ApolloContainer(CalendarComponent)
-
-import Container from '../../core/containers/container'
 import NewContainer from '../../core/containers/newcontainer'
 import Feed from './feed.jsx'
 
@@ -42,7 +30,6 @@ export default class extends React.Component {
             <PreviousCalendarContainer />
             <OverDueContainer />
             <FeedContainer />
-            <CalendarContainer />
           </div>
         </div>
       </div>
