@@ -2,9 +2,11 @@ import React from 'react'
 
 import FeedItem from './feeditem.jsx'
 
-import Container from '../../core/containers/container'
+import ActionsMapper from '../../core/containers/actionsmapper'
 import ProjectSelector from './projectselector.jsx'
-const ProjectSelectorContainer = Container('filterprojects', ProjectSelector) 
+
+const ProjectSelectorContainer = ActionsMapper('filterprojects', ProjectSelector)
+//ProjectSelector used to be wrapped in a standard container with 'filterprojects' as an argument
 
 export default ({data}) => (
   <div className='feed-wrapper'>
@@ -13,7 +15,7 @@ export default ({data}) => (
       {data.map(task => (
         <li key={task._id}>
           <FeedItem data={task} />
-          <ProjectSelectorContainer taskid={task._id} />
+          <ProjectSelectorContainer data={data.filterprojects} taskid={task._id} />
         </li>
       ))}
     </ul>

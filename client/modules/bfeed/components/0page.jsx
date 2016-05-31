@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Container from '../../core/containers/container'
+import Container from '../../core/containers/newcontainer'
 import Feed from './feed.jsx'
 
 import CreateTask from './createtask.jsx'
