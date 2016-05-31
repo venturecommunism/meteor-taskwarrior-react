@@ -24,11 +24,11 @@ export default ({data, actions}) => (
       <SideBarContainer data={data.sidebar} />
     </div>
     <div className="col-md-9">
-      <CalendarContainer data={data.calendar} />
-      <CreateTaskContainer />
       <PreviousCalendarContainer data={data.previouscalendar} />
       <OverDueContainer data={data.overdue} />
       <FeedContainer data={data.feed} />
+      <CalendarContainer data={data.calendar} />
+      <CreateTaskContainer />
     </div>
   </div>
 )
