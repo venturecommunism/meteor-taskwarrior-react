@@ -3,8 +3,8 @@ import React from 'react';
 import Container from '../../core/containers/newcontainer'
 import Feed from './feed.jsx'
 
-import MainComponent from './maincomponent.jsx'
-const DataContainer = Container('maincomponent', MainComponent)
+import MainComponent from './1data.jsx'
+const DataContainer = Container('data', MainComponent)
 
 import CreateTask from './createtask.jsx'
 const CreateTaskContainer = Container('createtask', CreateTask)
