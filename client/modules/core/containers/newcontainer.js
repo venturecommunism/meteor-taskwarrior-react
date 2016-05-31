@@ -1,3 +1,4 @@
+import feed from '../../bfeed/actions/feed'
 import filterprojects from '../../bfeed/actions/filterprojects'
 
 import { composeWithTracker, composeAll } from 'mantra-core'
@@ -34,12 +35,23 @@ const collectionComposer = ({ context, query, err }, onData) => {
   if (Meteor.subscribe('feed', fields, runselector, pubsort, limit).ready()) {
     const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
 
+    console.log("data", data)
+
+    var feedsubcollection = feed.query().collection
+    var feedsubconnection = feed.query().subconnection
+    var feedsubselector = feed.query().selector
+    var feedrunsubselector = feedsubselector()
+    var feedsubsubsort = feed.query().subsort
+    data.feed = Mongo.Collection.get(feedsubcollection, { connection: feedsubconnection }).find(feedrunsubselector, {sort: feedsubsubsort}).fetch()
+
+    console.log(data.feed)
+
     var subcollection = filterprojects.query().collection
     var subconnection = filterprojects.query().subconnection
     var subselector = filterprojects.query().selector
     var runsubselector = subselector()
     var subsubsort = filterprojects.query().subsort
-    data.filterprojects = Mongo.Collection.get(subcollection, { connection: subconnection }).find(runsubselector, {sort: subsubsort}).fetch()
+    data.feed.filterprojects = Mongo.Collection.get(subcollection, { connection: subconnection }).find(runsubselector, {sort: subsubsort}).fetch()
 
     //console.log('Connection', connection)
     //console.log('Collection', collection)
