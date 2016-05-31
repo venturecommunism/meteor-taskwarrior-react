@@ -1,4 +1,8 @@
 import feed from '../../bfeed/actions/feed'
+import sidebar from '../../bfeed/actions/sidebar'
+import calendar from '../../bfeed/actions/calendar'
+import overdue from '../../bfeed/actions/overdue'
+import previouscalendar from '../../bfeed/actions/previouscalendar'
 import filterprojects from '../../bfeed/actions/filterprojects'
 
 import { composeWithTracker, composeAll } from 'mantra-core'
@@ -44,7 +48,33 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var feedsubsubsort = feed.query().subsort
     data.feed = Mongo.Collection.get(feedsubcollection, { connection: feedsubconnection }).find(feedrunsubselector, {sort: feedsubsubsort}).fetch()
 
-    console.log(data.feed)
+    var calendarsubcollection = calendar.query().collection
+    var calendarsubconnection = calendar.query().subconnection
+    var calendarsubselector = calendar.query().selector
+    var calendarrunsubselector = calendarsubselector()
+    var calendarsubsubsort = calendar.query().subsort
+    data.calendar = Mongo.Collection.get(calendarsubcollection, { connection: calendarsubconnection }).find(calendarrunsubselector, {sort: calendarsubsubsort}).fetch()
+
+    var overduesubcollection = overdue.query().collection
+    var overduesubconnection = overdue.query().subconnection
+    var overduesubselector = overdue.query().selector
+    var overduerunsubselector = overduesubselector()
+    var overduesubsubsort = overdue.query().subsort
+    data.overdue = Mongo.Collection.get(overduesubcollection, { connection: overduesubconnection }).find(overduerunsubselector, {sort: overduesubsubsort}).fetch()
+
+    var previouscalendarsubcollection = previouscalendar.query().collection
+    var previouscalendarsubconnection = previouscalendar.query().subconnection
+    var previouscalendarsubselector = previouscalendar.query().selector
+    var previouscalendarrunsubselector = previouscalendarsubselector()
+    var previouscalendarsubsubsort = previouscalendar.query().subsort
+    data.previouscalendar = Mongo.Collection.get(previouscalendarsubcollection, { connection: previouscalendarsubconnection }).find(previouscalendarrunsubselector, {sort: previouscalendarsubsubsort}).fetch()
+
+    var sidebarsubcollection = sidebar.query().collection
+    var sidebarsubconnection = sidebar.query().subconnection
+    var sidebarsubselector = sidebar.query().selector
+    var sidebarrunsubselector = sidebarsubselector()
+    var sidebarsubsubsort = sidebar.query().subsort
+    data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
 
     var subcollection = filterprojects.query().collection
     var subconnection = filterprojects.query().subconnection
