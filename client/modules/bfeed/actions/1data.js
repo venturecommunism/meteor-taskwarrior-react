@@ -71,7 +71,8 @@ export default {
       }
 
       //sweetAlert("query.feedquery.project", query.feedquery.project)
-      return query.feedquery
+      query = {$or: [query.feedquery, query.filtprojquery, query.projectsquery]}
+      return query
     }
 
     return {

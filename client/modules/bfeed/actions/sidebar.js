@@ -119,7 +119,7 @@ export default {
     })
   },
   clearFilters() {
-    FlowRouter.go('/feed')
+    FlowRouter.go('/bfeed')
   },
   filterAllProjects() {
     var currentState = FlowRouter.getQueryParam('type')
