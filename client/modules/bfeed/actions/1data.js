@@ -76,14 +76,81 @@ export default {
     }
 
     return {
-      name: 'feed',
       connection: null,
-      collection: 'tasks',
-      selector: selector,
-      pubsort: {created: -1},
-      subsort: {created: -1},
-      limit: { tasks: 10000 },
-    }
+      queries: [{
+        collection: 'tasks',
+        query: {
+          selector: selector,
+          pubsort: {created: -1},
+          subsort: {created: -1},
+          limit: 10000,
+          fields: {
+            _id: true,
+            description: true,
+            uuid: true,
+            status: true,
+            entry: true,
+            likecount: true,
+            taskcommentcount: true,
+            username: true,
+            created: true,
+            owner: true,
+            type: true,
+            workflow: true,
+            project: true,
+            due: true,
+          },
+        }
+      },{
+        collection: 'tasksbacklog',
+        query: {
+          selector: selector,
+          pubsort: {created: -1},
+          subsort: {created: 1},
+          limit: 10000,
+          fields: {
+            _id: true,
+            description: true,
+            uuid: true,
+            status: true,
+            entry: true,
+            likecount: true,
+            taskcommentcount: true,
+            username: true,
+            created: true,
+            owner: true,
+            type: true,
+            workflow: true,
+            project: true,
+            due: true,
+          },
+        },
+      },{
+        collection: 'taskspending',
+        query: {
+          selector: selector,
+          pubsort: {created: -1},
+          subsort: {created: 1},
+          limit: 10000,
+          fields: {
+            _id: true,
+            description: true,
+            uuid: true,
+            status: true,
+            entry: true,
+            likecount: true,
+            taskcommentcount: true,
+            username: true,
+            created: true,
+            owner: true,
+            type: true,
+            workflow: true,
+            project: true,
+            due: true,
+          },
+        },
+      }
+    ]}
   },
 }
 

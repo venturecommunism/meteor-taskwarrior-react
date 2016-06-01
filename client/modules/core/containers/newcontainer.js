@@ -14,8 +14,9 @@ const collectionComposer = ({ context, query, err }, onData) => {
 
   const error = err ? LocalState.get(err().errortype) : null
 
-  const { connection, collection, selector, pubsort, subsort, limit } = query()
-  var runselector = selector()
+//  const { connection, collection, selector, pubsort, subsort, limit } = query()
+  const { queries } = query()
+//  var runselector = selector()
 
   const fields = {
     tasks: {
@@ -36,7 +37,16 @@ const collectionComposer = ({ context, query, err }, onData) => {
     },
   }
 
-  if (Meteor.subscribe('feed', fields, runselector, pubsort, limit).ready()) {
+console.log("queries", queries)
+
+queries.forEach(function (query) {
+console.log(query)
+query.query.selector = query.query.selector()
+//  queries.queries.query.selector = query.selector()
+})
+
+  if (Meteor.subscribe('newfeed', queries).ready()) {
+console.log("yo")
     const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
 
     console.log("data", data)
