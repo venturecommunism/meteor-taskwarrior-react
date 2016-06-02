@@ -1,7 +1,16 @@
 export default {
   query() {
 
-    function selector() {
+  function taskspendingselector() {
+    return {}
+  }
+
+  function tasksbacklogselector() {
+     return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
+  }
+
+
+    function tasksselector() {
       // get the URL contents
       var queryParams = FlowRouter.current().queryParams
       //sweetAlert("queryParams", queryParams)
@@ -80,7 +89,7 @@ export default {
       queries: [{
         collection: 'tasks',
         query: {
-          selector: selector,
+          selector: tasksselector,
           pubsort: {created: -1},
           subsort: {created: -1},
           limit: 10000,
@@ -104,7 +113,7 @@ export default {
       },{
         collection: 'tasksbacklog',
         query: {
-          selector: selector,
+          selector: tasksbacklogselector,
           pubsort: {created: -1},
           subsort: {created: 1},
           limit: 10000,
@@ -128,10 +137,10 @@ export default {
       },{
         collection: 'taskspending',
         query: {
-          selector: selector,
+          selector: taskspendingselector,
           pubsort: {created: -1},
           subsort: {created: 1},
-          limit: 10000,
+          limit: 80,
           fields: {
             _id: true,
             description: true,
