@@ -94,6 +94,8 @@ console.log(subcollection)
     var runsubselector = subselector()
     var subsubsort = filterprojects.query().subsort
     data.feed.filterprojects = Mongo.Collection.get(subcollection, { connection: subconnection }).find(runsubselector, {sort: subsubsort}).fetch()
+data.previouscalendar.filterprojects = data.feed.filterprojects
+data.overdue.filterprojects = data.feed.filterprojects
 console.log("data.feed", data.feed)
 console.log("data.feed.filterprojects", data.feed.filterprojects)
 
