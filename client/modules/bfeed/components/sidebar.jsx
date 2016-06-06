@@ -1,12 +1,12 @@
 import React from 'react'
 
-import Container from '../../core/containers/container'
+import ActionsMapper from '../../core/containers/actionsmapper'
 
 import Button from './button.jsx'
-const UpOneContainer = Container('parentprojectorcontext', Button)
+const UpOneContainer = ActionsMapper('parentprojectorcontext', Button)
 
 import SimpleFeed from './simplefeed.jsx'
-const CurrentProjOrContContainer = Container('projectselector', SimpleFeed)
+const CurrentProjOrContContainer = ActionsMapper('projectselector', SimpleFeed)
 
 export default ({data, actions }) => (
   <div className='params-example'>
@@ -32,9 +32,9 @@ export default ({data, actions }) => (
 
     <br /><br />
 
-    <UpOneContainer />
+    <UpOneContainer data={data} />
 
-    <CurrentProjOrContContainer />
+    <CurrentProjOrContContainer data={data} />
 
     <ul>
       {data.map(task => (

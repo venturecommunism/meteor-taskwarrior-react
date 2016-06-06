@@ -14,9 +14,9 @@ const collectionComposer = ({ context, query, err }, onData) => {
 
   const error = err ? LocalState.get(err().errortype) : null
 
-//  const { connection, collection, selector, pubsort, subsort, limit } = query()
+  //const { connection, collection, selector, pubsort, subsort, limit } = query()
   const { queries } = query()
-//  var runselector = selector()
+  //var runselector = selector()
 
   const fields = {
     tasks: {
@@ -37,20 +37,13 @@ const collectionComposer = ({ context, query, err }, onData) => {
     },
   }
 
-console.log("queries", queries)
-
-queries.forEach(function (query) {
-console.log(query)
-query.query.selector = query.query.selector()
-//  queries.queries.query.selector = query.selector()
-})
+  queries.forEach(function (query) {
+    query.query.selector = query.query.selector()
+  })
 
   if (Meteor.subscribe('newfeed', queries).ready()) {
-console.log("yo")
-//    const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
+    //const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
     const data = {}
-
-    console.log("data", data)
 
     var feedsubcollection = feed.query().collection
     var feedsubconnection = feed.query().subconnection
@@ -88,17 +81,15 @@ console.log("yo")
     data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
 
     var subcollection = filterprojects.query().collection
-console.log(subcollection)
     var subconnection = filterprojects.query().subconnection
     var subselector = filterprojects.query().selector
     var runsubselector = subselector()
     var subsubsort = filterprojects.query().subsort
+    
     data.feed.filterprojects = Mongo.Collection.get(subcollection, { connection: subconnection }).find(runsubselector, {sort: subsubsort}).fetch()
-data.previouscalendar.filterprojects = data.feed.filterprojects
-data.overdue.filterprojects = data.feed.filterprojects
-console.log("data.feed", data.feed)
-console.log("data.feed.filterprojects", data.feed.filterprojects)
-
+    data.previouscalendar.filterprojects = data.feed.filterprojects
+    data.overdue.filterprojects = data.feed.filterprojects
+    data.calendar.filterprojects = data.feed.filterprojects
 
     //console.log('Connection', connection)
     //console.log('Collection', collection)

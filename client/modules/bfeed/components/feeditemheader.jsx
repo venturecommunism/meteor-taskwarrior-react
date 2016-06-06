@@ -1,8 +1,8 @@
 import React from 'react'
 
 import ProjCont from './projorcont.jsx'
-import Container from '../../core/containers/container'
-const ProjContContainer = Container('projorcont', ProjCont)
+import ActionsMapper from '../../core/containers/actionsmapper'
+const ProjContContainer = ActionsMapper('projorcont', ProjCont)
 
 export default ({data}) => (
   <div className="feed-item__header">

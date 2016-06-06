@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Container from '../../core/containers/container'
+import ActionsMapper from '../../core/containers/actionsmapper'
 
 import Button from './button.jsx'
-const ButtonContainer = Container('projectselector', Button)
+const ButtonContainer = ActionsMapper('projectselector', Button)
 
 export default ({taskid, data, actions}) => (
   <div>
@@ -11,7 +11,7 @@ export default ({taskid, data, actions}) => (
     {data.map(project => (
       <li id={project._id} key={project._id} onClick={ actions.assignProject } >{project.description}</li>
     ))}
-    <span style={{color:'red'}}><li><ButtonContainer buttontext="Settle here" /></li></span>
+    <span style={{color:'red'}}><li><ButtonContainer data={taskid} buttontext="Settle here" /></li></span>
   </ul>
   </div>
 )

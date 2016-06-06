@@ -1,15 +1,12 @@
 export default {
   query() {
-
-  function taskspendingselector() {
-    return {}
-  }
-
-  function tasksbacklogselector() {
-     return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
-  }
-
-
+    function taskspendingselector() {
+      var now = formattedNow()
+      return { due: {$exists: 1} }
+    }
+    function tasksbacklogselector() {
+      return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
+    }
     function tasksselector() {
       // get the URL contents
       var queryParams = FlowRouter.current().queryParams
