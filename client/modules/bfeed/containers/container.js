@@ -4,6 +4,7 @@ import calendar from '../../bfeed/actions/calendar'
 import overdue from '../../bfeed/actions/overdue'
 import previouscalendar from '../../bfeed/actions/previouscalendar'
 import filterprojects from '../../bfeed/actions/filterprojects'
+import currentprojorcont from '../../bfeed/actions/currentprojorcont'
 
 import { composeWithTracker, composeAll } from 'mantra-core'
 import { useDeps } from '/lib/helpers/usedeps'
@@ -44,6 +45,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var overduerunsubselector = overduesubselector()
     var overduesubsubsort = overdue.query().subsort
     data.overdue = Mongo.Collection.get(overduesubcollection, { connection: overduesubconnection }).find(overduerunsubselector, {sort: overduesubsubsort}).fetch()
+console.log(data.overdue)
 
     var previouscalendarsubcollection = previouscalendar.query().collection
     var previouscalendarsubconnection = previouscalendar.query().subconnection
@@ -58,6 +60,16 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var sidebarrunsubselector = sidebarsubselector()
     var sidebarsubsubsort = sidebar.query().subsort
     data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
+
+    var currsubcollection = currentprojorcont.query().collection
+    var currsubconnection = currentprojorcont.query().connection
+    var currsubselector = currentprojorcont.query().selector
+    var currrunsubselector = currsubselector()
+console.log(currrunsubselector)
+    var currsubsubsort = currentprojorcont.query().subsort
+    data.sidebar.currentprojorcont = Mongo.Collection.get(currsubcollection, { connection: currsubconnection }).find(currrunsubselector, {sort: currsubsubsort}).fetch()
+//    data.sidebar.currentprojorcont = Mongo.Collection.get('tasks').find({}).fetch()
+console.log(data.sidebar.currentprojorcont)
 
     var subcollection = filterprojects.query().collection
     var subconnection = filterprojects.query().subconnection

@@ -34,7 +34,7 @@ export default ({data, actions }) => (
 
     <UpOneContainer data={data} />
 
-    <CurrentProjOrContContainer data={data} />
+    <CurrentProjOrContContainer data={data.currentprojorcont} />
 
     <ul>
       {data.map(task => (

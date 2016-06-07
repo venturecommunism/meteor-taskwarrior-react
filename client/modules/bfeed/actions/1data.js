@@ -17,6 +17,7 @@ export default {
       query.feedquery = {}
       query.projectsquery = {}
       query.filtprojquery = {}
+      query.allprojectsandcontexts = {type: {$in: ["project", "context"]}}
 
       switch (JSON.stringify(queryParams)) {
         case "{}":
@@ -77,7 +78,7 @@ export default {
       }
 
       //sweetAlert("query.feedquery.project", query.feedquery.project)
-      query = {$or: [query.feedquery, query.filtprojquery, query.projectsquery]}
+      query = {$or: [query.feedquery, query.filtprojquery, query.projectsquery, query.allprojectsandcontexts]}
       return query
     }
 
