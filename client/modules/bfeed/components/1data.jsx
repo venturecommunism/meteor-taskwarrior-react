@@ -21,7 +21,7 @@ const CalendarContainer = ActionsMapper('calendar', Feed)
 export default ({...queryParams, data, actions}) => (
   <div className="row">
     <div className="col-md-3" style={{"backgroundColor": "gray"}}>
-      <SideBarContainer data={data.sidebar} />
+      <SideBarContainer {...queryParams} data={data.sidebar} />
     </div>
     <div className="col-md-9">
       <PreviousCalendarContainer data={data.previouscalendar} />

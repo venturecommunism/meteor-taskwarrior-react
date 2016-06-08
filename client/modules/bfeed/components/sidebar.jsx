@@ -8,7 +8,7 @@ const UpOneContainer = ActionsMapper('parentprojectorcontext', Button)
 import SimpleFeed from './simplefeed.jsx'
 const CurrentProjOrContContainer = ActionsMapper('projectselector', SimpleFeed)
 
-export default ({data, actions }) => (
+export default ({...queryParams, data, actions }) => (
   <div className='params-example'>
     <button className={ actions.flags().clearall } onClick={ actions.clearFilters }>
       Inbox
@@ -32,7 +32,7 @@ export default ({data, actions }) => (
 
     <br /><br />
 
-    <UpOneContainer data={data} />
+    <UpOneContainer {...queryParams} />
 
     <CurrentProjOrContContainer data={data.currentprojorcont} />
 
