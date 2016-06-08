@@ -1,3 +1,5 @@
+Subscriptions = new SubsManager()
+
 import feed from '../../bfeed/actions/feed'
 import sidebar from '../../bfeed/actions/sidebar'
 import calendar from '../../bfeed/actions/calendar'
@@ -21,7 +23,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
     query.query.selector = query.query.selector()
   })
 
-  if (Meteor.subscribe('newfeed', queries).ready()) {
+  if (Subscriptions.subscribe('newfeed', queries).ready()) {
     //const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
     const data = {}
 
