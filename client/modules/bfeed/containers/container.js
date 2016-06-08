@@ -39,14 +39,16 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var calendarsubselector = calendar.query().selector
     var calendarrunsubselector = calendarsubselector()
     var calendarsubsubsort = calendar.query().subsort
-    data.calendar = Mongo.Collection.get(calendarsubcollection, { connection: calendarsubconnection }).find(calendarrunsubselector, {sort: calendarsubsubsort}).fetch()
+    var calendarlimit = calendar.query().limit
+    data.calendar = Mongo.Collection.get(calendarsubcollection, { connection: calendarsubconnection }).find(calendarrunsubselector, {sort: calendarsubsubsort, limit: calendarlimit}).fetch()
 
     var overduesubcollection = overdue.query().collection
     var overduesubconnection = overdue.query().subconnection
     var overduesubselector = overdue.query().selector
     var overduerunsubselector = overduesubselector()
     var overduesubsubsort = overdue.query().subsort
-    data.overdue = Mongo.Collection.get(overduesubcollection, { connection: overduesubconnection }).find(overduerunsubselector, {sort: overduesubsubsort}).fetch()
+    var overduelimit = overdue.query().limit
+    data.overdue = Mongo.Collection.get(overduesubcollection, { connection: overduesubconnection }).find(overduerunsubselector, {sort: overduesubsubsort, limit: overduelimit}).fetch()
 console.log(data.overdue)
 
     var previouscalendarsubcollection = previouscalendar.query().collection
@@ -54,7 +56,8 @@ console.log(data.overdue)
     var previouscalendarsubselector = previouscalendar.query().selector
     var previouscalendarrunsubselector = previouscalendarsubselector()
     var previouscalendarsubsubsort = previouscalendar.query().subsort
-    data.previouscalendar = Mongo.Collection.get(previouscalendarsubcollection, { connection: previouscalendarsubconnection }).find(previouscalendarrunsubselector, {sort: previouscalendarsubsubsort}).fetch()
+    var previouscalendarlimit = previouscalendar.query().limit
+    data.previouscalendar = Mongo.Collection.get(previouscalendarsubcollection, { connection: previouscalendarsubconnection }).find(previouscalendarrunsubselector, {sort: previouscalendarsubsubsort, limit: previouscalendarlimit}).fetch()
 
     var sidebarsubcollection = sidebar.query().collection
     var sidebarsubconnection = sidebar.query().subconnection

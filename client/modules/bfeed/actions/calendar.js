@@ -17,7 +17,7 @@ export default {
       selector: selector,
       pubsort: {due: -1},
       subsort: {due: 1},
-      limit: { taskspending: 100000 },
+      limit: 1,
     }
   },
 }

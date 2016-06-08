@@ -24,10 +24,10 @@ export default ({...queryParams, data, actions}) => (
       <SideBarContainer {...queryParams} data={data.sidebar} />
     </div>
     <div className="col-md-9">
-      <PreviousCalendarContainer data={data.previouscalendar} />
-      <OverDueContainer data={data.overdue} />
-      <FeedContainer data={data.feed} />
-      <CalendarContainer data={data.calendar} />
+      <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} />
+      <OverDueContainer title="Overdue Calendar" data={data.overdue} />
+      <FeedContainer title="Main Feed" data={data.feed} />
+      <CalendarContainer title="Upcoming Calendar" data={data.calendar} />
       <CreateTaskContainer />
     </div>
   </div>

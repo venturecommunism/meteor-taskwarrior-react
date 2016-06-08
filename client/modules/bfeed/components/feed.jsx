@@ -8,9 +8,9 @@ import ProjectSelector from './projectselector.jsx'
 const ProjectSelectorContainer = ActionsMapper('filterprojects', ProjectSelector)
 //ProjectSelector used to be wrapped in a standard container with 'filterprojects' as an argument
 
-export default ({data}) => (
+export default ({data, title}) => (
   <div className='feed-wrapper'>
-    <h3>Tasks collection</h3>
+    <h3>{title}</h3>
     <ul>
       {data.map(task => (
         <li key={task._id}>
