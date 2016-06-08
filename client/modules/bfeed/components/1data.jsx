@@ -18,7 +18,7 @@ const OverDueContainer = ActionsMapper('overdue', Feed)
 
 const CalendarContainer = ActionsMapper('calendar', Feed)
 
-export default ({data, actions}) => (
+export default ({...queryParams, data, actions}) => (
   <div className="row">
     <div className="col-md-3" style={{"backgroundColor": "gray"}}>
       <SideBarContainer data={data.sidebar} />
