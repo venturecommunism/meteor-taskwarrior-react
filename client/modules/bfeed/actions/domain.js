@@ -1,4 +1,4 @@
-import { tasks } from '/lib/collections/collections'
+import { taskspending } from '/lib/collections/collections'
 import { Meteor } from 'meteor/meteor'
 
 const FeedDomain = {
@@ -8,7 +8,7 @@ const FeedDomain = {
   upprojorcont() {
     var queryParams = FlowRouter.current().queryParams
     var id = queryParams.projects
-    var projectprojorcont = tasks.findOne({ project: {$exists: 1}, _id: id})
+    var projectprojorcont = taskspending.findOne({ project: {$exists: 1}, _id: id})
     var projectid = projectprojorcont ? projectprojorcont.project : null
     FlowRouter.setQueryParams({ projects: projectid })
     //sweetAlert("project", projectid)

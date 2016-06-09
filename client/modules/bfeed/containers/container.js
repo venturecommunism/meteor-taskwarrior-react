@@ -24,7 +24,6 @@ const collectionComposer = ({ context, query, err }, onData) => {
   })
 
   if (Subscriptions.subscribe('newfeed', queries).ready()) {
-    //const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
     const data = {}
 
     var feedsubcollection = feed.query().collection
@@ -33,6 +32,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var feedrunsubselector = feedsubselector()
     var feedsubsubsort = feed.query().subsort
     data.feed = Mongo.Collection.get(feedsubcollection, { connection: feedsubconnection }).find(feedrunsubselector, {sort: feedsubsubsort}).fetch()
+    //if (data.feed) { sweetAlert("feed exists") }
 
     var calendarsubcollection = calendar.query().collection
     var calendarsubconnection = calendar.query().subconnection
@@ -41,6 +41,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var calendarsubsubsort = calendar.query().subsort
     var calendarlimit = calendar.query().limit
     data.calendar = Mongo.Collection.get(calendarsubcollection, { connection: calendarsubconnection }).find(calendarrunsubselector, {sort: calendarsubsubsort, limit: calendarlimit}).fetch()
+    //if (data.calendar) { sweetAlert("calendar exists") }
 
     var overduesubcollection = overdue.query().collection
     var overduesubconnection = overdue.query().subconnection
@@ -49,7 +50,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var overduesubsubsort = overdue.query().subsort
     var overduelimit = overdue.query().limit
     data.overdue = Mongo.Collection.get(overduesubcollection, { connection: overduesubconnection }).find(overduerunsubselector, {sort: overduesubsubsort, limit: overduelimit}).fetch()
-console.log(data.overdue)
+    //if (data.overdue) { sweetAlert("overdue exists") }
 
     var previouscalendarsubcollection = previouscalendar.query().collection
     var previouscalendarsubconnection = previouscalendar.query().subconnection
@@ -58,23 +59,26 @@ console.log(data.overdue)
     var previouscalendarsubsubsort = previouscalendar.query().subsort
     var previouscalendarlimit = previouscalendar.query().limit
     data.previouscalendar = Mongo.Collection.get(previouscalendarsubcollection, { connection: previouscalendarsubconnection }).find(previouscalendarrunsubselector, {sort: previouscalendarsubsubsort, limit: previouscalendarlimit}).fetch()
+    //if (data.previouscalendar) { sweetAlert("previous exists") }
 
     var sidebarsubcollection = sidebar.query().collection
     var sidebarsubconnection = sidebar.query().subconnection
     var sidebarsubselector = sidebar.query().selector
     var sidebarrunsubselector = sidebarsubselector()
+
     var sidebarsubsubsort = sidebar.query().subsort
-    data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
+//    data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
+data.sidebar = Mongo.Collection.get('taskspending').find({}).fetch()
+console.log(data.sidebar)
+    //if (data.sidebar) { sweetAlert("side exists") }
 
     var currsubcollection = currentprojorcont.query().collection
     var currsubconnection = currentprojorcont.query().connection
     var currsubselector = currentprojorcont.query().selector
     var currrunsubselector = currsubselector()
-console.log(currrunsubselector)
     var currsubsubsort = currentprojorcont.query().subsort
     data.sidebar.currentprojorcont = Mongo.Collection.get(currsubcollection, { connection: currsubconnection }).find(currrunsubselector, {sort: currsubsubsort}).fetch()
-//    data.sidebar.currentprojorcont = Mongo.Collection.get('tasks').find({}).fetch()
-console.log(data.sidebar.currentprojorcont)
+    //if (data.sidebar.currentprojorcont) { sweetAlert("currprojcont exists") }
 
     var subcollection = filterprojects.query().collection
     var subconnection = filterprojects.query().subconnection

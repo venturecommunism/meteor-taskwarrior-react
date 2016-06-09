@@ -20,9 +20,6 @@ export function bfeedSidebarReducer(state = initialState, action = {}) {
 }
 
 export default {
-  name() {
-    return 'sidebar'
-  },
   query() {
 
   function selector() {
@@ -59,42 +56,12 @@ export default {
     return {
       name: 'sidebar',
       connection: null,
-      collection: 'tasks',
+      collection: 'taskspending',
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
-      limit: { tasks: 10000 },
+      limit: { taskspending: 10000 },
     }
-  },
-  selector() {
-
-    // get the URL contents
-    var queryParams = FlowRouter.current().queryParams
-    //sweetAlert("queryParams", queryParams)
-    //sweetAlert("queryParams.projects", queryParams.projects)
-
-    var query = {}
-
-    switch (JSON.stringify(queryParams)) {
-      case "{}":
-        //sweetAlert("case", "{}")
-        query = { type : 'project', project: {$exists: 0} }
-        break
-      default:
-        query = { type: 'project', project: { $exists: 0} }
-    }
-
-    switch (Boolean(queryParams.projects && queryParams.type)) {
-      case (false):
-        break
-      default:
-        var project = queryParams.projects
-        var type = queryParams.type
-        query = { type: type, project: project }
-    }
-
-    //sweetAlert("query.feedquery.project", query.feedquery.project)
-    return query
   },
   buttontext() {
     return "Default button text"

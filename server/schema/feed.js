@@ -2,9 +2,9 @@ export const feed = `
 
 type RootQuery {
   _id: String
-  @context: String
-  @type: String
-  @id: String
+  __context: String
+  __type: String
+  __id: String
   created: String
   username: String
   entry: String

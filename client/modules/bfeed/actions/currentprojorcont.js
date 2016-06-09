@@ -11,7 +11,7 @@ export default {
     return {
       name: 'currentprojorcont',
       connection: null,
-      collection: 'tasks',
+      collection: 'taskspending',
       selector: selector,
       pubsort: {due: -1},
       subsort: {due: 1},

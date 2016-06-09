@@ -78,11 +78,11 @@ export default {
     return {
       name: 'filterprojects',
       connection: null,
-      collection: 'tasks',
+      collection: 'taskspending',
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
-      limit: { tasks: 10000 },
+      limit: { taskspending: 10000 },
     }
   },
   selector() {

@@ -80,7 +80,7 @@ export default {
     return {
       name: 'feed',
       connection: null,
-      collection: 'tasks',
+      collection: 'taskspending',
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
