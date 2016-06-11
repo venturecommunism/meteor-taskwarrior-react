@@ -1,18 +1,18 @@
-export const SELECT_PROJECT = 'bfeed/SELECT_PROJECT'
+export const SELECT_PROJECTORCONTEXT = 'bfeed/SELECT_PROJECTORCONTEXT'
 
 const initialState = {
   inboxIsOpened: true,
   atTopLevel: true,
   taskMode: 'definework',
-  selectedProject: undefined,
+  selectedProjectOrContext: undefined,
 }
 
 export function bfeedSidebarReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SELECT_PROJECT:
+    case SELECT_PROJECTORCONTEXT:
       return {
         ...state,
-        selectedProject: action.selectedProject,
+        selectedProjectOrContext: action.selectedProjectOrContext,
       }
     default:
       return state
@@ -49,6 +49,21 @@ export default {
         query = { type: type, project: project }
     }
 
+    switch (Boolean(queryParams.contexts && queryParams.type)) {
+      case (false):
+        break
+      default:
+        var context = queryParams.contexts
+        var type = queryParams.type
+        query = { type: type, context: context }
+    }
+
+    switch (queryParams.type) {
+      case "context":
+        query.type = 'context'
+        break
+    }
+
     //sweetAlert("query.feedquery.project", query.feedquery.project)
     return query
   }
@@ -76,13 +91,17 @@ export default {
     paramsflags.clearall = (JSON.stringify(queryParams) == '{}' ) ? 'blueflag' : null
     return paramsflags
   },
-  selectedProject({ context, Store }, e) {
+  selectedProjectOrContext({ context, Store }, e) {
     var id = e.target.id
-    FlowRouter.setQueryParams({ projects: id, type: 'project' })
+    if (FlowRouter.getQueryParam('type') == 'project') {
+      FlowRouter.setQueryParams({ projects: id, type: 'project' })
+    } else {
+      FlowRouter.setQueryParams({ contexts: id, type: 'context' })
+    }
 
     Store.dispatch({
-      type: SELECT_PROJECT,
-      selectedProject: id
+      type: SELECT_PROJECTORCONTEXT,
+      selectedProjectOrContext: id
     })
   },
   clearFilters() {

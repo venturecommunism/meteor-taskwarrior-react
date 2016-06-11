@@ -40,7 +40,7 @@ export default ({...queryParams, data, actions }) => (
       {data.map(task => (
         <li key={task._id}>
           <div className='feed-item'>
-            <div className='feed-item-description' onClick={ actions.selectedProject }>
+            <div className='feed-item-description' onClick={ actions.selectedProjectOrContext }>
               <span id={task._id} style={{ color: 'red', }}>{task.description}</span>
             </div>
             <div className='feed-item-entry'>

@@ -2,7 +2,12 @@ export default {
   query() {
 
     var queryParams = FlowRouter.current().queryParams
-    var id = queryParams.projects
+    if (FlowRouter.getQueryParam('type') == 'project') {
+      var id = queryParams.projects
+    }
+    else {
+       var id = queryParams.contexts
+    }
 
     function selector() {
       return {_id: id}

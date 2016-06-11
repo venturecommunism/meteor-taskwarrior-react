@@ -7,10 +7,17 @@ const FeedDomain = {
 
   upprojorcont() {
     var queryParams = FlowRouter.current().queryParams
-    var id = queryParams.projects
-    var projectprojorcont = taskspending.findOne({ project: {$exists: 1}, _id: id})
-    var projectid = projectprojorcont ? projectprojorcont.project : null
-    FlowRouter.setQueryParams({ projects: projectid })
+    if (FlowRouter.getQueryParam('type') == 'project') {
+      var id = queryParams.projects
+      var projectprojorcont = taskspending.findOne({ project: {$exists: 1}, _id: id})
+      var projectid = projectprojorcont ? projectprojorcont.project : null
+      FlowRouter.setQueryParams({ projects: projectid })
+    } else if (FlowRouter.getQueryParam('type') == 'context') {
+      var id = queryParams.contexts
+      var projectprojorcont = taskspending.findOne({ context: {$exists: 1}, _id: id})
+      var contextid = projectprojorcont ? projectprojorcont.context : null
+      FlowRouter.setQueryParams({ contexts: contextid })
+    }
     //sweetAlert("project", projectid)
   },
 
