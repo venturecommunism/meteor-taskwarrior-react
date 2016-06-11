@@ -65,11 +65,8 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var sidebarsubconnection = sidebar.query().subconnection
     var sidebarsubselector = sidebar.query().selector
     var sidebarrunsubselector = sidebarsubselector()
-
     var sidebarsubsubsort = sidebar.query().subsort
-//    data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
-data.sidebar = Mongo.Collection.get('taskspending').find({}).fetch()
-console.log(data.sidebar)
+    data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
     //if (data.sidebar) { sweetAlert("side exists") }
 
     var currsubcollection = currentprojorcont.query().collection
