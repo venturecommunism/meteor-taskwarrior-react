@@ -93,7 +93,7 @@ export default {
   },
   selectedProjectOrContext({ context, Store }, e) {
     var id = e.target.id
-    if (FlowRouter.getQueryParam('type') == 'project') {
+    if (FlowRouter.getQueryParam('type') == 'project' || !FlowRouter.getQueryParam('type')) {
       FlowRouter.setQueryParams({ projects: id, type: 'project' })
     } else {
       FlowRouter.setQueryParams({ contexts: id, type: 'context' })

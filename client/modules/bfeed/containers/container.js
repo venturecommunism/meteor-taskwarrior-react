@@ -84,9 +84,9 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var subsubsort = filterprojects.query().subsort
     
     data.feed.filterprojects = Mongo.Collection.get(subcollection, { connection: subconnection }).find(runsubselector, {sort: subsubsort}).fetch()
-    data.previouscalendar.filterprojects = data.feed.filterprojects
-    data.overdue.filterprojects = data.feed.filterprojects
-    data.calendar.filterprojects = data.feed.filterprojects
+    data.previouscalendar.filterprojects = []
+    data.overdue.filterprojects = []
+    data.calendar.filterprojects = []
 
     //console.log('Connection', connection)
     //console.log('Collection', collection)
