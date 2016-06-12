@@ -29,16 +29,7 @@ export default {
     //sweetAlert("queryParams", queryParams)
     //sweetAlert("queryParams.projects", queryParams.projects)
 
-    var query = {}
-
-    switch (JSON.stringify(queryParams)) {
-      case "{}":
-        //sweetAlert("case", "{}")
-        query = { type : 'project', project: {$exists: 0} }
-        break
-      default:
-        query = { type: 'project', project: { $exists: 0} }
-    }
+    var query = { project: {$exists: 0}, workflow: "/tw-ui/3.projectselected" }
 
     switch (Boolean(queryParams.projects && queryParams.type)) {
       case (false):
