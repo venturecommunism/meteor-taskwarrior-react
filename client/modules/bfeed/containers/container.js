@@ -2,6 +2,9 @@ Subscriptions = new SubsManager()
 
 import feed from '../../bfeed/actions/feed'
 import sidebar from '../../bfeed/actions/sidebar'
+import inbox from '../../bfeed/actions/inbox'
+import projectinbox from '../../bfeed/actions/projectinbox'
+import contextinbox from '../../bfeed/actions/contextinbox'
 import calendar from '../../bfeed/actions/calendar'
 import overdue from '../../bfeed/actions/overdue'
 import previouscalendar from '../../bfeed/actions/previouscalendar'
@@ -33,6 +36,30 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var feedsubsubsort = feed.query().subsort
     data.feed = Mongo.Collection.get(feedsubcollection, { connection: feedsubconnection }).find(feedrunsubselector, {sort: feedsubsubsort}).fetch()
     //if (data.feed) { sweetAlert("feed exists") }
+
+    var inboxsubcollection = inbox.query().collection
+    var inboxsubconnection = inbox.query().subconnection
+    var inboxsubselector = inbox.query().selector
+    var inboxrunsubselector = inboxsubselector()
+    var inboxsubsubsort = inbox.query().subsort
+    data.inbox = Mongo.Collection.get(inboxsubcollection, { connection: inboxsubconnection }).find(inboxrunsubselector, {sort: inboxsubsubsort}).fetch()
+    //if (data.inbox) { sweetAlert("inbox exists", data.inbox) }
+
+    var component = projectinbox
+    var collection = component.query().collection
+    var connection = component.query().subconnection
+    var selector = component.query().selector()
+    var sort = component.query().subsort
+    data.projectinbox = Mongo.Collection.get(collection, { connection: connection }).find(selector, {sort: sort}).fetch()
+    //if (data.projectinbox) { sweetAlert("projectinbox exists", data.projectinbox) }
+
+    var component = contextinbox
+    var collection = component.query().collection
+    var connection = component.query().subconnection
+    var selector = component.query().selector()
+    var sort = component.query().subsort
+    data.contextinbox = Mongo.Collection.get(collection, { connection: connection }).find(selector, {sort: sort}).fetch()
+    //if (data.contextinbox) { sweetAlert("contextinbox exists", data.contextinbox) }
 
     var calendarsubcollection = calendar.query().collection
     var calendarsubconnection = calendar.query().subconnection
@@ -67,7 +94,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var sidebarrunsubselector = sidebarsubselector()
     var sidebarsubsubsort = sidebar.query().subsort
     data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
-    //if (data.sidebar) { sweetAlert("side exists") }
+    //if (data.sidebar) { sweetAlert("side exists", JSON.stringify(sidebarrunsubselector)) }
 
     var currsubcollection = currentprojorcont.query().collection
     var currsubconnection = currentprojorcont.query().connection
@@ -84,6 +111,9 @@ const collectionComposer = ({ context, query, err }, onData) => {
     var subsubsort = filterprojects.query().subsort
     
     data.feed.filterprojects = Mongo.Collection.get(subcollection, { connection: subconnection }).find(runsubselector, {sort: subsubsort}).fetch()
+    data.inbox.filterprojects = []
+    data.projectinbox.filterprojects = []
+    data.contextinbox.filterprojects = []
     data.previouscalendar.filterprojects = []
     data.overdue.filterprojects = []
     data.calendar.filterprojects = []

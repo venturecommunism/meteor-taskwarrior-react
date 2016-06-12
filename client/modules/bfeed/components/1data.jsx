@@ -14,6 +14,12 @@ const PreviousCalendarContainer = ActionsMapper('previouscalendar', Feed)
 import SideBar from './sidebar.jsx'
 const SideBarContainer = ActionsMapper('sidebar', SideBar)
 
+const InboxContainer = ActionsMapper('inbox', Feed)
+
+const ProjectInboxContainer = ActionsMapper('projectinbox', Feed)
+
+const ContextInboxContainer = ActionsMapper('contextinbox', Feed)
+
 const OverDueContainer = ActionsMapper('overdue', Feed)
 
 const CalendarContainer = ActionsMapper('calendar', Feed)
@@ -24,6 +30,9 @@ export default ({...queryParams, data, actions}) => (
       <SideBarContainer {...queryParams} data={data.sidebar} />
     </div>
     <div className="col-md-9">
+      <InboxContainer title="Inbox" data={data.inbox} />
+      <ProjectInboxContainer title="Project Inbox" data={data.projectinbox} />
+      <ContextInboxContainer title="Context Inbox" data={data.contextinbox} />
       <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} />
       <OverDueContainer title="Overdue Calendar" data={data.overdue} />
       <FeedContainer title="Main Feed" data={data.feed} />

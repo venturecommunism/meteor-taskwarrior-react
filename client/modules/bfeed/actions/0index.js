@@ -1,6 +1,9 @@
 // feed should be the one main reducer / actions set
 
 import data from './1data'
+import inbox from './inbox'
+import projectinbox from './projectinbox'
+import contextinbox from './contextinbox'
 import feed from './feed'
 import calendar from './calendar'
 import previouscalendar from './previouscalendar'
@@ -14,6 +17,9 @@ import createtask from './createtask'
 
 const actions = {
   data,
+  inbox,
+  projectinbox,
+  contextinbox,
   feed,
   calendar,
   previouscalendar,
