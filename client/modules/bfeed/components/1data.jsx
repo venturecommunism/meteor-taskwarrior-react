@@ -31,10 +31,10 @@ export default ({...queryParams, data, actions}) => (
     </div>
     <div className="col-md-9">
       { !queryParams.type && <InboxContainer title="Inbox" data={data.inbox} /> }
-      { queryParams.type == 'project' && <ProjectInboxContainer title="Project Inbox" data={data.projectinbox} /> }
-      { queryParams.type == 'context' && <ContextInboxContainer title="Context Inbox" data={data.contextinbox} /> }
-      <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} />
-      <OverDueContainer title="Overdue Calendar" data={data.overdue} />
+      { queryParams.type == 'project' && !queryParams.projects && <ProjectInboxContainer title="Project Inbox" data={data.projectinbox} /> }
+      { queryParams.type == 'context' && !queryParams.contexts && <ContextInboxContainer title="Context Inbox" data={data.contextinbox} /> }
+      { !queryParams.type && <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} /> }
+      { !queryParams.type && <OverDueContainer title="Overdue Calendar" data={data.overdue} /> }
       <FeedContainer title="Main Feed" data={data.feed} />
       <CalendarContainer title="Upcoming Calendar" data={data.calendar} />
       <CreateTaskContainer />
