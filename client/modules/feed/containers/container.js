@@ -1,6 +1,6 @@
-Subscriptions = new SubsManager()
-
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
+
+Subscriptions = new SubsManager()
 
 const collectionComposer = ({ context, actions }, onData) => {
   const { Meteor, Collections, Store, LocalState } = context()
