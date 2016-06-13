@@ -13,6 +13,7 @@ import parentprojectorcontext from './parentprojectorcontext'
 import filterprojects from './filterprojects'
 import overdue from './overdue'
 import projectselector from './projectselector'
+import currentprojorcont from './currentprojorcont'
 import createtask from './createtask'
 
 const actions = {
@@ -29,6 +30,7 @@ const actions = {
   filterprojects,
   overdue,
   projectselector,
+  currentprojorcont,
   createtask,
 }
 

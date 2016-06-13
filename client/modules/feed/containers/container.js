@@ -1,5 +1,6 @@
 Subscriptions = new SubsManager()
 
+/*
 import feed from '../../feed/actions/feed'
 import sidebar from '../../feed/actions/sidebar'
 import inbox from '../../feed/actions/inbox'
@@ -10,21 +11,24 @@ import overdue from '../../feed/actions/overdue'
 import previouscalendar from '../../feed/actions/previouscalendar'
 import filterprojects from '../../feed/actions/filterprojects'
 import currentprojorcont from '../../feed/actions/currentprojorcont'
+*/
 
-import { composeWithTracker, composeAll } from 'mantra-core'
-import { useDeps } from '/lib/helpers/usedeps'
+import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
+//import { useDeps } from '/lib/helpers/usedeps'
 
-const collectionComposer = ({ context, query, err }, onData) => {
+const collectionComposer = ({ context, actions }, onData) => {
   const { Meteor, Collections, Store, LocalState } = context()
   const { sidebarReducer } = Store.getState()
 
-  const error = err ? LocalState.get(err().errortype) : null
+  const { feed, inbox, projectinbox, contextinbox, calendar, overdue, previouscalendar, sidebar, currentprojorcont, filterprojects } = actions()
 
-  const { queries } = query()
+  const { queries } = actions().data.query()
 
   queries.forEach(function (query) {
     query.query.selector = query.query.selector()
   })
+
+//  const error = err ? LocalState.get(err().errortype) : null
 
   if (Subscriptions.subscribe('newfeed', queries).ready()) {
     const data = {}
@@ -49,10 +53,10 @@ const collectionComposer = ({ context, query, err }, onData) => {
       onData(null, {
         data,
         sidebarStore: sidebarReducer,
-        error,
+//        error,
       })
       // clearErrors when unmounting the component
-      return err ? err().clearErrors : null
+//      return err ? err().clearErrors : null
     }
 
     sendData()
@@ -60,7 +64,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
   }
 }
 
-export default (actionset, component) => composeAll(
+export default (component) => composeAll(
   composeWithTracker(collectionComposer),
-  useDeps(actionset)
+  useDeps()
 )(component)
