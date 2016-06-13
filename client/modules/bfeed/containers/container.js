@@ -28,100 +28,22 @@ const collectionComposer = ({ context, query, err }, onData) => {
 
   if (Subscriptions.subscribe('newfeed', queries).ready()) {
     const data = {}
-
-    var feedsubcollection = feed.query().collection
-    var feedsubconnection = feed.query().subconnection
-    var feedsubselector = feed.query().selector
-    var feedrunsubselector = feedsubselector()
-    var feedsubsubsort = feed.query().subsort
-    data.feed = Mongo.Collection.get(feedsubcollection, { connection: feedsubconnection }).find(feedrunsubselector, {sort: feedsubsubsort}).fetch()
-    //if (data.feed) { sweetAlert("feed exists") }
-
-    var inboxsubcollection = inbox.query().collection
-    var inboxsubconnection = inbox.query().subconnection
-    var inboxsubselector = inbox.query().selector
-    var inboxrunsubselector = inboxsubselector()
-    var inboxsubsubsort = inbox.query().subsort
-    data.inbox = Mongo.Collection.get(inboxsubcollection, { connection: inboxsubconnection }).find(inboxrunsubselector, {sort: inboxsubsubsort}).fetch()
-    //if (data.inbox) { sweetAlert("inbox exists", data.inbox) }
-
-    var component = projectinbox
-    var collection = component.query().collection
-    var connection = component.query().subconnection
-    var selector = component.query().selector()
-    var sort = component.query().subsort
-    data.projectinbox = Mongo.Collection.get(collection, { connection: connection }).find(selector, {sort: sort}).fetch()
-    //if (data.projectinbox) { sweetAlert("projectinbox exists", data.projectinbox) }
-
-    var component = contextinbox
-    var collection = component.query().collection
-    var connection = component.query().subconnection
-    var selector = component.query().selector()
-    var sort = component.query().subsort
-    data.contextinbox = Mongo.Collection.get(collection, { connection: connection }).find(selector, {sort: sort}).fetch()
-    //if (data.contextinbox) { sweetAlert("contextinbox exists", data.contextinbox) }
-
-    var calendarsubcollection = calendar.query().collection
-    var calendarsubconnection = calendar.query().subconnection
-    var calendarsubselector = calendar.query().selector
-    var calendarrunsubselector = calendarsubselector()
-    var calendarsubsubsort = calendar.query().subsort
-    var calendarlimit = calendar.query().limit
-    data.calendar = Mongo.Collection.get(calendarsubcollection, { connection: calendarsubconnection }).find(calendarrunsubselector, {sort: calendarsubsubsort, limit: calendarlimit}).fetch()
-    //if (data.calendar) { sweetAlert("calendar exists") }
-
-    var overduesubcollection = overdue.query().collection
-    var overduesubconnection = overdue.query().subconnection
-    var overduesubselector = overdue.query().selector
-    var overduerunsubselector = overduesubselector()
-    var overduesubsubsort = overdue.query().subsort
-    var overduelimit = overdue.query().limit
-    data.overdue = Mongo.Collection.get(overduesubcollection, { connection: overduesubconnection }).find(overduerunsubselector, {sort: overduesubsubsort, limit: overduelimit}).fetch()
-    //if (data.overdue) { sweetAlert("overdue exists") }
-
-    var previouscalendarsubcollection = previouscalendar.query().collection
-    var previouscalendarsubconnection = previouscalendar.query().subconnection
-    var previouscalendarsubselector = previouscalendar.query().selector
-    var previouscalendarrunsubselector = previouscalendarsubselector()
-    var previouscalendarsubsubsort = previouscalendar.query().subsort
-    var previouscalendarlimit = previouscalendar.query().limit
-    data.previouscalendar = Mongo.Collection.get(previouscalendarsubcollection, { connection: previouscalendarsubconnection }).find(previouscalendarrunsubselector, {sort: previouscalendarsubsubsort, limit: previouscalendarlimit}).fetch()
-    //if (data.previouscalendar) { sweetAlert("previous exists") }
-
-    var sidebarsubcollection = sidebar.query().collection
-    var sidebarsubconnection = sidebar.query().subconnection
-    var sidebarsubselector = sidebar.query().selector
-    var sidebarrunsubselector = sidebarsubselector()
-    var sidebarsubsubsort = sidebar.query().subsort
-    data.sidebar = Mongo.Collection.get(sidebarsubcollection, { connection: sidebarsubconnection }).find(sidebarrunsubselector, {sort: sidebarsubsubsort}).fetch()
-    //if (data.sidebar) { sweetAlert("side exists", JSON.stringify(sidebarrunsubselector)) }
-
-    var currsubcollection = currentprojorcont.query().collection
-    var currsubconnection = currentprojorcont.query().connection
-    var currsubselector = currentprojorcont.query().selector
-    var currrunsubselector = currsubselector()
-    var currsubsubsort = currentprojorcont.query().subsort
-    data.sidebar.currentprojorcont = Mongo.Collection.get(currsubcollection, { connection: currsubconnection }).find(currrunsubselector, {sort: currsubsubsort}).fetch()
-    //if (data.sidebar.currentprojorcont) { sweetAlert("currprojcont exists") }
-
-    var subcollection = filterprojects.query().collection
-    var subconnection = filterprojects.query().subconnection
-    var subselector = filterprojects.query().selector
-    var runsubselector = subselector()
-    var subsubsort = filterprojects.query().subsort
-    
-    data.feed.filterprojects = Mongo.Collection.get(subcollection, { connection: subconnection }).find(runsubselector, {sort: subsubsort}).fetch()
+    data.feed = queryize(feed)
+    data.inbox = queryize(inbox)
+    data.projectinbox = queryize(projectinbox)
+    data.contextinbox = queryize(contextinbox)
+    data.calendar = queryize(calendar)
+    data.overdue = queryize(overdue)
+    data.previouscalendar = queryize(previouscalendar)
+    data.sidebar = queryize(sidebar)
+    data.sidebar.currentprojorcont = queryize(currentprojorcont)
+    data.feed.filterprojects = queryize(filterprojects)
     data.inbox.filterprojects = []
     data.projectinbox.filterprojects = []
     data.contextinbox.filterprojects = []
     data.previouscalendar.filterprojects = []
     data.overdue.filterprojects = []
     data.calendar.filterprojects = []
-
-    //console.log('Connection', connection)
-    //console.log('Collection', collection)
-    //console.log('Selector, RemotePublishSort, LocalSubscribeSort and Limit are', runselector, pubsort, subsort, limit)
-    //console.log('Count', data.length)
 
     const sendData = () => {
       onData(null, {
