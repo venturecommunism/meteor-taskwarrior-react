@@ -1,38 +1,12 @@
 import React from 'react';
 
-import Container from '../../core/containers/container'
-import Feed from './feed.jsx'
+import Container from '../containers/container'
 
-import CreateTask from './createtask.jsx'
-const CreateTaskContainer = Container('createtask', CreateTask)
+import Data from './1data.jsx'
+const DataContainer = Container('data', Data)
 
-const FeedContainer = Container('feed', Feed)
-const PreviousCalendarContainer = Container('previouscalendar', Feed)
-
-import SideBar from './sidebar.jsx'
-const SideBarContainer = Container('sidebar', SideBar)
-
-const OverDueContainer = Container('overdue', Feed)
-
-const CalendarContainer = Container('calendar', Feed)
-
-export default class extends React.Component {
-  render() {
-    return (
-      <div className="bs-docs-section clearfix">
-        <div className="row">
-          <div className="col-md-3" style={{"backgroundColor": "gray"}}>
-            <SideBarContainer />
-          </div>
-          <div className="col-md-9">
-            <CalendarContainer />
-            <CreateTaskContainer />
-            <PreviousCalendarContainer />
-            <OverDueContainer />
-            <FeedContainer />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+export default ({...queryParams}) => (
+  <div className="bs-docs-section clearfix">
+    <DataContainer {...queryParams} />
+  </div>
+)

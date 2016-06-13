@@ -1,14 +1,14 @@
 import React from 'react'
 
-import Container from '../../core/containers/container'
+import ActionsMapper from '../../core/containers/actionsmapper'
 
 import Button from './button.jsx'
-const UpOneContainer = Container('parentprojectorcontext', Button)
+const UpOneContainer = ActionsMapper('parentprojectorcontext', Button)
 
 import SimpleFeed from './simplefeed.jsx'
-const CurrentProjOrContContainer = Container('projectselector', SimpleFeed)
+const CurrentProjOrContContainer = ActionsMapper('projectselector', SimpleFeed)
 
-export default ({data, actions }) => (
+export default ({...queryParams, data, actions }) => (
   <div className='params-example'>
     <button className={ actions.flags().clearall } onClick={ actions.clearFilters }>
       Inbox
@@ -32,15 +32,15 @@ export default ({data, actions }) => (
 
     <br /><br />
 
-    <UpOneContainer />
+    <UpOneContainer {...queryParams} />
 
-    <CurrentProjOrContContainer />
+    <CurrentProjOrContContainer data={data.currentprojorcont} />
 
     <ul>
       {data.map(task => (
         <li key={task._id}>
           <div className='feed-item'>
-            <div className='feed-item-description' onClick={ actions.selectedProject }>
+            <div className='feed-item-description' onClick={ actions.selectedProjectOrContext }>
               <span id={task._id} style={{ color: 'red', }}>{task.description}</span>
             </div>
             <div className='feed-item-entry'>

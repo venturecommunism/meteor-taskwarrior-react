@@ -77,11 +77,11 @@ export default {
     return {
       name: 'projorcont',
       connection: null,
-      collection: 'tasks',
+      collection: 'taskspending',
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
-      limit: { tasks: 1 },
+      limit: { taskspending: 1 },
     }
   },
   selector() {
@@ -161,7 +161,7 @@ export default {
     //sweetAlert("projorcont", _id)
     const projorcont = e.target.value
     const data = {type: projorcont}
-    Meteor.call('tasks.update', data, _id)
+    Meteor.call('taskspending.update', data, _id)
     // {_id: _id}, {$set: {type: projorcont}})
   },
 }

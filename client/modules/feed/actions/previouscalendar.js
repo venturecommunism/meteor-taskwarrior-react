@@ -1,9 +1,9 @@
 export default {
   query() {
 
-  function selector() {
-    return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
-  }
+    function selector() {
+      return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
+    }
 
     return {
       name: 'previouscalendar',
@@ -11,12 +11,9 @@ export default {
       collection: 'tasksbacklog',
       selector: selector,
       pubsort: {due: -1},
-      subsort: {due: 1},
-      limit: { tasksbacklog: 5 },
+      subsort: {due: -1},
+      limit: 1,
     }
-  },
-  selector() {
-    return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
   },
 }
 

@@ -12,9 +12,9 @@ export default (injectDeps) => {
 
   FlowRouter.route('/feed', {
     name: 'feed',
-    action() {
+    action(params, queryParams) {
       mount(LayoutCtx, {
-        content: () => (<FeedPage />),
+        content: () => (<FeedPage {...queryParams} />),
         links: () => (<Links />)
       })
     }

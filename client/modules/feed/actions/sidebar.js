@@ -1,18 +1,18 @@
-export const SELECT_PROJECT = 'feed/SELECT_PROJECT'
+export const SELECT_PROJECTORCONTEXT = 'feed/SELECT_PROJECTORCONTEXT'
 
 const initialState = {
   inboxIsOpened: true,
   atTopLevel: true,
   taskMode: 'definework',
-  selectedProject: undefined,
+  selectedProjectOrContext: undefined,
 }
 
 export function sidebarReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SELECT_PROJECT:
+    case SELECT_PROJECTORCONTEXT:
       return {
         ...state,
-        selectedProject: action.selectedProject,
+        selectedProjectOrContext: action.selectedProjectOrContext,
       }
     default:
       return state
@@ -20,9 +20,6 @@ export function sidebarReducer(state = initialState, action = {}) {
 }
 
 export default {
-  name() {
-    return 'sidebar'
-  },
   query() {
 
   function selector() {
@@ -32,16 +29,7 @@ export default {
     //sweetAlert("queryParams", queryParams)
     //sweetAlert("queryParams.projects", queryParams.projects)
 
-    var query = {}
-
-    switch (JSON.stringify(queryParams)) {
-      case "{}":
-        //sweetAlert("case", "{}")
-        query = { type : 'project', project: {$exists: 0} }
-        break
-      default:
-        query = { type: 'project', project: { $exists: 0} }
-    }
+    var query = { project: {$exists: 0}, workflow: "/tw-ui/3.projectselected" }
 
     switch (Boolean(queryParams.projects && queryParams.type)) {
       case (false):
@@ -50,6 +38,21 @@ export default {
         var project = queryParams.projects
         var type = queryParams.type
         query = { type: type, project: project }
+    }
+
+    switch (Boolean(queryParams.contexts && queryParams.type)) {
+      case (false):
+        break
+      default:
+        var context = queryParams.contexts
+        var type = queryParams.type
+        query = { type: type, context: context }
+    }
+
+    switch (queryParams.type) {
+      case "context":
+        query.type = 'context'
+        break
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
@@ -59,42 +62,12 @@ export default {
     return {
       name: 'sidebar',
       connection: null,
-      collection: 'tasks',
+      collection: 'taskspending',
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
-      limit: { tasks: 10000 },
+      limit: { taskspending: 10000 },
     }
-  },
-  selector() {
-
-    // get the URL contents
-    var queryParams = FlowRouter.current().queryParams
-    //sweetAlert("queryParams", queryParams)
-    //sweetAlert("queryParams.projects", queryParams.projects)
-
-    var query = {}
-
-    switch (JSON.stringify(queryParams)) {
-      case "{}":
-        //sweetAlert("case", "{}")
-        query = { type : 'project', project: {$exists: 0} }
-        break
-      default:
-        query = { type: 'project', project: { $exists: 0} }
-    }
-
-    switch (Boolean(queryParams.projects && queryParams.type)) {
-      case (false):
-        break
-      default:
-        var project = queryParams.projects
-        var type = queryParams.type
-        query = { type: type, project: project }
-    }
-
-    //sweetAlert("query.feedquery.project", query.feedquery.project)
-    return query
   },
   buttontext() {
     return "Default button text"
@@ -109,13 +82,17 @@ export default {
     paramsflags.clearall = (JSON.stringify(queryParams) == '{}' ) ? 'blueflag' : null
     return paramsflags
   },
-  selectedProject({ context, Store }, e) {
+  selectedProjectOrContext({ context, Store }, e) {
     var id = e.target.id
-    FlowRouter.setQueryParams({ projects: id, type: 'project' })
+    if (FlowRouter.getQueryParam('type') == 'project' || !FlowRouter.getQueryParam('type')) {
+      FlowRouter.setQueryParams({ projects: id, type: 'project' })
+    } else {
+      FlowRouter.setQueryParams({ contexts: id, type: 'context' })
+    }
 
     Store.dispatch({
-      type: SELECT_PROJECT,
-      selectedProject: id
+      type: SELECT_PROJECTORCONTEXT,
+      selectedProjectOrContext: id
     })
   },
   clearFilters() {

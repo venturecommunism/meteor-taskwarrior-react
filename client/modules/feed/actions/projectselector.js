@@ -8,11 +8,11 @@ export default {
     return {
       name: 'projectselector',
       connection: null,
-      collection: 'tasks',
+      collection: 'taskspending',
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
-      limit: { tasks: 1 },
+      limit: { taskspending: 1 },
     }
   },
   selector() {
