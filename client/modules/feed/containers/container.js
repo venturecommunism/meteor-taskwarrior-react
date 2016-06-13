@@ -1,20 +1,6 @@
 Subscriptions = new SubsManager()
 
-/*
-import feed from '../../feed/actions/feed'
-import sidebar from '../../feed/actions/sidebar'
-import inbox from '../../feed/actions/inbox'
-import projectinbox from '../../feed/actions/projectinbox'
-import contextinbox from '../../feed/actions/contextinbox'
-import calendar from '../../feed/actions/calendar'
-import overdue from '../../feed/actions/overdue'
-import previouscalendar from '../../feed/actions/previouscalendar'
-import filterprojects from '../../feed/actions/filterprojects'
-import currentprojorcont from '../../feed/actions/currentprojorcont'
-*/
-
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
-//import { useDeps } from '/lib/helpers/usedeps'
 
 const collectionComposer = ({ context, actions }, onData) => {
   const { Meteor, Collections, Store, LocalState } = context()
@@ -28,7 +14,7 @@ const collectionComposer = ({ context, actions }, onData) => {
     query.query.selector = query.query.selector()
   })
 
-//  const error = err ? LocalState.get(err().errortype) : null
+  //const error = err ? LocalState.get(err().errortype) : null
 
   if (Subscriptions.subscribe('newfeed', queries).ready()) {
     const data = {}
@@ -53,10 +39,10 @@ const collectionComposer = ({ context, actions }, onData) => {
       onData(null, {
         data,
         sidebarStore: sidebarReducer,
-//        error,
+          //error,
       })
       // clearErrors when unmounting the component
-//      return err ? err().clearErrors : null
+      // return err ? err().clearErrors : null
     }
 
     sendData()
