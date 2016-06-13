@@ -12,7 +12,11 @@ export default ({data}) => (
       <div className="name">{data.username}</div>
     </div>
 
-    <ProjContContainer params={data} />
+    { data.workflow && data.workflow == '/tw-ui/0.inbox' && <ProjContContainer params={data} /> }
+    { data.workflow && data.workflow == '/tw-ui/1.topprojectinbox' && data.type == 'project' && 'Process this project' }
+    { data.workflow && data.workflow == '/tw-ui/3.projectselected' && data.type == 'project' && 'Unlock this project' }
+    { data.workflow && data.due && 'Datepicker' }
+    { !data.workflow && <div><img src="http://downloadicons.net/sites/default/files/error-red-error-icon-29051.png" />{Object.keys(data)}</div> }
 
   </div>
 );
