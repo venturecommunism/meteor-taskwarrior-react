@@ -18,6 +18,7 @@ const collectionComposer = ({ context, actions }, onData) => {
 
   if (Subscriptions.subscribe('newfeed', queries).ready()) {
     const data = {}
+
     data.feed = queryize(feed)
     data.inbox = queryize(inbox)
     data.projectinbox = queryize(projectinbox)
