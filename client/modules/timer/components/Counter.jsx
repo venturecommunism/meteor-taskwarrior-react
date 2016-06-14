@@ -52,6 +52,8 @@ class Counter extends Component{
   }
 
   _renderSound() {
+    const {_id, reset_timer} = this.props
+    reset_timer(_id)
     return (
       <Sound
         url="/assets/alarm.mp3"

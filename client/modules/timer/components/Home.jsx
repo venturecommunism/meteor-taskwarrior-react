@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import Moment from 'moment';
 
-import TimerTemplate from '../../pomodoro/components/TimerTemplate.jsx'
+import Timer from '../containers/Timer.js'
 
 class Home extends Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class Home extends Component {
 
                 <div className="pomodoros-list">
                     { this.props.timers.map(timer => (
-    <TimerTemplate timerId={timer._id} />
+    <Timer timerId={timer._id} />
                     ))}
                     {console.log("pomodori", this.props.timers)}
                 </div>

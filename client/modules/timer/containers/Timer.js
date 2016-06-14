@@ -11,6 +11,7 @@ var id =  timerId
 console.log("id", id)
     if(Meteor.subscribe('single.timer', id).ready()) {
         const timer = Timer.findOne(id);
+console.log("timer props", timer)
         onData(null, timer);
     } else {
         const timer = Timer.findOne(id);
