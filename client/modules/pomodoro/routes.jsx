@@ -23,6 +23,7 @@ export default (injectDeps) => {
     }
   })
 
+/*
     FlowRouter.route('/timer/:timerId', {
         name: 'timer.id',
         action(timerId) {
@@ -33,7 +34,9 @@ export default (injectDeps) => {
             });
         }
     });
+*/
 
+/*
     FlowRouter.route('/timert/:timerId', {
         name: 'timert.id',
         action(timerId) {
@@ -44,6 +47,7 @@ export default (injectDeps) => {
             });
         }
     });
+*/
 
     FlowRouter.route('/register', {
         name: 'users.new',

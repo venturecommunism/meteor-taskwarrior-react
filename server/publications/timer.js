@@ -14,6 +14,7 @@ export default function () {
     });
 
     Meteor.publish('single.timer', (timerId) => {
+console.log("TIMERID", timerId)
         check(timerId, String);
         const selector = { _id: timerId };
 
