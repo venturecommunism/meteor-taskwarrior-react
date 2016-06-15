@@ -8,10 +8,10 @@ export const composer = ({context, clearErrors}, onData) => {
     const error = LocalState.get('TIMER_ERROR');
 
     if(Meteor.subscribe('all.timers').ready()) {
-        const timers = Timer.find().fetch();
+        const timers = Timer.find({}, {sort: {time: 1}}).fetch();
         return onData(null, {timers});
     } else {
-        const timers = Timer.find().fetch();
+        const timers = Timer.find({}, {sort: {time: 1}}).fetch();
         if(timers) return onData(null, {timers});
     }
 
