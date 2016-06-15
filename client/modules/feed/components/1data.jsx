@@ -3,6 +3,8 @@ import React from 'react';
 import ActionsMapper from '../../core/containers/actionsmapper'
 import Feed from './feed.jsx'
 
+import Timers from '../../timer/containers/Home'
+
 const FeedContainer = ActionsMapper('feed', Feed)
 //Feed used to be wrapped in a standard container with 'feed' as an argument
 
@@ -30,6 +32,7 @@ export default ({...queryParams, data, actions}) => (
       <SideBarContainer {...queryParams} data={data.sidebar} />
     </div>
     <div className="col-md-9">
+      <Timers />
       { !queryParams.type && <InboxContainer title="Inbox" data={data.inbox} /> }
       { queryParams.type == 'project' && !queryParams.projects && <ProjectInboxContainer title="Project Inbox" data={data.projectinbox} /> }
       { queryParams.type == 'context' && !queryParams.contexts && <ContextInboxContainer title="Context Inbox" data={data.contextinbox} /> }

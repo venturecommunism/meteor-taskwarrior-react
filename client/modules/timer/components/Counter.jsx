@@ -25,9 +25,10 @@ class Counter extends Component{
           <h3 className="timer-component">{ Moment.utc(time).format('mm:ss') }</h3>
         </div>
 
-        <button onClick={this._startTimer.bind(this)}>{ (counting) ? 'Pause' : 'Start' }</button>
+        <button style={{float: "right", position: "relative", bottom: "40px"}} onClick={this._startTimer.bind(this)}>{ (counting) ? 'Pause' : 'Start' }</button>
 
-        <button onClick={this._resetTimer.bind(this)}>Reset</button>
+        <button style={{float: "right", position: "relative", bottom: "40px"}} onClick={this._resetTimer.bind(this)}>Reset</button>
+        <hr />
         { (ended) ? this._renderSound() : null }
         { (ended) ? this._newNotification() : null }
       </div>

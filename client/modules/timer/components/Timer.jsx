@@ -15,7 +15,7 @@ class Timer extends Component {
 
                 <Counter _id={_id} counting={counting} time={time} type={type} ended={ended}/>
 
-                {(type == 'pomodoro') ? '' : <h1>Enjoy your free time!</h1>}
+                {/* (type == 'pomodoro') ? '' : <h1>Enjoy your free time!</h1> */}
             </div>
         );
     }
