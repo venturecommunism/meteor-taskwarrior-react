@@ -49,6 +49,6 @@ type Mutation {
   mutate(collection: String, op: String, selector: String, mutator: String): MetaMutate
 }
 
-`;
+`
 
 export default feed

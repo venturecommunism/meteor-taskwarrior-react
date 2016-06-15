@@ -9,6 +9,6 @@ schema {
   mutation: Mutation
 }
 
-`;
+`
 
 export default root

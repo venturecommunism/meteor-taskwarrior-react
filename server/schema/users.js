@@ -10,6 +10,6 @@ type User {
   randomUserString: String
 }
 
-`;
+`
 
 export default users

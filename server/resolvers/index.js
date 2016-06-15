@@ -3,7 +3,7 @@ import feed from './feed'
 
 export const resolvers = {
   ...users,
-  ...feed,
+  ...feed
 }
 
 export default resolvers

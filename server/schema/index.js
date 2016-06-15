@@ -5,7 +5,7 @@ import feed from './feed'
 export const schema = [
   root,
   users,
-  feed,
+  feed
 ]
 
 export default schema

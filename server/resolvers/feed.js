@@ -4,7 +4,7 @@ import { tasks, taskspending, tasksbacklog, tmpmutation } from '/lib/collections
 export const feed = {
 
   Query: {
-    async query(root, args, context) {
+    async query (root, args, context) {
       //if (resolver_auth(context)) { return resolver_auth(context) }      
       let logicalswitch = resolvers_init(args)
 
