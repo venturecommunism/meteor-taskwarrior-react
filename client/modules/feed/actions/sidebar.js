@@ -80,6 +80,7 @@ export default {
     paramsflags.definesome = (queryParams.mode == null) ? 'redflag' : null
     paramsflags.dodefined = (queryParams.mode == 'do') ? 'greenflag' : null
     paramsflags.clearall = (JSON.stringify(queryParams) == '{}' ) ? 'blueflag' : null
+    paramsflags.timers = (queryParams.showtimers == 'true') ? 'blueflag' : null
     return paramsflags
   },
   selectedProjectOrContext({ context, Store }, e) {
@@ -124,6 +125,14 @@ export default {
     var currentState = FlowRouter.getQueryParam('mode')
     if (!currentState) {
       FlowRouter.setQueryParams({ mode: 'do' })
+    }
+  },
+  showHideTimers() {
+    var currentState = FlowRouter.getQueryParam('showtimers')
+    if (currentState != 'true') {
+      FlowRouter.setQueryParams({ showtimers: 'true' })
+    } else {
+      FlowRouter.setQueryParams({ showtimers: null })
     }
   },
 }

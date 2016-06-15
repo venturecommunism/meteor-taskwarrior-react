@@ -30,6 +30,10 @@ export default ({...queryParams, data, actions }) => (
       Do Defined Work
     </button>
 
+    <button className={ actions.flags().timers } onClick={ actions.showHideTimers }>
+      Show/Hide Timers
+    </button>
+
     <br /><br />
 
     <UpOneContainer {...queryParams} />

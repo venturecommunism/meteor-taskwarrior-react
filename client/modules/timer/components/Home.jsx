@@ -16,7 +16,11 @@ class Home extends Component {
   }
 
     render() {
+
+        const {...queryParams} = this.props
+
         return(
+          <div style={{display: queryParams.showtimers ? 'block' : 'none'}}>
             <div className="timer-app">
                 <Helmet title="Timer" />
                 <h1>Pomodoro Timer</h1>
@@ -30,11 +34,12 @@ class Home extends Component {
 
                 <div className="pomodoros-list">
                     { this.props.timers.map(timer => (
-    <Timer timerId={timer._id} />
+                      <Timer timerId={timer._id} />
                     ))}
                     {console.log("pomodori", this.props.timers)}
                 </div>
             </div>
+          </div>
         );
     }
 

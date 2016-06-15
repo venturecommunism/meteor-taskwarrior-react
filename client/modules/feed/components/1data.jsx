@@ -32,7 +32,7 @@ export default ({...queryParams, data, actions}) => (
       <SideBarContainer {...queryParams} data={data.sidebar} />
     </div>
     <div className="col-md-9">
-      <Timers />
+      <Timers {...queryParams} />
       { !queryParams.type && <InboxContainer title="Inbox" data={data.inbox} /> }
       { queryParams.type == 'project' && !queryParams.projects && <ProjectInboxContainer title="Project Inbox" data={data.projectinbox} /> }
       { queryParams.type == 'context' && !queryParams.contexts && <ContextInboxContainer title="Context Inbox" data={data.contextinbox} /> }
