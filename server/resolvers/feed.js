@@ -5,7 +5,7 @@ export const feed = {
 
   Query: {
     async query (root, args, context) {
-      //if (resolver_auth(context)) { return resolver_auth(context) }      
+      if (resolver_auth(context)) { return resolver_auth(context) }      
       let logicalswitch = resolvers_init(args)
 
       switch (logicalswitch) {
@@ -29,7 +29,7 @@ export const feed = {
 
       return metaquery(cursor, options, args, errors)
     },
-    user(root, args, context) {
+    user (root, args, context) {
       // Only return the current user, for security
       if (context.user._id === args.id) {
         return context.user;
@@ -37,8 +37,8 @@ export const feed = {
     },
   },
   Mutation: {
-    async mutate(root, args, context) {
-      //if (resolver_auth(context)) { return resolver_auth(context) }
+    async mutate (root, args, context) {
+      if (resolver_auth(context)) { return resolver_auth(context) }
       let logicalswitch = resolvers_init(args)
 
       switch (args.op) {
