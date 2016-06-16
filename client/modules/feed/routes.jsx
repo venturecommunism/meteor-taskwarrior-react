@@ -10,7 +10,7 @@ import FeedPage from './components/0page.jsx'
 export default (injectDeps) => {
   const LayoutCtx = injectDeps(Layout)
 
-  FlowRouter.route('/feed', {
+  FlowRouter.route('/', {
     name: 'feed',
     action(params, queryParams) {
       mount(LayoutCtx, {

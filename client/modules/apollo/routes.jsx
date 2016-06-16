@@ -10,8 +10,8 @@ import LoginAndUserPage from './components/page.jsx'
 export default (injectDeps) => {
   const LayoutCtx = injectDeps(Layout)
 
-  FlowRouter.route('/gqllogin', {
-    name: 'gqllogin',
+  FlowRouter.route('/login', {
+    name: 'login',
     action() {
       mount(LayoutCtx, {
         content: () => (<LoginAndUserPage />),
