@@ -97,7 +97,7 @@ export default {
     })
   },
   clearFilters() {
-    FlowRouter.go('/feed')
+    FlowRouter.go('/')
   },
   filterAllProjects() {
     var currentState = FlowRouter.getQueryParam('type')
