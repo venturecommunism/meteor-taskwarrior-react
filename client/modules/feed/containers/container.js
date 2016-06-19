@@ -16,7 +16,7 @@ const collectionComposer = ({ context, actions }, onData) => {
 
   //const error = err ? LocalState.get(err().errortype) : null
 
-  if (Subscriptions.subscribe('newfeed', queries).ready()) {
+  if (Subscriptions.subscribe('feed', queries).ready()) {
     const data = {}
 
     data.feed = queryize(feed)
