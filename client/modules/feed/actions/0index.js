@@ -14,6 +14,7 @@ import filterprojects from './filterprojects'
 import overdue from './overdue'
 import projectselector from './projectselector'
 import currentprojorcont from './currentprojorcont'
+import backoneworkflow from './backoneworkflow'
 import createtask from './createtask'
 
 const actions = {
@@ -31,6 +32,7 @@ const actions = {
   overdue,
   projectselector,
   currentprojorcont,
+  backoneworkflow,
   createtask,
 }
 

@@ -3,7 +3,11 @@ import React from 'react'
 import FeedItemHeader from './feeditemheader.jsx'
 import FeedItemFooter from './feeditemfooter.jsx'
 
-export default ({data}) => (
+import Button from './button.jsx'
+import ActionsMapper from '../../core/containers/actionsmapper'
+const BackOneWorkflowButtonContainer = ActionsMapper('backoneworkflow', Button)
+
+export default ({...queryParams, data}) => (
   <div className='feed-item'>
     <FeedItemHeader data={data} />
     <div className='feed-item-duedate'>
@@ -12,6 +16,7 @@ export default ({data}) => (
     <div className='feed-item-description'>
       <h2>{data.description}</h2>
     </div>
+    <BackOneWorkflowButtonContainer data={data} />
     <div className='feed-item-entry'>
       {data.entry}
     </div>

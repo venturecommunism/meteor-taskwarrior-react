@@ -38,7 +38,7 @@ export default ({...queryParams, data, actions }) => (
 
     <UpOneContainer {...queryParams} />
 
-    <CurrentProjOrContContainer data={data.currentprojorcont} />
+    <CurrentProjOrContContainer {...queryParams} data={data.currentprojorcont} />
 
     <ul>
       {data.map(task => (
