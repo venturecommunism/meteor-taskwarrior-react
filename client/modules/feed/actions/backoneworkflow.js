@@ -22,7 +22,7 @@ export default {
     if (newworkflow == "/tw-ui/5.selectingcontext" && !task.context) {
       newworkflow = "/tw-ui/4.topcontextinbox"
     }
-    if (newworkflow == "/tw-ui/4.topcontextinbox" && task.type != "context" {
+    if (newworkflow == "/tw-ui/4.topcontextinbox" && task.type != "context") {
       newworkflow = "/tw-ui/3.projectselected"
     }
     if (newworkflow == "/tw-ui/2.selectingproject" && !task.project) {

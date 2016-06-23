@@ -24,7 +24,7 @@ export default {
 
     const _id = Meteor.uuid();
     const data = {}
-    data.workflow = {status: "inbox"}
+    data.workflow = "/tw-ui/0.inbox"
     data.description = description
     data.uuid = guid()
     data.created = new Date();
