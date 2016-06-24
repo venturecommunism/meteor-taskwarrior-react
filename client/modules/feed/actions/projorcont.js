@@ -156,13 +156,19 @@ export default {
     //sweetAlert("query.feedquery.project", query.feedquery.project)
     return query.feedquery
   },
-  setProjectOrContext({ context }, e) {
-    const _id = e.target.className
+  setProjectOrContext({context}, e, projcont, id) {
+    const _id = id
     //sweetAlert("projorcont", _id)
-    const projorcont = e.target.value
-    const data = {type: projorcont}
+    //sweetAlert("projorcont", e.target.value)
+    var data = {type: projcont}
+    if (data.type == "project") {
+      data.workflow = "/tw-ui/1.topprojectinbox"
+    }
+    if (data.type == "context") {
+      data.workflow = "/tw-ui/4.topcontextinbox"
+    }
     Meteor.call('taskspending.update', data, _id)
-    // {_id: _id}, {$set: {type: projorcont}})
+    // {_id: _id}, {$set: {type: projcont}})
   },
 }
 

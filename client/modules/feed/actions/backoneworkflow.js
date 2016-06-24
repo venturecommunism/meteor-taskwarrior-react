@@ -18,7 +18,7 @@ export default {
     delete task._id
     delete task.workflow
     task.workflow = newworkflow
-    sweetAlert("task", JSON.stringify(task))
+    //sweetAlert("task", JSON.stringify(task))
     if (newworkflow == "/tw-ui/5.selectingcontext" && !task.context) {
       newworkflow = "/tw-ui/4.topcontextinbox"
     }
@@ -28,7 +28,7 @@ export default {
     if (newworkflow == "/tw-ui/2.selectingproject" && !task.project) {
       newworkflow = "/tw-ui/1.topprojectinbox"
     }
-    Meteor.call('tasks.update', {workflow: newworkflow}, id)
+    Meteor.call('taskspending.update', {workflow: newworkflow}, id)
   },
 }
 
