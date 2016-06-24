@@ -36,7 +36,7 @@ class Home extends Component {
                     { this.props.timers.map(timer => (
                       <Timer timerId={timer._id} />
                     ))}
-                    {console.log("pomodori", this.props.timers)}
+                    {/* console.log("pomodori", this.props.timers) */}
                 </div>
             </div>
           </div>
