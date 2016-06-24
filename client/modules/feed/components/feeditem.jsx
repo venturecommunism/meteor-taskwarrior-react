@@ -13,6 +13,7 @@ export default ({...queryParams, data}) => (
     <div className='feed-item-duedate'>
       <h2>{data.due}</h2>
     </div>
+    <div>workflow: {data.workflow}</div>
     <div className='feed-item-description'>
       <h2>{data.description}</h2>
     </div>
