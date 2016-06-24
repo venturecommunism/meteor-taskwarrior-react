@@ -21,8 +21,12 @@ export default {
   project() {
     return FlowRouter.current().queryParams.projects
   },
-  buttonpress({context}, e) {
+  buttonpress({context}, e, id) {
     //sweetAlert("projectselector", e)
+    sweetAlert("id", id)
+    var data = {workflow: "/tw-ui/3.projectselected"}
+    Meteor.call('taskspending.update', data, id)
+    
 /*
     const id = e.target.parentNode.parentNode.parentNode.parentNode.id
     const data = {"workflow.status": "context", "workflow.workflow": ["project", "context"]}
