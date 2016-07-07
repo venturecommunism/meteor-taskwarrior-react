@@ -8,20 +8,14 @@ export default {
     //sweetAlert("queryParams.projects", queryParams.projects)
 
     var query = {}
-    query.feedquery = {}
-    query.projectsquery = {}
     query.filtprojquery = {}
 
     switch (JSON.stringify(queryParams)) {
       case "{}":
         //sweetAlert("case", "{}")
-        query.feedquery = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
-        query.projectsquery = { type : 'project', project: {$exists: 0} }
         query.filtprojquery = { type : 'project', project: {$exists: 0}}
         break
       default:
-        query.feedquery = { type: {$nin: ['project', 'context']}}
-        query.projectsquery = { type: 'project', project: { $exists: 0} }
         query.filtprojquery = { type: 'project' }
     }
 
@@ -35,39 +29,12 @@ export default {
         query.filtprojquery = { type: 'project', project: project}
     }
 
-    switch (queryParams.type) {
-      case (null || ''):
-        break
-      default:
-        var type = queryParams.type
-        //sweetAlert("type", type)
-        query.feedquery.type = { $in: [type] }
-    }
-
     switch (Boolean(queryParams.projects && queryParams.type)) {
       case (false):
         break
       default:
         var project = queryParams.projects
-        var type = queryParams.type
-        query.feedquery = { project: project }
-        query.projectsquery = { type: type, project: project }
         query.filtprojquery._id = {$ne: project}
-    }
-
-    switch (Boolean(!queryParams.projects && queryParams.type)) {
-      case (false):
-        break
-      default:
-        query.feedquery.project = { $exists: 0 }
-    }
-
-    switch(queryParams.mode) {
-      case ('do'):
-        query.feedquery["workflow.status"] = {$nin: ['project', 'inbox'] }
-        break
-      default:
-        query.feedquery["workflow.status"] = {$in: ['project', 'inbox'] }
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
@@ -157,19 +124,15 @@ export default {
     //sweetAlert("query.feedquery.project", query.feedquery.project)
     return query.filtprojquery
   },
-/*
-  assignProject({ context }, e) {
-    var id = e.target.parentNode.id
-    var queryParams = FlowRouter.current().queryParams
-    switch (queryParams.type) {
+  assignProject({ context }, e, taskid, categoryid, type) {
+    switch (type) {
       case 'project':
-        var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}
+        var data = {project: categoryid, workflow: "/tw-ui/2.selectingproject"}
         break
       default:
-        var data = {project: e.target.id, workflow: {status: "project", workflow: ["project"]}}
+        var data = {project: categoryid, workflow: "/tw-ui/2.selectingproject"}
     }
-    Meteor.call('tasks.update', data, id)
+    Meteor.call('taskspending.update', data, taskid)
   },
-*/
 }
 

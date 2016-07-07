@@ -28,13 +28,14 @@ const collectionComposer = ({ context, actions }, onData) => {
     data.previouscalendar = queryize(previouscalendar)
     data.sidebar = queryize(sidebar)
     data.sidebar.currentprojorcont = queryize(currentprojorcont)
-    data.feed.filterprojects = queryize(filterprojects)
-    data.inbox.filterprojects = []
-    data.projectinbox.filterprojects = []
-    data.contextinbox.filterprojects = []
-    data.previouscalendar.filterprojects = []
-    data.overdue.filterprojects = []
-    data.calendar.filterprojects = []
+    var projectsfilter = queryize(filterprojects)
+    data.feed.filterprojects = projectsfilter
+    data.inbox.filterprojects = projectsfilter
+    data.projectinbox.filterprojects = projectsfilter
+    data.contextinbox.filterprojects = projectsfilter
+    data.previouscalendar.filterprojects = projectsfilter
+    data.overdue.filterprojects = projectsfilter
+    data.calendar.filterprojects = projectsfilter
 
     const sendData = () => {
       onData(null, {

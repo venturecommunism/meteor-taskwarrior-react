@@ -29,6 +29,9 @@ export default {
     //sweetAlert("queryParams", queryParams)
     //sweetAlert("queryParams.projects", queryParams.projects)
 
+    var query = {$or: [{ project: {$exists: 0}, workflow: "/tw-ui/3.projectselected" },
+                       { project: {$exists: 1}, workflow: {$in: ["/tw-ui/2.selectingproject", "/tw-ui/3.projectselected"]}}]}
+
     var query = { project: {$exists: 0}, workflow: "/tw-ui/3.projectselected" }
 
     switch (Boolean(queryParams.projects && queryParams.type)) {
@@ -53,6 +56,7 @@ export default {
       case "context":
         query.type = 'context'
         break
+      
     }
 
     //sweetAlert("query.feedquery.project", query.feedquery.project)
