@@ -18,6 +18,7 @@
     "react": "^15.0.1",
     "react-addons-pure-render-mixin": "^15.0.1",
     "react-apollo": "^0.3.0",
+    "react-date-picker": "^5.3.16",
     "react-dom": "^15.0.1",
     "react-helmet": "^3.1.0",
     "react-komposer": "^1.8.0",
