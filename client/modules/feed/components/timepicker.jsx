@@ -9,10 +9,10 @@ const onChange = (dateString, { dateMoment, timestamp }) => {
   console.log(timestamp)
 }
 
-export default ({actions, date, format}) => {
-  return <div>{date}<DateField
+export default ({actions, due, ...date, format}) => {
+  return <div>{due}<DateField
     forceValidDate
-    defaultValue={date ? dateFormat(date, format) : moment().format(format) }
+    defaultValue={due ? dateFormat(due, format) : moment().format(format) }
     dateFormat={format}
   >
     <TransitionView>

@@ -39,8 +39,8 @@ export default ({...queryParams, data, actions, ...date}) => (
       { queryParams.type == 'context' && !queryParams.contexts && <ContextInboxContainer title="Context Inbox" data={data.contextinbox} /> }
       { !queryParams.type && <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} /> }
       { !queryParams.type && <OverDueContainer title="Overdue Calendar" data={data.overdue} /> }
-      <FeedContainer title="Main Feed" data={data.feed} />
-      <CalendarContainer title="Upcoming Calendar" data={data.calendar} />
+      <FeedContainer title="Main Feed" data={data.feed} {...date} />
+      <CalendarContainer title="Upcoming Calendar" data={data.calendar} {...date} />
       <CreateTaskContainer />
     </div>
   </div>

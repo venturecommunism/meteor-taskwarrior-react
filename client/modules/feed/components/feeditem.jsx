@@ -7,9 +7,9 @@ import Button from './button.jsx'
 import ActionsMapper from '../../core/containers/actionsmapper'
 const BackOneWorkflowButtonContainer = ActionsMapper('backoneworkflow', Button)
 
-export default ({...queryParams, data}) => (
+export default ({...queryParams, data, ...date}) => (
   <div className='feed-item'>
-    <FeedItemHeader data={data} />
+    <FeedItemHeader data={data} {...date} />
     <div className='feed-item-duedate'>
       <h2>{data.due}</h2>
     </div>

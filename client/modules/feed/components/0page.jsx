@@ -11,6 +11,10 @@ export default CityRow = React.createClass({
     var currentdate = new Date();
 
     var month = currentdate.getUTCMonth() + 1; //months from 1-12
+    month = month + "";
+    if( month.length == 1 ){ month = "0" + month; }
+
+
     var day = currentdate.getUTCDate();
     var year = currentdate.getUTCFullYear();
 
@@ -54,6 +58,10 @@ export default CityRow = React.createClass({
   },
   render: function({...queryParams}) {
     var date = Object.assign({}, this.state)
+    var format = "YYYY-MM-DD HH:mm:ss" 
+    var amoment = moment(date.year + date.month + date.day + date.hours + date.minutes + date.seconds, "YYYYMMDDhhmmss").format(format)
+    var amoment = moment().format(format)
+    var thirdmoment = moment(date.year + date.month + date.day, "YYYYMMDD").format(format)
     return (
       <div className="bs-docs-section clearfix">
         <DataContainer {...queryParams} {...date} />
