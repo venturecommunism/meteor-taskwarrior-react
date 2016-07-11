@@ -67,7 +67,8 @@ export default CityRow = React.createClass({
       formattednow: formattednow
     })
   },
-  render: function({...queryParams}) {
+  render: function() {
+    var queryParams = FlowRouter.current().queryParams
     var date = Object.assign({}, this.state)
     var format = "YYYY-MM-DD HH:mm:ss" 
     return (
