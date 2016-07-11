@@ -13,6 +13,7 @@ export default ({actions, due, ...date, format}) => {
   return <div>{due}<DateField
     forceValidDate
     defaultValue={due ? dateFormat(due, format) : moment().format(format) }
+    value={due ? dateFormat(due, format) : date.moment }
     dateFormat={format}
   >
     <TransitionView>

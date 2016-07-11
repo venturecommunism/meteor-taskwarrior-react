@@ -18,7 +18,12 @@ export default CityRow = React.createClass({
     var day = currentdate.getUTCDate();
     var year = currentdate.getUTCFullYear();
 
-    var utcoffset = moment().format("Z")
+    var now = moment()
+    var utcoffset = now.format("Z")
+
+    var format = "YYYY-MM-DD HH:mm:ss"
+    var formattednow = now.format(format)
+
     var hours = currentdate.getUTCHours() + parseInt(utcoffset) // + parseInt(this.props.UTCOffset);
       // correct for number over 24, and negatives
       if( hours >= 24 ){ hours -= 24; }
@@ -45,7 +50,8 @@ export default CityRow = React.createClass({
         day: day,
         hours: hours,
         minutes: minutes,
-        seconds: seconds
+        seconds: seconds,
+        moment: formattednow
       });
   },
   componentWillMount: function(){
@@ -55,13 +61,15 @@ export default CityRow = React.createClass({
      window.setInterval(function () {
       this.setTime();
     }.bind(this), 1000);
+    var format = "YYYY-MM-DD HH:mm:ss"
+    var formattednow = dateFormat(formattedNow(), format)
+    this.setState({
+      formattednow: formattednow
+    })
   },
   render: function({...queryParams}) {
     var date = Object.assign({}, this.state)
     var format = "YYYY-MM-DD HH:mm:ss" 
-    var amoment = moment(date.year + date.month + date.day + date.hours + date.minutes + date.seconds, "YYYYMMDDhhmmss").format(format)
-    var amoment = moment().format(format)
-    var thirdmoment = moment(date.year + date.month + date.day, "YYYYMMDD").format(format)
     return (
       <div className="bs-docs-section clearfix">
         <DataContainer {...queryParams} {...date} />
