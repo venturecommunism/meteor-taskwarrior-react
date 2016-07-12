@@ -21,7 +21,7 @@ export default ({data, ...date}) => (
     { data.workflow && data.workflow == '/tw-ui/4.topcontextinbox' && data.type == 'context' && 'Process this context' }
     { data.workflow && data.due && 'Datepicker' }
     { !data.workflow && <div><img src="http://downloadicons.net/sites/default/files/error-red-error-icon-29051.png" />{Object.keys(data)}</div> }
-    { <CalendarContainer {...date} due={data.due} format="YYYY-MM-DD HH:mm:ss" /> }
+    { <CalendarContainer {...date} id={data._id} due={data.due} format="YYYY-MM-DD HH:mm:ss" /> }
 
   </div>
 );
