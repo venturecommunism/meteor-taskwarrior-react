@@ -3,8 +3,8 @@ import React from 'react'
 import 'react-date-picker/index.css'
 import { DateField, TransitionView, Calendar } from 'react-date-picker'
 
-export default ({actions, id, due, ...date, format}) => {
-  return <div>{due}{/* {(dateString, { dateMoment, timestamp}) => { actions.onChange.bind(this, null, id, dateString)}} */}<DateField
+export default ({actions, id, due, ...date, format, showpicker}) => {
+  return <div>{ showpicker ? <div><DateField
     forceValidDate
     value={due ? due : moment().format(format) }
     dateFormat={format}
@@ -17,6 +17,7 @@ export default ({actions, id, due, ...date, format}) => {
         onChange={actions.onChange.bind(this, null, id)}
       />
     </TransitionView>
-  </DateField>
+  </DateField></div> : <div><p>No Calendar</p></div> }
+  <button onClick={actions.toggleCalendar.bind(this)}>Toggle Calendar</button>
 </div>
 }

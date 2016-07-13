@@ -15,5 +15,17 @@ export default {
       console.log("formatteddata", formatteddata)
     }
   },
+  toggleCalendar({Meteor, LocalState}) {
+    if (!LocalState.get('SHOWING_CALENDAR')) {
+      return LocalState.set('SHOWING_CALENDAR', true);
+    }
+    else {
+      return LocalState.set('SHOWING_CALENDAR', null);
+    }
+  },
+  states() {
+    return { st1: 'SHOWING_CALENDAR',
+           }
+  },
 }
 

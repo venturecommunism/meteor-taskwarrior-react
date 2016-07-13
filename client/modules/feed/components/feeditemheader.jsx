@@ -5,7 +5,10 @@ import ActionsMapper from '../../core/containers/actionsmapper'
 const ProjContContainer = ActionsMapper('projorcont', ProjCont)
 
 import Timepicker from './timepicker.jsx'
-const CalendarContainer = ActionsMapper ('timepicker', Timepicker)
+//const CalendarContainer = ActionsMapper ('timepicker', Timepicker)
+
+import StateMapper from '../containers/statecontainer'
+const CalendarContainer = StateMapper('timepicker', Timepicker)
 
 export default ({data, ...date}) => (
   <div className="feed-item__header">
