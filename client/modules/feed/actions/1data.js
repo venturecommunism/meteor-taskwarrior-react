@@ -1,5 +1,8 @@
 export default {
-  query() {
+  query({FlowRouter}) {
+
+   var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
+
     function taskspendingselector() {
       var now = formattedNow()
       return {}

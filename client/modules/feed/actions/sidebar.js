@@ -20,9 +20,12 @@ export function sidebarReducer(state = initialState, action = {}) {
 }
 
 export default {
-  query() {
+  query({FlowRouter}) {
+
 
   function selector() {
+
+   var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
 
     // get the URL contents
     var queryParams = FlowRouter.current().queryParams

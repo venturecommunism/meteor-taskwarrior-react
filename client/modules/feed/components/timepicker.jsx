@@ -18,6 +18,6 @@ export default ({actions, id, due, ...date, format, state1}) => {
       />
     </TransitionView>
   </DateField></div> : <div><p>No Calendar</p></div> }
-  {!due ? <button onClick={actions.toggleCalendar.bind(this, null, id)}>Toggle Calendar</button> } 
+  {!due ? <button onClick={actions.toggleCalendar.bind(this, null, id)}>Toggle Calendar</button> : '' } 
 </div>
 }

@@ -1,5 +1,8 @@
 export default {
-  query() {
+  query({FlowRouter}) {
+
+   var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
+
 
     function selector() {
 //    function selector({ Meteor, Session }) {

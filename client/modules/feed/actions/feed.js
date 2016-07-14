@@ -2,7 +2,9 @@ export default {
   name() {
     return 'feed'
   },
-  query() {
+  query({FlowRouter}) {
+
+   var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
 
     function selector() {
       // get the URL contents
@@ -73,7 +75,8 @@ export default {
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
-      limit: { tasks: 10000 },
+      publimit: { tasks: 10000 },
+      sublimit: sublimit,
     }
   },
   selector() {

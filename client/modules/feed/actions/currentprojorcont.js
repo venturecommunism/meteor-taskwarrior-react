@@ -1,5 +1,7 @@
 export default {
-  query() {
+  query({FlowRouter}) {
+
+   var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
 
     var queryParams = FlowRouter.current().queryParams
     if (FlowRouter.getQueryParam('type') == 'project') {

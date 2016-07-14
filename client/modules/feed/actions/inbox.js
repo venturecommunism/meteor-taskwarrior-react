@@ -1,5 +1,7 @@
 export default {
-  query() {
+  query({FlowRouter}) {
+
+   var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
 
     function selector() {
       return {workflow: "/tw-ui/0.inbox"}
@@ -12,7 +14,8 @@ export default {
       selector: selector,
       pubsort: {created: -1},
       subsort: {created: -1},
-      limit: 1,
+      publimit: 1,
+      sublimit: sublimit,
     }
   },
 }

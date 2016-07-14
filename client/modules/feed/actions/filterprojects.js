@@ -1,5 +1,7 @@
 export default {
-  query() {
+  query({FlowRouter}) {
+
+   var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
 
   function selector() {
     // get the URL contents

@@ -7,7 +7,7 @@ const collectionComposer = ({ context, query, err }, onData) => {
 
   const error = err ? LocalState.get(err().errortype) : null
 
-  const { connection, collection, selector, pubsort, subsort, limit } = query()
+  const { connection, collection, selector, pubsort, subsort, publimit, sublimit } = query()
   var runselector = selector()
 
   const fields = {
@@ -29,12 +29,12 @@ const collectionComposer = ({ context, query, err }, onData) => {
     },
   }
 
-  if (Meteor.subscribe('feed', fields, runselector, pubsort, limit).ready()) {
-    const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false}).fetch()
+  if (Meteor.subscribe('feed', fields, runselector, pubsort, publimit).ready()) {
+    const data = Mongo.Collection.get(collection, { connection: connection }).find(runselector, {sort: subsort, reactive: false, limit: sublimit}).fetch()
 
     //console.log('Connection', connection)
     //console.log('Collection', collection)
-    //console.log('Selector, RemotePublishSort, LocalSubscribeSort and Limit are', runselector, pubsort, subsort, limit)
+    //console.log('Selector, RemotePublishSort, LocalSubscribeSort, PubLimit and SubLimit are', runselector, pubsort, subsort, publimit, sublimit)
     //console.log('Count', data.length)
 
     const sendData = () => {
