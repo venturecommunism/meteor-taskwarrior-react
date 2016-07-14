@@ -1,5 +1,5 @@
 export default {
-  onChange({context}, data, id, dateString) {
+  onChange({context}, e, id, dateString) {
     if (dateString) {
       formatteddata = {due: formattedMoment(moment(dateString)) }
 
@@ -15,12 +15,23 @@ export default {
       console.log("formatteddata", formatteddata)
     }
   },
-  toggleCalendar({Meteor, LocalState}) {
-    if (!LocalState.get('SHOWING_CALENDAR')) {
-      return LocalState.set('SHOWING_CALENDAR', true);
+  toggleCalendar({context, Meteor, LocalState}, e, id) {
+    var arr = LocalState.get('SHOWING_CALENDAR') ? LocalState.get('SHOWING_CALENDAR').split(',') : null
+    console.log("arr", arr)
+    if (!arr) {
+      console.log("there is no arr")
+      console.log("id", id)
+      return LocalState.set('SHOWING_CALENDAR', id)
+    } else if (arr.indexOf(id) < 0) {
+      arr.push(id)
+      var str = arr.join()
+      return LocalState.set('SHOWING_CALENDAR', str);
     }
     else {
-      return LocalState.set('SHOWING_CALENDAR', null);
+      console.log(arr)
+      arr.pop(id)
+      var str = arr.join()
+      return LocalState.set('SHOWING_CALENDAR', str);
     }
   },
   states() {
