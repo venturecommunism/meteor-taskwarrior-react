@@ -15,7 +15,7 @@ export default {
       pubsort: {created: -1},
       subsort: {created: -1},
       publimit: 1,
-      sublimit: sublimit,
+      sublimit: sublimit ? sublimit : 1,
     }
   },
 }

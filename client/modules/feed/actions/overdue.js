@@ -17,7 +17,8 @@ export default {
       selector: selector,
       pubsort: {due: -1},
       subsort: {due: -1},
-      limit: 1,
+      publimit: 1,
+      sublimit: sublimit,
     }
   },
 }

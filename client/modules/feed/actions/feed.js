@@ -76,7 +76,7 @@ export default {
       pubsort: {created: -1},
       subsort: {created: -1},
       publimit: { tasks: 10000 },
-      sublimit: sublimit,
+      sublimit: sublimit ? sublimit : 1,
     }
   },
   selector() {
