@@ -1,7 +1,7 @@
 export default {
   onChange({context}, e, id, dateString) {
     if (dateString) {
-      formatteddata = {due: formattedMoment(moment(dateString)) }
+      formatteddata = {due: formattedMoment(moment(dateString)), workflow: "/tw-ui/7.calendar" }
 
       Meteor.call('taskspending.update', formatteddata, id, (err) => {
         if (err) {
