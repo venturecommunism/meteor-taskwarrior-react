@@ -48,7 +48,7 @@ class Counter extends Component{
 
   _newNotification() {
     let description = 'Timer ended' 
-    let options = {body: description}
+    let options = {body: description, requireInteraction: true}
     let n = new Notification(description, options)
   }
 
