@@ -16,6 +16,9 @@ import projectselector from './projectselector'
 import currentprojorcont from './currentprojorcont'
 import backoneworkflow from './backoneworkflow'
 import timepicker from './timepicker'
+import trashbutton from './trashbutton'
+import archivebutton from './archivebutton'
+import somedaymaybebutton from './somedaymaybebutton'
 import createtask from './createtask'
 
 const actions = {
@@ -35,6 +38,9 @@ const actions = {
   currentprojorcont,
   backoneworkflow,
   timepicker,
+  trashbutton,
+  archivebutton,
+  somedaymaybebutton,
   createtask,
 }
 

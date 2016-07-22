@@ -4,7 +4,7 @@ export default {
    var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
 
     function selector() {
-      return {status: "completed", $and: [{tags: {$ne: "inbox"}}, {project: {$exists: false}}, {context: {$exists: false}}]}
+      return {due: {$exists: 1}, status: "completed", $and: [{project: {$exists: false}}, {context: {$exists: false}}]}
     }
 
     return {

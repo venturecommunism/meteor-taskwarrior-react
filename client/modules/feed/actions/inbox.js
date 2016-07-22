@@ -4,7 +4,7 @@ export default {
    var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
 
     function selector() {
-      return {workflow: "/tw-ui/0.inbox"}
+      return {status: "pending", workflow: "/tw-ui/0.inbox"}
     }
 
     return {

@@ -1,7 +1,4 @@
 export default {
-  name() {
-    return 'feed'
-  },
   query({FlowRouter}) {
 
    var sublimit = FlowRouter.current().queryParams.sublimit ? FlowRouter.current().queryParams.sublimit : 1
@@ -18,10 +15,10 @@ export default {
       switch (JSON.stringify(queryParams)) {
         case "{}":
           //sweetAlert("case", "{}")
-          query.feedquery = { type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
+          query.feedquery = { status: "pending", type: {$nin: ['project', 'context']}, "workflow.status": 'inbox'}
           break
         default:
-          query.feedquery = { type: {$nin: ['project', 'context']}}
+          query.feedquery = { status: "pending", type: {$nin: ['project', 'context']}}
       }
 
       switch (queryParams.projects) {
@@ -29,7 +26,7 @@ export default {
           break
         default:
           var project = queryParams.projects
-          query.feedquery = { project: project }
+          query.feedquery = { status: "pending", project: project }
           //sweetAlert("project", project)
       }
 
@@ -48,7 +45,7 @@ export default {
         default:
           var project = queryParams.projects
           var type = queryParams.type
-          query.feedquery = { project: project }
+          query.feedquery = { status: "pending", project: project }
       }
 
       switch (Boolean(!queryParams.projects && queryParams.type)) {
