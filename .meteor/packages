@@ -51,6 +51,6 @@ dburles:mongo-collection-instances
 meteorhacks:subs-manager
 
 #### Aurelia ####
-#fourseven:scss
+fourseven:scss
 sdenis:static-raw-html
-
+less
