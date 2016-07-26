@@ -12,6 +12,25 @@ import { FlowRouter } from 'meteor/kadira:flow-router'
 import { ReactiveDict } from 'meteor/reactive-dict'
 import { Tracker } from 'meteor/tracker'
 
+const authCommon = function () {
+
+  let userSubReady = Meteor.subscribe('users.current').ready();
+
+  const userId = Meteor.userId() || null;
+  const user = Meteor.user();
+  const profile = _.get(Meteor.user(), 'profile', {} );
+  const email = _.get(Meteor.user(), 'emails[0].address', {});
+
+  return {
+    userSubReady,
+    userId,
+    user,
+    email,
+    profile,
+  };
+
+};
+
 export function initContext(reducer) {
   return {
     ApolloClient,
@@ -26,6 +45,7 @@ export function initContext(reducer) {
     Store: createStore(
       reducer,
       applyMiddleware(thunk, createLogger())),
-    Tracker
+    Tracker,
+    authCommon
   }
 }
