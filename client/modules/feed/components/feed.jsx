@@ -2,7 +2,7 @@ import React from 'react'
 
 import FeedItem from './feeditem.jsx'
 
-import ActionsMapper from '../../core/containers/actionsmapper'
+import ActionsMapper from '../containers/actionsmapper'
 import ProjectSelector from './projectselector.jsx'
 
 import Button from './button.jsx'

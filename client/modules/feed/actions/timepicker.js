@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default {
   onChange({context}, e, id, dateString) {
     if (dateString) {

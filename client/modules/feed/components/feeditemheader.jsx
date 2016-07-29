@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ProjCont from './projorcont.jsx'
-import ActionsMapper from '../../core/containers/actionsmapper'
+import ActionsMapper from '../containers/actionsmapper'
 const ProjContContainer = ActionsMapper('projorcont', ProjCont)
 
 import Timepicker from './timepicker.jsx'
