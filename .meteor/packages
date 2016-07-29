@@ -14,7 +14,8 @@ tracker                 # Meteor's client-side reactive programming library
 standard-minifier-css   # CSS minifier run for production mode
 standard-minifier-js    # JS minifier run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
-ecmascript              # Enable ECMAScript2015+ syntax in app code
+#ecmascript              # Enable ECMAScript2015+ syntax in app code
+gadicc:ecmascript-hot@2.0.0-beta.5
 
 std:accounts-ui
 std:accounts-basic
@@ -40,10 +41,6 @@ random
 fortawesome:fontawesome
 percolate:find-from-publication
 reywood:publish-composite
-jagi:astronomy
-jagi:astronomy-slug-behavior
-jagi:astronomy-timestamp-behavior
-jagi:astronomy-validators
 email
 kevohagan:sweetalert
 matb33:collection-hooks

@@ -42,6 +42,8 @@
     "font-awesome": "^4.6.3",
     "validate.js": "^0.10.0",
 
+
+    "react-hot-loader": "^3.0.0-beta.2",
     "lodash": "4.6.1",
     "formsy-react": "0.17.0",
     "formsy-react-components": "0.6.6"

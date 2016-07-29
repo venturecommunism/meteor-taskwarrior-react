@@ -1,4 +1,4 @@
-//import 'react-hot-loader/patch'
+import 'react-hot-loader/patch'
 
 import routes from './routes'
 //import methodStubs from '/lib/methods/feed';
