@@ -7,7 +7,6 @@ const DataContainer = Container(Data)
 
 const App = ({queryParams}) => (
       <div className="bs-docs-section clearfix">
-        <p>pnrrrg</p>
         <DataContainer {...queryParams} />
       </div>
     )
