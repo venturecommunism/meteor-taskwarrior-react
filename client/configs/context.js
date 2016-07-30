@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import { Accounts } from 'meteor/accounts-base'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
-import { registerGqlTag } from 'apollo-client/gql'
+import { registerGqlTag } from 'graphql-tag'
 
 import Collections from '/lib/collections/collections'
 import { Meteor } from 'meteor/meteor'

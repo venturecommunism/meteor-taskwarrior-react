@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from './navigation';
 
-const Layout = ({content = () => null }) => (
+const Layout = ({...queryParams, content = () => null }) => (
   <div>
     {content()}
   </div>

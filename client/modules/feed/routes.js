@@ -35,7 +35,7 @@ export default function (injectDeps, {FlowRouter}) {
     action(params, queryParams) {
       const FeedPage = require('./components/0page.jsx').default;
       mount(MainLayoutCtx, {
-        content: () => (<FeedPage {...queryParams} />),
+        content: () => (<FeedPage queryParams={queryParams} />),
         links: () => {<Links />}
       });
     }
