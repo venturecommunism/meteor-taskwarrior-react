@@ -41,6 +41,10 @@ random
 fortawesome:fontawesome
 percolate:find-from-publication
 reywood:publish-composite
+jagi:astronomy
+jagi:astronomy-slug-behavior
+jagi:astronomy-timestamp-behavior
+jagi:astronomy-validators
 email
 kevohagan:sweetalert
 matb33:collection-hooks
