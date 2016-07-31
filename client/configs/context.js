@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import { Accounts } from 'meteor/accounts-base'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
-import { registerGqlTag } from 'apollo-client/gql'
+import { registerGqlTag } from 'graphql-tag'
 
 import Collections from '/lib/collections/collections'
 import { Meteor } from 'meteor/meteor'
@@ -11,6 +11,26 @@ import { Session } from 'meteor/session'
 import { FlowRouter } from 'meteor/kadira:flow-router'
 import { ReactiveDict } from 'meteor/reactive-dict'
 import { Tracker } from 'meteor/tracker'
+import _ from 'lodash'
+
+const authCommon = function () {
+
+  let userSubReady = Meteor.subscribe('users.current').ready();
+
+  const userId = Meteor.userId() || null;
+  const user = Meteor.user();
+  const profile = _.get(Meteor.user(), 'profile', {} );
+  const email = _.get(Meteor.user(), 'emails[0].address', {});
+
+  return {
+    userSubReady,
+    userId,
+    user,
+    email,
+    profile,
+  };
+
+};
 
 export function initContext(reducer) {
   return {
@@ -26,6 +46,7 @@ export function initContext(reducer) {
     Store: createStore(
       reducer,
       applyMiddleware(thunk, createLogger())),
-    Tracker
+    Tracker,
+    authCommon
   }
 }

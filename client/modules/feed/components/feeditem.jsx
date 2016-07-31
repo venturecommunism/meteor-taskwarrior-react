@@ -4,7 +4,7 @@ import FeedItemHeader from './feeditemheader.jsx'
 import FeedItemFooter from './feeditemfooter.jsx'
 
 import Button from './button.jsx'
-import ActionsMapper from '../../core/containers/actionsmapper'
+import ActionsMapper from '../containers/actionsmapper'
 const BackOneWorkflowButtonContainer = ActionsMapper('backoneworkflow', Button)
 
 export default ({...queryParams, data, ...date}) => (

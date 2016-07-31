@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ActionsMapper from '../../core/containers/actionsmapper'
+import ActionsMapper from '../containers/actionsmapper'
 
 import Button from './button.jsx'
 const UpOneContainer = ActionsMapper('parentprojectorcontext', Button)

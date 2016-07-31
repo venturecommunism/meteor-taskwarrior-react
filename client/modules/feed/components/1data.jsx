@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ActionsMapper from '../../core/containers/actionsmapper'
+import ActionsMapper from '../containers/actionsmapper'
 import Feed from './feed.jsx'
 
 import Timers from '../../timer/containers/Home'
