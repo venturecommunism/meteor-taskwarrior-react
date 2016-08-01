@@ -25,7 +25,7 @@ export default {
   },
   buttonpress({context}, e, id) {
     //sweetAlert("projectselector", e)
-    sweetAlert("id", id)
+    //sweetAlert("id", id)
     var data = {workflow: "/tw-ui/3.projectselected"}
     Meteor.call('taskspending.update', data, id)
     

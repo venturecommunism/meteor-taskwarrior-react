@@ -5,7 +5,7 @@ export default {
    var project = FlowRouter.current().queryParams.projects
 
     function selector() {
-      return {status: "pending", type: {$nin: ["project"]}, project: project, workflow: "/tw-ui/2.selectingproject"}
+      return {status: "pending", type: "project", project: project, workflow: "/tw-ui/2.selectingproject"}
     }
 
     return {
@@ -19,4 +19,5 @@ export default {
     }
   },
 }
+
 

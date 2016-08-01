@@ -22,6 +22,8 @@ const ProjectInboxContainer = ActionsMapper('projectinbox', Feed)
 
 const SubInboxContainer = ActionsMapper('subinbox', Feed)
 
+const SubProjectInboxContainer = ActionsMapper('subprojectinbox', Feed)
+
 const ContextInboxContainer = ActionsMapper('contextinbox', Feed)
 
 const OverDueContainer = ActionsMapper('overdue', Feed)
@@ -39,6 +41,7 @@ export default ({...queryParams, data, actions, ...date}) => (
       { !queryParams.type && <InboxContainer title="Inbox" data={data.inbox} /> }
       { queryParams.type == 'project' && !queryParams.projects && <ProjectInboxContainer title="Project Inbox" data={data.projectinbox} /> }
       { queryParams.type == 'project' && <SubInboxContainer title="Subproject Inbox" data={data.subinbox} /> }
+      { queryParams.type == 'project' && <SubProjectInboxContainer title="Subproject Project Inbox" data={data.subprojectinbox} /> }
       { queryParams.type == 'context' && !queryParams.contexts && <ContextInboxContainer title="Context Inbox" data={data.contextinbox} /> }
       { !queryParams.type && <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} /> }
       { !queryParams.type && <OverDueContainer title="Overdue Calendar" data={data.overdue} /> }

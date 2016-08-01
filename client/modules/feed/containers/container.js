@@ -7,7 +7,7 @@ const collectionComposer = ({ context, actions }, onData) => {
   const { Meteor, Collections, Store, LocalState } = context()
   const { sidebarReducer } = Store.getState()
 
-  const { feed, inbox, projectinbox, subinbox, contextinbox, calendar, overdue, previouscalendar, sidebar, currentprojorcont, filterprojects } = actions()
+  const { feed, inbox, projectinbox, subinbox, subprojectinbox, contextinbox, calendar, overdue, previouscalendar, sidebar, currentprojorcont, filterprojects } = actions()
 
   const { queries } = actions().data.query()
 
@@ -24,6 +24,7 @@ const collectionComposer = ({ context, actions }, onData) => {
     data.inbox = queryize(inbox)
     data.projectinbox = queryize(projectinbox)
     data.subinbox = queryize(subinbox)
+    data.subprojectinbox = queryize(subprojectinbox)
     data.contextinbox = queryize(contextinbox)
     data.calendar = queryize(calendar)
     data.overdue = queryize(overdue)
@@ -40,6 +41,7 @@ const collectionComposer = ({ context, actions }, onData) => {
     data.inbox.filterprojects = projectsfilter
     data.projectinbox.filterprojects = projectsfilter
     data.subinbox.filterprojects = projectsfilter
+    data.subprojectinbox.filterprojects = projectsfilter
     data.contextinbox.filterprojects = projectsfilter
     data.previouscalendar.filterprojects = projectsfilter
     data.overdue.filterprojects = projectsfilter
