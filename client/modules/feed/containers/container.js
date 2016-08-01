@@ -39,6 +39,7 @@ const collectionComposer = ({ context, actions }, onData) => {
     data.feed.filterprojects = projectsfilter
     data.inbox.filterprojects = projectsfilter
     data.projectinbox.filterprojects = projectsfilter
+    data.subinbox.filterprojects = projectsfilter
     data.contextinbox.filterprojects = projectsfilter
     data.previouscalendar.filterprojects = projectsfilter
     data.overdue.filterprojects = projectsfilter
