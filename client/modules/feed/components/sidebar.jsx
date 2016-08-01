@@ -10,7 +10,7 @@ const CurrentProjOrContContainer = ActionsMapper('projectselector', SimpleFeed)
 
 export default ({...queryParams, data, actions }) => (
   <div className='params-example'>
-    <button className={ actions.flags().clearall } onClick={ actions.clearFilters }>
+    <button className={ data.inboxflag ? 'blinker' : actions.flags().clearall } onClick={ actions.clearFilters }>
       Inbox
     </button>
 
@@ -45,7 +45,7 @@ export default ({...queryParams, data, actions }) => (
         <li key={task._id}>
           <div className='feed-item'>
             <div className='feed-item-description' onClick={ actions.selectedProjectOrContext }>
-              <span id={task._id} style={{ color: 'red', }}>{task.description}</span>
+              <span className={data.inboxflags.indexOf(task._id) == 0 ? 'blinker' : ''} id={task._id} style={{ color: 'red', }}>{task.description}</span>
             </div>
             <div className='feed-item-entry'>
               {task.entry}
