@@ -3,6 +3,7 @@
 import data from './1data'
 import inbox from './inbox'
 import projectinbox from './projectinbox'
+import subinbox from './subinbox'
 import contextinbox from './contextinbox'
 import feed from './feed'
 import calendar from './calendar'
@@ -25,6 +26,7 @@ const actions = {
   data,
   inbox,
   projectinbox,
+  subinbox,
   contextinbox,
   feed,
   calendar,
