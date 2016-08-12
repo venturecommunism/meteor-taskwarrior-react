@@ -11,6 +11,8 @@ const TrashButton = ActionsMapper('trashbutton', Button)
 const ArchiveButton = ActionsMapper('archivebutton', Button)
 const SomedayMaybeButton = ActionsMapper('somedaymaybebutton', Button)
 
+const LoadMoreButton = ActionsMapper('loadmorebutton', Button)
+
 const ProjectSelectorContainer = ActionsMapper('filterprojects', ProjectSelector)
 //ProjectSelector used to be wrapped in a standard container with 'filterprojects' as an argument
 
@@ -28,9 +30,7 @@ export default ({data, title, ...date}) => (
         </li>
       ))}
     </ul>
-
-    <button className='more-btn'> 
-      Load More
-    </button>
+ 
+    <LoadMoreButton data={data[0] ? data[0] : ''} taskid={data[0] && data[0]._id ? data[0]._id : ''} />
   </div>
 )

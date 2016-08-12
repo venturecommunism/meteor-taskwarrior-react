@@ -21,6 +21,7 @@ import timepicker from './timepicker'
 import trashbutton from './trashbutton'
 import archivebutton from './archivebutton'
 import somedaymaybebutton from './somedaymaybebutton'
+import loadmorebutton from './loadmorebutton'
 import createtask from './createtask'
 
 const actions = {
@@ -45,6 +46,7 @@ const actions = {
   trashbutton,
   archivebutton,
   somedaymaybebutton,
+  loadmorebutton,
   createtask,
 }
 
