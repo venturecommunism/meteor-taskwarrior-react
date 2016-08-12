@@ -2,10 +2,11 @@ import React from 'react';
 
 import ActionsMapper from '../containers/actionsmapper'
 import Feed from './feed.jsx'
+import MainFeed from './mainfeed.jsx'
 
 import Timers from '../../timer/containers/Home'
 
-const FeedContainer = ActionsMapper('feed', Feed)
+const FeedContainer = ActionsMapper('feed', MainFeed)
 //Feed used to be wrapped in a standard container with 'feed' as an argument
 
 import CreateTask from './createtask.jsx'
