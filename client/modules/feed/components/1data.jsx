@@ -44,8 +44,8 @@ export default ({...queryParams, data, actions, ...date}) => (
       { queryParams.type == 'project' && <SubInboxContainer title="Subproject Inbox" data={data.subinbox} /> }
       { queryParams.type == 'project' && <SubProjectInboxContainer title="Subproject Project Inbox" data={data.subprojectinbox} /> }
       { queryParams.type == 'context' && !queryParams.contexts && <ContextInboxContainer title="Context Inbox" data={data.contextinbox} /> }
-      { !queryParams.type && <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} /> }
-      { !queryParams.type && <OverDueContainer title="Overdue Calendar" data={data.overdue} /> }
+      { queryParams == {} && <PreviousCalendarContainer title="Previous Calendar" data={data.previouscalendar} /> }
+      { queryParams == {} && <OverDueContainer title="Overdue Calendar" data={data.overdue} /> }
       <FeedContainer title="Main Feed" data={data.feed} {...date} />
       <CalendarContainer title="Upcoming Calendar" data={data.calendar} {...date} />
       <CreateTaskContainer />
