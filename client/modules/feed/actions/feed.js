@@ -38,7 +38,7 @@ export default {
         default:
           var type = queryParams.type
           //sweetAlert("type", type)
-          query.feedquery.type = { $in: [type] }
+            query.feedquery.type = type ? { $in: [type] } : { $nin: ["project", "context"] }
       }
 
       switch (Boolean(queryParams.projects && queryParams.type)) {
@@ -47,7 +47,8 @@ export default {
         default:
           var project = queryParams.projects
           var type = queryParams.type
-          query.feedquery = { status: "pending", project: project }
+          query.feedquery.status = "pending"
+          query.project = project
       }
 
       switch (Boolean(!queryParams.projects && queryParams.type)) {
@@ -64,6 +65,7 @@ export default {
       }
 
       //sweetAlert("query.feedquery.project", query.feedquery.project)
+      sweetAlert("feedquery", JSON.stringify(query.feedquery))
       return query.feedquery
     }
 
