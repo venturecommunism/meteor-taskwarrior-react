@@ -65,7 +65,7 @@ export default {
       }
 
       //sweetAlert("query.feedquery.project", query.feedquery.project)
-      sweetAlert("feedquery", JSON.stringify(query.feedquery))
+      //sweetAlert("feedquery", JSON.stringify(query.feedquery))
       return query.feedquery
     }
 

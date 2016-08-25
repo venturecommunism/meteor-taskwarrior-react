@@ -37,12 +37,12 @@ export default {
 
     var query = { project: {$exists: 0}, workflow: "/tw-ui/3.projectselected" }
 
-    switch (Boolean(queryParams.projects && queryParams.type)) {
+    switch (Boolean(queryParams.projects)) {
       case (false):
         break
       default:
         var project = queryParams.projects
-        var type = queryParams.type
+        var type = queryParams.type ? queryParams.type : 'project'
         query = { type: type, project: project }
     }
 
@@ -93,7 +93,7 @@ export default {
   selectedProjectOrContext({ context, Store }, e) {
     var id = e.target.id
     if (FlowRouter.getQueryParam('type') == 'project' || !FlowRouter.getQueryParam('type')) {
-      FlowRouter.setQueryParams({ projects: id, type: 'project' })
+      FlowRouter.setQueryParams({ projects: id })
     } else {
       FlowRouter.setQueryParams({ contexts: id, type: 'context' })
     }

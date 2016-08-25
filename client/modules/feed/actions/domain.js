@@ -7,7 +7,7 @@ const FeedDomain = {
 
   upprojorcont() {
     var queryParams = FlowRouter.current().queryParams
-    if (FlowRouter.getQueryParam('type') == 'project') {
+    if (FlowRouter.getQueryParam('type') == 'project' || FlowRouter.getQueryParam('projects')) {
       var id = queryParams.projects
       var projectprojorcont = taskspending.findOne({ project: {$exists: 1}, _id: id})
       var projectid = projectprojorcont ? projectprojorcont.project : null
