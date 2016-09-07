@@ -10,14 +10,13 @@ import { compose } from 'react-komposer'
 // test 
 
 // Create a component to display Time
-const Time = ({queryParams, time}) => (
+const Time = ({queryParams, date}) => (
 	<div>
 <p></p>
 <p></p>
 <p></p>
 <p></p>
-{time}
-<DataContainer {...queryParams} />
+<DataContainer {...queryParams} date={date} />
   </div>
 )
 
@@ -29,8 +28,8 @@ const composerFunction = (props, onData) => {
   )
 	
   const handler = setInterval(() => {
-    const time = now()
-    onData(null, {time})
+    const date = now()
+    onData(null, {date})
   }, 100)
   
   const cleanup = () => clearInterval(handler)
