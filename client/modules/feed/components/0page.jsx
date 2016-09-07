@@ -6,7 +6,7 @@ import Data from './1data.jsx'
 const DataContainer = Container(Data)
 
 const App = ({queryParams}) => (
-      <div className="bs-docs-section clearfix">
+      <div className="clearfix">
         <DataContainer {...queryParams} />
       </div>
     )
