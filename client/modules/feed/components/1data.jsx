@@ -34,12 +34,12 @@ const CalendarContainer = ActionsMapper('calendar', Feed)
 export default ({...queryParams, data, actions, ...date}) => (
   <div className="row">
 
-<div className="navburger"></div>
-
+<div className="navburger" onClick={ actions().navburger.buttonpress } ></div>
+{ queryParams.navbar &&
     <div className="col-md-3" style={{"backgroundColor": "gray"}}>
       <p>{date.year}{date.month}{date.day}{date.hours}{date.minutes}{date.seconds}</p>
       <SideBarContainer {...queryParams} data={data.sidebar} />
-    </div>
+    </div> }
     <div className="col-md-9">
       <Timers {...queryParams} />
       { !queryParams.type && <InboxContainer title="Inbox" data={data.inbox} /> }

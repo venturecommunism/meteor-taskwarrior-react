@@ -22,6 +22,7 @@ import trashbutton from './trashbutton'
 import archivebutton from './archivebutton'
 import somedaymaybebutton from './somedaymaybebutton'
 import loadmorebutton from './loadmorebutton'
+import navburger from './navburger'
 import createtask from './createtask'
 
 const actions = {
@@ -47,6 +48,7 @@ const actions = {
   archivebutton,
   somedaymaybebutton,
   loadmorebutton,
+  navburger,
   createtask,
 }
 
