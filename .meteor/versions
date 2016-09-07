@@ -11,7 +11,6 @@ blaze@2.1.8
 blaze-tools@1.0.9
 boilerplate-generator@1.0.9
 caching-compiler@1.0.5
-caching-html-compiler@1.0.6
 callback-hook@1.0.9
 check@1.2.2
 coffeescript@1.1.0
@@ -52,7 +51,6 @@ kadira:flow-router@2.12.1
 kevohagan:sweetalert@1.0.0
 lai:collection-extensions@0.2.1_1
 launch-screen@1.0.12
-less@2.6.1
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.13
@@ -89,7 +87,6 @@ reywood:publish-composite@1.4.2
 routepolicy@1.0.11
 sanjo:meteor-files-helpers@1.2.0_1
 sanjo:meteor-version@1.0.0
-sdenis:static-raw-html@1.0.7
 service-configuration@1.0.10
 session@1.1.6
 sha@1.0.8
@@ -101,7 +98,6 @@ standard-minifier-css@1.0.7
 standard-minifier-js@1.0.7
 std:accounts-basic@1.1.12
 std:accounts-ui@1.2.6
-templating-tools@1.0.4
 tmeasday:check-npm-versions@0.3.1
 tracker@1.0.14
 ui@1.0.11
