@@ -28,7 +28,6 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
     "soundmanager2": "^2.97.20150601-a",
-    "tracker-component": "^1.3.16",
     "font-awesome": "^4.6.3",
     "validate.js": "^0.10.0",
 
