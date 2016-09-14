@@ -1,3 +1,12 @@
+import d from 'datascript'
+
+
+var db = d.empty_db();
+var db1 = d.db_with(db, [[":db/add", 1, "flowrouter/type", "project"],
+                         [":db/add", 1, "flowrouter/projects", "some-uuid"]])
+var q = '[:find ?n ?a :where [?e "flowrouter/type" ?n] [?e "flowrouter/projects" ?a]]'
+console.log(d.q(q, db1))
+
 export const SELECT_PROJECTORCONTEXT = 'feed/SELECT_PROJECTORCONTEXT'
 
 const initialState = {
