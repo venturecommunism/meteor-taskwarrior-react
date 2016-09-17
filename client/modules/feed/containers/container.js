@@ -32,7 +32,7 @@ const collectionComposer = ({ context, actions }, onData) => {
     data.sidebar = queryize(sidebar)
 //    data.sidebar.inboxflags = data.sidebar.map( sb => taskspending.findOne({ project: sb._id, workflow: "/tw-ui/2.selectingproject"}) )
     data.sidebar.inboxflags = data.sidebar.map( sb => taskspending.findOne({workflow: "/tw-ui/2.selectingproject", status: "pending", project: sb._id}) ? sb._id : '' )
-    console.log("data.sidebar.inboxflags", data.sidebar.inboxflags)
+//    console.log("data.sidebar.inboxflags", data.sidebar.inboxflags)
     data.sidebar.currentprojorcont = queryize(currentprojorcont)
     data.sidebar.inboxflag = (data.inbox.length == 0) ? 0 : 1
     //console.log("data.inbox", data.inbox.length)

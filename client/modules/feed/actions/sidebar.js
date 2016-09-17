@@ -1,3 +1,42 @@
+import d from 'datascript'
+
+var schema = {
+  ":my/tid": {
+    ":db/unique": ":db.unique/identity"
+  }
+}
+var conn = d.create_conn(schema)
+
+d.transact(conn, [{
+  ":my/tid": "5x",
+  ":my/name": "Terin"
+}])
+
+d.transact(conn, [{
+  ":my/tid": "5x",
+  ":my/name": "Charlie"
+}])
+
+d.transact(conn,[[
+  ":db/add", -1, "name", "Moe"
+]])
+
+
+/*
+d.transact(conn,[[
+]])
+*/
+
+var charlie_query = '[:find ?name :where [?e ":my/tid" "5x"] [?e ":my/name" ?name]]'
+var moe_query = '[:find ?n :where [?e "name" ?n ] ]'
+
+function query(datalogquery) {
+  return d.q(datalogquery, d.db(conn))
+}
+
+console.log(query(charlie_query))
+console.log(query(moe_query))
+
 export const SELECT_PROJECTORCONTEXT = 'feed/SELECT_PROJECTORCONTEXT'
 
 const initialState = {

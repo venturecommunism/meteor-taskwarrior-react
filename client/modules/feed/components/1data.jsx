@@ -31,7 +31,7 @@ const OverDueContainer = ActionsMapper('overdue', Feed)
 
 const CalendarContainer = ActionsMapper('calendar', Feed)
 
-export default ({...queryParams, data, actions, ...date}) => (
+export default ({...queryParams, data, actions, date}) => (
   <div className="row">
 
 <div className="navburger" onClick={ actions().navburger.buttonpress } ></div>
@@ -41,6 +41,7 @@ export default ({...queryParams, data, actions, ...date}) => (
       <SideBarContainer {...queryParams} data={data.sidebar} />
     </div> }
     <div className="col-md-9">
+{date}
       <Timers {...queryParams} />
       { !queryParams.projects && !queryParams.contexts && !queryParams.type && <InboxContainer title="Inbox" data={data.inbox} /> }
       { queryParams.type == 'project' && !queryParams.projects && <ProjectInboxContainer title="Project Inbox" data={data.projectinbox} /> }
