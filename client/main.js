@@ -16,7 +16,6 @@ const rootReducer = combineReducers({
 })
 
 const context = initContext(rootReducer)
-
 const app = createApp(context)
 
 app.loadModule(appModule)
@@ -24,6 +23,5 @@ app.loadModule(apolloModule)
 app.loadModule(feedModule)
 app.loadModule(pomodoroModule)
 app.loadModule(timerModule)
-
 app.init()
 
