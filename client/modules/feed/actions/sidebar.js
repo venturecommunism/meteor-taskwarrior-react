@@ -88,6 +88,8 @@ export default {
     paramsflags.dodefined = (queryParams.mode == 'do') ? 'greenflag' : null
     paramsflags.clearall = (JSON.stringify(queryParams) == '{}' ) ? 'blueflag' : null
     paramsflags.timers = (queryParams.showtimers == 'true') ? 'blueflag' : null
+    paramsflags.overdue = (queryParams.showoverdue == 'true') ? 'blueflag' : null
+    paramsflags.prevcal = (queryParams.showprevcal == 'true') ? 'blueflag' : null
     return paramsflags
   },
   selectedProjectOrContext({ context, Store }, e) {
@@ -140,6 +142,22 @@ export default {
       FlowRouter.setQueryParams({ showtimers: 'true' })
     } else {
       FlowRouter.setQueryParams({ showtimers: null })
+    }
+  },
+  showHidePreviousCalendar() {
+    var currentState = FlowRouter.getQueryParam('showprevcal')
+    if (currentState != 'true') {
+      FlowRouter.setQueryParams({ showprevcal: 'true' })
+    } else {
+      FlowRouter.setQueryParams({ showprevcal: null })
+    }
+  },
+  showHideOverdueCalendar() {
+    var currentState = FlowRouter.getQueryParam('showoverdue')
+    if (currentState != 'true') {
+      FlowRouter.setQueryParams({ showoverdue: 'true' })
+    } else {
+      FlowRouter.setQueryParams({ showoverdue: null })
     }
   },
 }

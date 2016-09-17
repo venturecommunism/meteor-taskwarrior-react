@@ -34,6 +34,14 @@ export default ({...queryParams, data, actions }) => (
       Show/Hide Timers
     </button>
 
+    <button className={ actions.flags().prevcal } onClick={ actions.showHidePreviousCalendar }>
+      Show/Hide Previous Calendar
+    </button>
+
+    <button className={ actions.flags().overdue } onClick={ actions.showHideOverdueCalendar }>
+      Show/Hide Overdue Calendar
+    </button>
+
     <br /><br />
 
     <UpOneContainer {...queryParams} />
